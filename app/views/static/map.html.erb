@@ -1,0 +1,156 @@
+<% title "Fullscreen Topographic Map" %>
+<% @hikes = Hike.all %>
+
+<style type="text/css" media="all">
+	#map {
+		position:absolute;
+		top:63px;	left:0;
+		width:100%;	height:98%;
+		background-color:black;
+		z-index:2;
+	}
+	#navigation {
+		position:relative;
+		z-index:3;
+	}
+	.day {
+		float:left;
+		width:75px;
+		margin-right:10px;
+		position:relative;
+		text-align:center;
+	}
+	.day .weather_summary {
+		color:#999;
+		font-size:75%;
+		height:35px;
+	}
+	.day .high {
+		color:#671D21;
+		font-size:125%;
+	}
+	.day .low {
+		color:#5FA8CC;
+	}
+	.day .forecast_title {
+		font-weight:bold;
+		margin-bottom:10px;
+	}
+</style>
+<style type="text/css" media="print">
+	#map {
+		width:100%;	height:100%;
+		top:0;
+	}
+	.nav { display:none }
+	#navigation {
+		background:transparent;
+	}
+</style>
+<div id="map" style="width:100%;height:92%"></div>
+<% content_for :head do %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(window).resize(function(){
+		$("#map").css("height", ($(window).height() - 63) + "px");
+	});
+	$("#map").css("height", ($(window).height() - 63) + "px");
+	
+	beef.defaults.zoom 			= <%= params[:zoom].blank? ? 5 : h(params[:zoom]) %>;
+	beef.defaults.lat			= <%= params[:lat].blank? ? 39.48 : h(params[:lat]) %>;
+	beef.defaults.lng			= <%= params[:lng].blank? ? -98.18 : h(params[:lng]) %>;
+	beef.defaults.doubleclick 	= true;
+	beef.defaults.scrollwheel 	= true;
+	beef.load();
+	topo();
+	<%= "map.setMapTypeId('#{h params[:maptype]}')" unless params[:maptype].blank? %>
+	
+	
+	var url = window.location.toString();
+	
+	// Add the drawn path to the map
+	if (url.indexOf("hikepath=") != -1) {
+		var path = google.maps.geometry.encoding.decodePath(unescape(window.location.toString().split("hikepath=")[1]));
+		
+		beef.polylines.startDrawing();
+		path.forEach(function(point,key){
+			if (key == path.length - 1) {
+				beef.polylines.addLatLng({latLng: point})
+			} else {
+				beef.variables.polylinePath.push(point);
+				beef.infoWindow.open("new", "<a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
+				if (beef.variables.polylinePath.getLength() == 1) {
+					beef.variables.markers["new"] = new google.maps.Marker({
+						map: 				map,
+						position: 	beef.variables.polylinePath.getAt(0)
+					});
+				}
+			}
+		});
+		beef.polylines.stopDrawing();
+	}
+
+
+	// DISPLAY WEATHER
+
+	google.maps.event.addListener(map, "rightclick", function(e){
+		beef.variables.info.setPosition(e.latLng);
+		beef.variables.info.setContent("<div style='text-align:center'><img src='/images/wait.gif' /></div>");
+		beef.variables.info.open(map);
+		eService = new google.maps.ElevationService();
+		
+		$.post("<%= forecasts_path %>", { lat: e.latLng.lat(), lng: e.latLng.lng() }, function(forecast){
+			var $output = $("<div class='forecast'></div>");
+			
+			
+			$.each(forecast, function(i, day){
+				var $day = $("<div class='day'></div>");
+				$day.append("<div class='forecast_title'>"+ day.title +"</div>")
+				$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
+				$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
+				$day.append("<div class='high'>" + day.high + "</div>");
+				$day.append("<div class='low'>" + day.low + "</div>");
+				$output.append($day);
+			});
+			$output.append("<div class='clearer'></div><p><a href='http://forecast.weather.gov/MapClick.php?textField1="+ e.latLng.lat() +"&textField2="+ e.latLng.lng() +"' target='_blank'>view more detail on weather.gov</a></p>");
+			beef.variables.info.setContent($output.html());
+		}, "json");
+	});
+	
+	
+	// <%= "beef.zoomToMarkers();" if params[:lat].blank? && params[:lng].blank? %>
+	
+	var updateURL = function(e) {
+		queryString = "?lat=" + 
+			map.getCenter().lat() + 
+			"&lng=" 		+ map.getCenter().lng() + 
+			"&zoom=" 		+ map.getZoom() +
+			"&maptype=" 	+ map.getMapTypeId();
+		if (beef.variables.polylinePath != null) {
+			queryString += "&hikepath=" + 
+			escape(google.maps.geometry.encoding.encodePath(beef.variables.polylinePath.getArray()));
+		}
+		
+		window.history.replaceState("shrug", "map changed", "/map" + queryString);
+	}
+	
+	google.maps.event.addListener(map, "center_changed", updateURL);
+	google.maps.event.addListener(map, "zoom_changed", updateURL);
+	google.maps.event.addListener(map, "maptypeid_changed", updateURL);
+	google.maps.event.addListener(map, "click", updateURL);
+	
+	var c =0 ;
+	$('#map')[0].onmousedown=function(event){
+		if(event.button == 2){
+			c++;
+			setTimeout(cc, 900);
+		}
+		if (c >3){
+			alert("secret hike mode enabled!");
+			beef.polylines.startDrawing();
+		}
+	}
+	function cc(){c=0;}
+});
+</script>
+<% end %>

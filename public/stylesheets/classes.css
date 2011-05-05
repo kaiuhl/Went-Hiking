@@ -1,0 +1,30 @@
+/*********************************************************************/
+/* DEFAULT HELPER CLASSES FOR KITTELSON & ASSOCIATES, INC'S WEBSITES */
+/*********************************************************************/
+
+.clearer {
+	clear:both;
+}
+.float {
+	float:left;
+	margin-right:10px;
+}
+.floatright {
+	float:right;
+	margin-left:10px;
+}
+.amp {
+	font-family:"Baskerville", "New Baskerville", "NewBskvll BT","Goudy Old Style","Palatino","Book Antiqua",serif;
+	font-size:120%;
+	font-style:italic;
+}
+.column {
+	width:49%;
+	float:left;
+}
+.dominant { width:580px }
+.subordinant { width:300px; }
+
+.last {
+	float:right;
+}

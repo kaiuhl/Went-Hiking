@@ -1,0 +1,61 @@
+$(document).ready(function(){
+	
+	$(window).resize(function(){
+		$("#map").css("height", ($(window).height() - 53) + "px");
+	});
+	$("#map").css("height", ($(window).height() - 53) + "px");
+	
+	beef.defaults.zoom 		= <%= @route.zoom.blank? ? 5 : h(@route.zoom) %>;
+	beef.defaults.lat			= <%= @route.lat.blank? ? 40 : h(@route.lat) %>;
+	beef.defaults.lng			= <%= @route.lng.blank? ? -100 : h(@route.lng) %>;
+	beef.defaults.doubleclick 	= true;
+	beef.defaults.scrollwheel 	= true;
+	beef.load();
+	topo();
+	
+	<%= "map.setMapTypeId('#{h @route.map_type}')" unless @route.map_type.blank? %>
+	
+	<% unless @route.path.blank? %>
+	// Add the drawn path to the map
+	var path = google.maps.geometry.encoding.decodePath(unescape('<%= @route.path %>'));
+	
+	beef.polylines.startDrawing();
+	
+	path.forEach(function(point,key){
+		if (key == path.length - 1) {
+			beef.polylines.addLatLng({latLng: point})
+		} else {
+			beef.variables.polylinePath.push(point);
+			beef.infoWindow.open("new", "<a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
+			if (beef.variables.polylinePath.getLength() == 1) {
+				beef.variables.markers["new"] = new google.maps.Marker({
+					map: 				map,
+					position: 	beef.variables.polylinePath.getAt(0)
+				});
+			}
+		}
+	})
+	beef.polylines.stopDrawing();
+	<% end %>
+
+
+
+	var updateForm = function(e) {
+		$("#route_lat").val(map.getCenter().lat());
+		$("#route_lng").val(map.getCenter().lng());
+		$("#route_zoom").val(map.getZoom());
+		$("#route_map_type").val(map.getMapTypeId());
+		$("#route_title").val($("#title").val());
+		try { 		
+			$("#route_path").val(escape(google.maps.geometry.encoding.encodePath(beef.variables.polylinePath.getArray())));
+		} catch(e) {}
+	}
+	
+	// Add Listeners to update form
+	google.maps.event.addListener(map, "center_changed", updateForm);
+	google.maps.event.addListener(map, "zoom_changed", updateForm);
+	google.maps.event.addListener(map, "maptypeid_changed", updateForm);
+	google.maps.event.addListener(map, "click", updateForm);
+	$("#title").keyup(updateForm);
+	
+});

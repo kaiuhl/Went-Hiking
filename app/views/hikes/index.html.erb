@@ -1,0 +1,59 @@
+<% title "#{@user.name}" %>
+<% unless @hikes.blank? %>
+
+<% content_for :header do %>
+	<%= link_to(image_tag(@user.avatar.url(:thumbnail), :class => "floatright", :id => "user-left"), @user.avatar.url(:medium, false)) unless @user.avatar_file_name.blank? %>
+
+	<h1><%= "In #{@year}," unless @year.blank? %>
+	<%= @year == DateTime.now.year ? "#{@user.name} has taken" : "#{@user.name} went on" %> 
+	<%= "#{@hikes.length} trips, hiked a total of #{@hikes.map(&:mileage).sum.to_i} miles, #{'and' if @hikes.map(&:nights).sum == 0} climbed #{@hikes.map(&:elevation).sum} feet" %><%= @hikes.map(&:nights).sum > 0 ? ", and spent #{@hikes.map(&:nights).sum} nights under the stars.</a></h1>": ".</h1>" %>
+<% end %>
+
+<% content_for :before_header do %>
+<div id="map" style="height:250px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
+<%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
+<% end %>
+
+<h2>
+	<%= @year %> Hikes <%= " To Date" if DateTime.now.year == @year %>
+	<%= link_to(image_tag("rss.png", :alt => "Subscribe via RSS"), user_hikes_path(@user, :rss)) %>
+</h2>
+<%= render @hikes %>
+
+<% unless @other_years_hikes.blank? %>
+<p>
+	View hikes from:
+	<% @other_years_hikes.each do |year| %>
+		<%= link_to(year, user_hikes_path(@user, :year => year)) %>
+	<% end %>
+</p>
+<% end %>
+
+<% content_for :head do %>
+<script type="text/javascript">
+$(document).ready(function(){
+	beef.defaults.zoom 			= 5;
+	beef.defaults.lat			= 45;
+	beef.defaults.lng			= -118;
+	beef.defaults.doubleclick 	= true;
+	beef.defaults.scrollwheel 	= false;
+	beef.load();
+	beef.markers.populate(<%= @hikes.map { |hike| { 
+		:id 			=> hike.id, 
+		:lat 			=> hike.lat,
+		:lng			=> hike.lng,
+		:info			=> hike.name
+	} }.to_json %>);
+	beef.zoomToMarkers();
+	topo();
+});
+</script>
+<% end %>
+
+<% else %>
+	<% if current_user.id != params[:user_id].to_i %>
+		<h2><%= @user.name %> hasn't added any hikes yet!</h2>
+	<% else %>
+		<h2>You haven't added any hikes yet! <%= link_to "Add a hike!", new_user_hike_path(@user) %></h2>
+	<% end %>
+<% end %>

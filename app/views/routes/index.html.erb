@@ -1,0 +1,7 @@
+<% title "Routes" %>
+<h1>Saved Routes</h1>
+<ol>
+	<% @routes.each do |route| %>
+		<li><%= link_to (route.title.blank? ? "(blank)" : route.title), route %></li>
+	<% end %>
+</ol>

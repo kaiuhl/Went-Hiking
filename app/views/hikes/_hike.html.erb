@@ -1,0 +1,32 @@
+<div class="box hike">
+	<div class="column dominant">
+		<h2>
+			<%= link_to hike.name, user_hike_path(hike.user, hike) %>
+			<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,hike)) if personal_current_user %>
+		</h2>
+		<%= markdown(hike.report) %>
+		<p><%= image_tag("comment.png") %> <%= link_to "#{hike.comments.length} comments", "#{user_hike_path(@user,hike)}#comments" %></p>
+		</div>
+		<div class="column subordinant last">
+		<h3>
+			<% if hike.nights > 0 %>
+				<%= hike.hiked_at.strftime("%B %e") %> &ndash;
+				<%= (hike.hiked_at + hike.nights.days).strftime("%B %e, %Y") %>
+			<% else %>
+				<%= hike.hiked_at.strftime("%B %e, %Y") %>
+			<% end %>
+		</h3>
+		<%= image_tag(static_map(hike.lat, hike.lng)) %>
+		<ul class="meta">
+			<li><%= hike.mileage % 1 == 0 ? hike.mileage.to_i : hike.mileage  %> miles of hiking</li>
+			<li><%= hike.elevation %>' elevation gain</li>
+			<%= "<li>#{hike.nights} #{hike.nights == 1 ? 'night' : 'nights'}</li>" if hike.nights > 0 %>
+		</ul>
+		<% unless hike.photos.blank? %>
+		<div class="photo_box">
+			<%= render :partial => 'photo', :collection => hike.photos, :locals => { :size => :thumbnail } %>
+		</div>
+		<% end %>
+	</div>
+	<div class="clearer"></div>
+</div>

@@ -1,0 +1,7 @@
+<% form_for([@hike, @comment]) do |f| %>
+<%= f.error_messages %>
+	<%= f.text_area :body %>
+	<%= f.hidden_field :hike_id %>
+	<%= f.hidden_field :user_id %>
+	<%= f.submit "Add your comment", :class => "super awesome large button" %>
+<% end %>

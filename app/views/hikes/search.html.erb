@@ -1,0 +1,69 @@
+<% title "Hikes" %>
+<div class="column">
+	<h1>Search for Trips</h1>
+	<% form_tag(search_hikes_path, :class => "formtastic") do |f| %>
+	<fieldset class="inputs"><ol>
+		<li class="string optional">
+			<%= label_tag "search[string]", "Search for" %>
+			<%= text_field_tag "search[string]" %>
+			<p class="inline-hints">Anything you're looking for (e.g. lake, fishing, bears&hellip;)</p>
+		</li>
+		<li class="string optional">
+			<%= label_tag "search[location]", "Near" %>
+			<%= text_field_tag "search[location]", (current_user.try(:locale).blank? ? "" : current_user.locale) %>
+			<p class="inline-hints">Add a location to search around that area</p>
+		</li>
+		<li class="select optional">
+			<%= label_tag "search[within]", "Within" %>
+			<%= select "search", "within", [["Any Distance", nil], ["5 miles", 5],["25 miles", 25],["100 miles", 100],["200 miles", 200],["500 miles", 500]] %>
+			
+		</li>
+		
+		<li class="boolean optional">
+			<label for="search_backpacks">
+				<%= check_box_tag "search[backpacks]", 1, true %>
+				Backpacks</label><div class="clearer"></div>
+			<label for="search_backpack">
+				<%= check_box_tag "search[hikes]", 1, true %>
+				Hikes</label>
+		</li>
+	</ol></fieldset>
+	<fieldset class="buttons">
+		<%= submit_tag "Search", :class => "super awesome large button" %>
+	</fieldset>
+	<% end %>
+</div>
+<div class="column last">
+	<h1>Results</h1>
+	<% @hikes.each do |hike| %>
+	<% cache "#{hike.cache_key}_home" do %>
+	<div class="hike">
+		<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
+			<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
+		</a></div>
+		<p class="title"><%= link_to h(hike.name), user_hike_path(hike.user, hike) %></p>		
+		<p class="date">
+			<% if hike.nights > 0 %>
+				Backpacked <%= hike.hiked_at.strftime("%A, %B #{hike.hiked_at.day.ordinalize}") %> to 
+				<%= (hike.hiked_at + hike.nights.days).strftime("%A, %B #{(hike.hiked_at + hike.nights.days).day.ordinalize} %Y") %>
+			<% else %>
+				Hiked <%= hike.hiked_at.strftime("%A, %B #{hike.hiked_at.day.ordinalize}, %Y") %>
+			<% end %>
+		</p>
+		<div class="report">
+			<%= markdown("#{hike.report[0..180]}&hellip;") unless hike.report.blank? %>
+			<p class="links">
+				<%= link_to("#{image_tag("page_white_text.png")} Read full report", user_hike_path(hike.user, hike)) unless hike.report.blank? %>
+				<%= link_to("#{image_tag("comment.png")} #{hike.comments.length} comments", "#{user_hike_path(hike.user, hike)}#comments") %>
+			</p>
+		</div>
+		<div class="photos"><%= render :partial => 'hikes/photo', :collection => hike.photos, :locals => { :size => :micro } %></div>
+		<p class="meta">
+			<b><%= link_to h(hike.user.name), user_hikes_path(hike.user) %></b> 
+			posted this <%= time_ago_in_words(hike.created_at) %> ago
+		</p>
+		
+	</div>
+	<% end %>
+	<% end %>
+</div>

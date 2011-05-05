@@ -1,0 +1,5 @@
+<span class="photo">
+	<%= link_to(image_tag(photo.image.url(size), :alt => photo.caption), photo.image.url(:large, false), :rel => photo.hike.id, :title => "<p>#{photo.caption}</p><p>#{photo.camera_attributes}</p>"
+	) %>
+	<%= link_to(image_tag("cancel.png", :alt => "delete", :class => "corner"), photo, :method => :delete, :confirm => "Are you certain you want to remove this photo?") if personal_current_user %>
+</span>

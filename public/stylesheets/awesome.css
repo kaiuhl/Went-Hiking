@@ -1,0 +1,109 @@
+.awesome, .awesome:visited {
+	background: #222;
+	display: inline-block;
+	padding: 5px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+	behavior: url(../javascripts/PIE.htc);
+}
+
+.awesome:hover {
+	background-color: #111;
+	color: #fff;
+}
+.awesome:active {
+	top: 1px;
+}
+.small.awesome, .small.awesome:visited {
+	font-size: 11px;
+	padding: ;
+}
+.awesome, .awesome:visited,
+.medium.awesome, .medium.awesome:visited {
+	font-size: 13px;
+	line-height: 1;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	behavior: url(../javascripts/PIE.htc);
+}
+.large.awesome, .large.awesome:visited {
+	font-size: 14px;
+	padding: 8px 14px 9px;
+}
+
+.green.awesome, .green.awesome:visited {
+	background-color: #91bd09;
+}
+.green.awesome:hover {
+	background-color: #749a02;
+}
+.blue.awesome, .blue.awesome:visited {
+	background-color: #2daebf;
+}
+.blue.awesome:hover {
+	background-color: #007d9a;
+}
+.red.awesome, .red.awesome:visited {
+	background-color: #C44040;
+}
+.red.awesome:hover {
+	background-color: #872300;
+}
+.magenta.awesome, .magenta.awesome:visited {
+	background-color: #a9014b;
+}
+.magenta.awesome:hover {
+	background-color: #630030;
+}
+.orange.awesome, .orange.awesome:visited {
+	background-color: #ff5c00;
+}
+.orange.awesome:hover {
+	background-color: #d45500;
+}
+.yellow.awesome, .yellow.awesome:visited {
+	background-color: #ffb515;
+}
+.yellow.awesome:hover {
+	background-color: #fc9200;
+}
+
+.super.button {
+/*	background-image: url(/images/gradients/36px-blended.png);*/
+	padding: 4px 14px 6px;
+	border: 1px solid rgba(0,0,0,.25);
+	border-bottom-color: rgba(0,0,0,.35);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius:15px;
+	behavior: url(../javascripts/PIE.htc);
+}
+.small.super.button {
+	font-size: 11px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	behavior: url(../javascripts/PIE.htc);
+	border-radius:12px;
+}
+.large.super.button {
+	background-position: 0 0;
+	padding: 6px 17px 8px;
+	-webkit-border-radius: 18px;
+	-moz-border-radius: 18px;
+	border-radius:18px;
+	behavior: url(../javascripts/PIE.htc);
+}
+
+.secondary.button {
+	background-color: #fff;
+}
+.secondary.button:hover {
+	background-color: #eee;
+}

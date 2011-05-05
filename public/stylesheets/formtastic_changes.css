@@ -1,0 +1,3 @@
+form.formtastic fieldset ol li p.inline-hints{ font-size:85%; }
+form.formtastic #hike_report { width:390px; height:200px;}
+form#new_comment textarea, form #hike_report { width:98.5% ! important; height:100px }

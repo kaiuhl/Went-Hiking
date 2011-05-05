@@ -1,0 +1,15 @@
+<% div_for comment do %>
+	<div class="column meta">
+		<div class="profile-photo"><a href="<%= user_hikes_path(comment.user) %>" class="micro-profile-photo">
+			<%= image_tag(comment.user.avatar.url(:micro)) unless comment.user.avatar_file_name.blank? %>
+		</a></div>
+		<p><%= link_to comment.user.name, user_hikes_path(comment.user) %><br />
+		<%= comment.created_at.strftime("%B %e, %Y") %></p>
+	</div>
+	<div class="column last body">
+		<%= markdown h(comment.body) %>
+		
+		<%= link_to(image_tag("edit.png", :alt => "edit", :class => "edit"), edit_hike_comment_path(@hike, comment)) if comment.user_id == current_user.try(:id) && comment.created_at > 1.week.ago %>
+	</div>
+	<div class="clearer"></div>
+<% end %>

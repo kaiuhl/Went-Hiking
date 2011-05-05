@@ -1,0 +1,39 @@
+#navigation {
+	border-bottom:1px solid black;
+	background:#333 url(../images/header_fade.png) repeat-x left bottom;
+	margin-bottom:10px;
+	padding:5px 0;
+	line-height:1;
+	font-size:14px;
+}
+#navigation .nav {
+	color:#aaa;
+	line-height:1;
+	height:14px;
+	padding:18px 0 22px 0;
+	position:absolute;
+	right:0;
+	top:0;
+}
+#navigation a {
+	color:#aaa;
+	background:transparent;
+}
+#navigation .nav img {
+	vertical-align:text-bottom;
+}
+
+.nav-unit, .nav a {
+	padding-left:40px;
+	opacity:0.8;
+	color:#aaa;
+}
+.nav a:hover { 	opacity:1; color:#ccc }
+
+a#settings_link { background: url(../images/cog_gray.png) no-repeat 20px center }
+a#settings_link:hover { background: url(../images/cog.png) no-repeat 20px center }
+
+a#profile_link { background: url(../images/star_gray.png) no-repeat 20px center }
+a#profile_link:hover { background: url(../images/star.png) no-repeat 20px center }
+
+a#logout_link { padding-left:20px }

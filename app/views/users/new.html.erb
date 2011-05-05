@@ -1,0 +1,11 @@
+<% title "Sign up for an account" %>
+<h1>Sign up!</h1>
+<%= render :partial => 'form' %>
+<script type="text/javascript" charset="utf-8">$(document).ready(function(){
+	var geocoder = new google.maps.Geocoder();
+	$("#user_locale").keyup(function(){
+		geocoder.geocode({address: $("#user_locale").val()}, function(result){
+			map.fitBounds(result[0].geometry.viewport); 
+		});
+	});
+})</script>

@@ -1,0 +1,30 @@
+<% title h(@route.title) %>
+<style type="text/css" media="screen">
+	#map {
+		position:absolute;
+		top:53px;	left:0;
+		width:100%;	height:98%;
+		background-color:black;
+		z-index:2;
+	}
+	#navigation {
+		position:relative;
+		z-index:3;
+	}
+</style>
+<div id="map" style="width:100%;height:92%"></div>
+
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+	<%= render :partial => 'map_scripts.js' %>
+</script>
+<% end %>
+
+<% form_remote_for(@route) do |f| %>
+	<%= f.hidden_field :title %>
+	<%= f.hidden_field :lat %>
+	<%= f.hidden_field :lng %>
+	<%= f.hidden_field :zoom %>
+	<%= f.hidden_field :map_type %>
+	<%= f.hidden_field :path %>
+<% end %>

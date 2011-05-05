@@ -1,0 +1,240 @@
+body {
+	background: #f3f3f3;
+}
+.container {
+	/* define these first--all are already centered on page */
+	width:900px;
+	position:relative;
+}
+.container.small {
+	width:400px;
+	margin-top:40px;
+}
+.container.small #navigation {
+	margin:-20px -20px 20px -20px;
+	padding-left:10px;
+}
+body,
+ul li span,
+ol li span {
+	/* define color of text */
+	color:#222;
+}
+a, a:active, a:focus, a:hover, a:visited {
+	color:#0F869A;
+}
+p img, td img {
+	vertical-align:text-bottom;
+}
+hr {
+	margin:0;padding:0;border:0;
+	border-bottom:1px solid #ddd;
+	margin: 0 0 10px 0;
+}
+table {
+	border-collapse:collapse;
+	border-top:1px solid #ddd;
+	width:100%;
+	margin-bottom:1em;
+}
+table tr {
+	background-color:white;
+		position:relative;
+}
+table td, th {
+	padding:.5em;
+	border-bottom:1px solid #ddd;
+	vertical-align:top;
+	position:relative;
+}
+table th {
+	color:#777;
+	font-size:12px;
+	text-transform: uppercase;
+	font-weight:normal;
+	text-align:left;
+	background:#cacaca;
+}
+#header {
+	
+}
+#header .container {
+	margin-top:0 ! important;
+	padding:20px 0;
+}
+#header .logo {
+	position:absolute;
+	top:0;
+}
+h1 a, h1 {
+	font-size:40px;
+	font-weight:normal;
+	color:#444;
+}
+h2 {
+	color:#555;
+	font-size:18px;
+	text-shadow:0 2px 1px rgba(255,255,255,0.5);
+}
+h1,h2,h3,h4 {
+	text-shadow:0px 1px 1px white;
+}
+#header abbr {
+	color:rgb(241,176,83);
+}
+#header p {
+
+}
+#user-left {
+	padding:5px;
+	padding-left:16px;
+	background: url(../images/point_left.png) no-repeat top left;
+}
+
+#content .container {
+	padding-top:20px;
+}
+#content {
+	
+}
+p.lede {
+	font-size:150%;
+}
+p.main_lede {
+	font-size:250%;
+	line-height:1;
+	margin-bottom:0;
+}
+p.note {
+	color:#999;
+	font-size:12px;
+}
+span.meta {
+	font-size:10px;
+	display:block;
+}
+span.meta:before {
+	content: "↳ ";
+}
+.prev_page, .next_page {
+	cursor: pointer;
+	display:inline-block;
+	padding:10px 15px;
+	border:1px solid #ddd;
+	text-transform:uppercase;
+}
+tr.me {
+	font-weight:bold;
+}
+#footer {
+	margin:50px 0;
+}
+a.micro-profile-photo {
+	display:block;
+	padding:3px 7px 4px 2px;
+	height:25px;
+	width:25px;
+	background: url(../images/point_right_small.png) no-repeat top left;
+}
+.photo {
+	display:inline-block;
+	position:relative;
+	line-height:0.1;
+	margin-right:3px;
+}
+.photo .corner {
+	position:absolute;
+	top:2px;
+	right:2px;
+	display:none;
+}
+.photo:hover .corner {
+	opacity:1;
+	display:block;
+}
+.table_title {
+	font-weight:bold;
+}
+td .report {
+	font-size:80%;
+	margin-top:10px;
+}
+td .report p { color:#999; }
+p.breadcrumbs {
+	margin:0;
+	margin-top:-10px;
+}
+#resize {
+	cursor:pointer;
+	position:absolute;
+	margin-left:10px;
+	margin-top:5px;
+	opacity:.5;
+}
+#resize:hover, #resize:active {
+	opacity:1.0;
+}
+
+
+div.hike, div.box, table {
+	margin-bottom:20px;
+	padding:20px;
+	background:white;
+	border:1px solid #ddd;
+	box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+div.hike { padding-left:60px; position:relative; border-bottom:1px solid #ddd }
+div.hike .dominant { width:559px }
+div.hike .subordinant { width:279px }
+div.hike.box { padding-left:20px; }
+div.hike .profile-photo { position:absolute; top:20px; left:20px }
+div.hike p.title { color:#444; font-size:18px; margin-bottom:0 }
+div.hike p.meta, div.hike p.date { font-size:10px; font-weight:normal; color:#444 }
+div.hike p.meta { margin-top:10px }
+div.hike div.report p,
+div.hike div.report li { font-size:80%; color:#999; line-height:1.5; margin-bottom:0.5em; }
+div.hike div.report p a { color:#444; }
+div.hike .links a { display:inline-block; margin-right:20px }
+div.hike .staticmap { float:right; margin-left:20px; }
+div.hike ul.meta { list-style:none; color:#555; margin:0; padding:0; font-size:12px }
+div.hike .photo_box { margin-top:20px }
+div.hike h2 { text-style:normal; font-size:25px; }
+div.hike h3 { color:#555 }
+
+div.small_hike { padding-left:40px; line-height:normal; position:relative }
+div.small_hike p {  }
+div.small_hike .profile-photo, .profile-photo { position:absolute; top:0px; left:0px }
+div.small_hike p.title { margin-bottom:0; font-size:11px; text-decoration:underline; font-weight:bold }
+div.small_hike p.meta, div.small_hike p.meta a { font-size:11px; font-weight:normal; color:#444 }
+
+div.comment { margin-bottom:20px; position:relative }
+div.comment .meta, div.comment p { font-size:12px; color:#555 }
+div.comment .meta { position:relative; padding-left:40px; width:138px  }
+div.comment .profile-photo { position:absolute; top: 0px; left:0 }
+div.comment .body { width:339px }
+div.comment .edit { position:absolute; top:0px; right:0; opacity:0 }
+div.comment:hover .edit { opacity:1}
+
+div.popup {
+	border:1px solid white;
+	background-color: black;
+	padding:20px;
+	position:relative;
+	width:200px;
+}
+div.popup .pointer {
+	position:absolute;
+	top:-17px;
+	left:112px;
+}
+
+#footer {
+	background:#dadada url(../images/bevel.png) repeat-x top left;
+	padding:50px 0;
+	margin-bottom:0;
+}
+#footer p { color:#999; }
+#bbcode_share {
+	padding:20px;
+	background-color:#eee;
+}

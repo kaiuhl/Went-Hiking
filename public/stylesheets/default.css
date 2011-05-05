@@ -1,0 +1,60 @@
+body,html,div,
+ul, li, h1, h2, h3, h4,
+blockquote, ol, p, img, a,
+a:active, a:visited, a:hover {
+	margin:0;
+	padding:0;
+	border:0;
+	text-decoration: none;
+}
+body {
+	font-size: 15px;
+	background-color:white;
+	font-family: Helvetica, Arial, sans-serif;
+}
+p, ul, ol {
+	margin:0 0 1em 0;
+	line-height:1.7;
+	color:#333;
+}
+ul, ol {
+	padding-left:2em;
+}
+ul {
+	list-style-type: circle;
+}
+ol {
+	list-style-type: decimal;
+}
+h1,h2,h3,h4 {
+/*	font-family: Georgia, Times, serif;*/
+	color:#444;
+	margin-bottom:5px;
+}
+h1 { font-size:35px; }
+h2,h3,h4 {
+	font-weight:normal;
+	text-transform:uppercase;
+}
+h3 {
+	color:#999;
+}
+blockquote {
+	padding-left:2em;
+	font-size:80%;
+	background: url('../images/helpers/quote.gif') no-repeat top left;
+}
+#header,
+.container,
+#footer {
+	margin:0 auto;
+}
+#leftcolumn {
+	float:left;
+}
+#rightcolumn {
+	float:right;
+}
+#footer {
+	font-size:12px;
+}

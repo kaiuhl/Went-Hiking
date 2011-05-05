@@ -1,0 +1,200 @@
+<% title @hike.name %>
+
+<% content_for :header do %>
+<p class="breadcrumbs">
+	<%= link_to "&laquo; View all of #{@user.name}&rsquo;s hikes", user_hikes_path(@user)  %>
+</p>
+<h1>
+	<%= @hike.name %>
+	<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,@hike)) if personal_current_user %>
+</h1>
+<h2>
+	<%=h @user.name %> Went
+	<% if @hike.nights > 0 %>
+		Backpacking from 
+		<%= @hike.hiked_at.strftime("%A, %B #{@hike.hiked_at.day.ordinalize}") %> to 
+		<%= (@hike.hiked_at + @hike.nights.days).strftime("%A, %B #{(@hike.hiked_at + @hike.nights.days).day.ordinalize} %Y") %>
+	<% else %>
+		Hiking on <%= @hike.hiked_at.strftime("%A, %B #{@hike.hiked_at.day.ordinalize}, %Y") %>
+	<% end %>
+</h2>
+<% end %>
+<% content_for :head do %>
+<script type="text/javascript">
+$(document).ready(function(){
+	beef.defaults.zoom 			= 5;
+	beef.defaults.lat			= 45;
+	beef.defaults.lng			= -118;
+	beef.defaults.doubleclick 	= true;
+	beef.defaults.scrollwheel 	= false;
+	beef.load();
+	beef.markers.populate(<%= [@hike].map { |hike| { 
+		:id 			=> hike.id, 
+		:lat 			=> hike.lat,
+		:lng			=> hike.lng,
+		:info			=> hike.name
+	} }.to_json %>, true);
+	// beef.zoomToMarkers();
+	topo();
+	map.setMapTypeId("topography");
+	var zoomOut = function(){ map.setZoom(map.getZoom() -1); }
+	setTimeout(zoomOut, 200);
+	setTimeout(zoomOut, 450);
+	
+});
+</script>
+<% end %>
+<% content_for :before_header do %>
+<div id="map" style="height:150px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
+<%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
+<% end %>
+
+
+<% cache @hike do %>
+<div class="column dominant">
+	<div class="box">
+	<p style="color:#999"><%= @hike.mileage % 1 == 0 ? @hike.mileage.to_i : @hike.mileage  %> miles of hiking &bull;
+	<%= @hike.elevation %>' elevation gain
+	<%= "&bull; #{@hike.nights} night(s)" if @hike.nights > 0 %>
+	</p>
+	<% if @hike.report.blank? %>
+		<% if personal_current_user %>
+			<% semantic_form_for([@user, @hike]) do |f| %>
+				<h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
+				<p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
+				<%= f.text_area :report, :id => "hike_report" %><br />
+				<%= f.submit "Save your report", :class => "super awesome large button" %>
+			<% end %>
+		<% end %>
+	<% else %>
+		<%= markdown @hike.report %>
+	<% end %>
+	</div>
+	<% unless @hike.url.blank? %>
+	<div class="box">
+	<p class="note">
+		<%= link_to "View the resource page used for this hike<span class=\"meta\">#{h @hike.url}</span>", @hike.url, :rel => "nofollow" %>
+	</p></div>
+	<% end  %>
+</div>
+<div class="column subordinant last">
+	
+	<div class="box photos">
+	<%= image_tag(static_map(@hike.lat, @hike.lng, "254x125", 4)) %>
+	<%= render :partial => 'photo', :collection => @hike.photos, :locals => { :size => :thumbnail } %>
+	</div>
+
+	
+	<% form_for([@hike, @hike.photos.build], :html => {:multipart => true}) do |f| %>
+	<div class="box">
+	<h2>Add photo</h2>
+		<p><%= f.file_field :image %></p>
+		<p><%= f.text_field :caption, :placeholder => "photo's caption" %></p>
+		<p><%= f.submit "Upload photo" %></p>
+	</div>
+	<% end if personal_current_user %>
+	
+	<% if personal_current_user %>
+	<div class="box">
+	<h2>Sharing</h2>
+	<p><a href="#bbcode_share" id="bbcode">Post to forum</a></p>
+	<div style="display:none">
+	<div id="bbcode_share" style="width:525px">
+		<h2>Share on a Forum</h2>
+		<p>Want to post this report on a forum that uses BBCode (like <a href="http://portlandhikers.org">PortlandHikers.org</a>) or HTML (like <a href="http://backpackinglight.com">BackpackingLight.com</a>)? Simply copy and paste the text below to get a good start at posting your trip report!</p>
+		<div class="column">
+			<h3>BBCode</h3>
+			<textarea style="width:250px;height:150px"><%= @hike.to_bbcode %></textarea>
+		</div>
+		<div class="column last">
+			<h3>HTML</h3>
+			<textarea style="width:250px;height:150px"><%= @hike.to_html %></textarea>
+		</div>
+		<div class="clearer"></div>
+	</div>
+	</div>
+	<script type="text/javascript" charset="utf-8">$(document).ready(function(){
+		$("#bbcode_share textarea").focus(function(){
+			var that = this;
+			setTimeout(function(){that.select()}, 100);
+		});
+		$("#bbcode").fancybox({
+			'transitionIn'				: 'elastic',
+			'transitionOut'				: 'elastic',
+			'easingIn'      			: 'easeOutBack',
+			'easingOut'     			: 'easeOutBack',
+			'width' 					: 580,
+			'height' 					: 620,
+			'overlayColor' 				: "white",
+			'speedIn'					: 200,
+			'speedOut'					: 200
+		})
+	})</script>
+	</div>
+	<% else %>
+	<% unless @nearby_hikes.blank? %>
+	<div class="box">
+		<h3>Nearby Hike Reports</h3>
+		<% @nearby_hikes.each do |hike| %>
+		<div class="small_hike">
+			<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
+				<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
+			</a></div>
+			<p class="title"><%= link_to hike.name, user_hike_path(hike.user, hike) %></p>
+			<p class="meta">
+				<b><%= link_to h(hike.user.name), user_hikes_path(hike.user) %></b> 
+				hiked this <%= hike.hiked_at.strftime("%D") %>
+			</p>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+
+<div class="column dominant" id="comments">
+<% unless @comments.blank? && current_user.blank? %>
+<div class="box">
+	<% unless @comments.blank? %>
+	<h2>Comments</h2>
+	<%= render @comments %>
+	<% end %>
+	<% unless current_user.blank? %>
+		<h2>Your Comment</h2>
+		<%= render "comments/form" %>
+	<% end %>
+</div>
+<% end %>
+
+
+<div class="box">
+	<div class="column">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-1241074684976245";
+			/* Wenthiking */
+			google_ad_slot = "8360797832";
+			google_ad_width = 250;
+			google_ad_height = 250;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+	</div>
+	<div class="column last">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-1241074684976245";
+			/* Wenthiking */
+			google_ad_slot = "8360797832";
+			google_ad_width = 250;
+			google_ad_height = 250;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+	</div>
+	<div class="clearer"></div>
+</div>
+<% end %>
+</div>

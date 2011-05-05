@@ -1,0 +1,12 @@
+<% title "Add decoration to the default maps" %>
+<h1>Add Decoration</h1>
+<% semantic_form_for(@map_layer, :html => {:multipart => true}) do |f| %>
+	<% f.inputs do %>
+		<%= f.input :shp, :as => :file %>
+		<%= f.input :shx, :as => :file %>
+		<%= f.input :dbf, :as  => :file %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button "Save" %>
+	<% end %>
+<% end %>

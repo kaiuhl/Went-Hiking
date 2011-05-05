@@ -1,0 +1,9 @@
+<h1><%= @user.name %>,</h1>
+<p><%= link_to @comment.user.name, "#{@options[:url]}#{user_hikes_path(@comment.user)}" %> wrote a comment on <%= link_to @comment.hike.name, "#{@options[:url]}#{user_hike_path(@comment.hike.user, @comment.hike)}" %>:</p>
+<div style="padding-left:20px;border-left:1px solid #ddd;margin:20px 0px">
+	<%= markdown @comment.body %>
+</div>
+
+<p><%= link_to "Click here to view this comment on Went Hiking", "#{@options[:url]}#{user_hike_path(@comment.hike.user,@comment.hike)}#comment_#{@comment.id}" %></p>
+
+<p style="font-size:11px;color:#999">Don't want these emails? Sign in to your account at <a href="http://wenthiking.com">Went Hiking</a>, go to Settings, and uncheck that you want to receive email notifications!</p>

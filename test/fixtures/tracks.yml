@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  uri: MyString
+  lat: 1.5
+  lng: 1.5
+  zoom: 1
+  map_type: MyString
+  path: MyText
+
+two:
+  uri: MyString
+  lat: 1.5
+  lng: 1.5
+  zoom: 1
+  map_type: MyString
+  path: MyText
