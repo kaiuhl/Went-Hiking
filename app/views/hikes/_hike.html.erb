@@ -2,10 +2,25 @@
 	<div class="column dominant">
 		<h2>
 			<%= link_to hike.name, user_hike_path(hike.user, hike) %>
-			<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,hike)) if personal_current_user %>
+			<%= link_to(image_tag("edit.png"), edit_user_hike_path(hike.user,hike)) if personal_current_user %>
 		</h2>
+		<% unless include_name.blank? %>
+		<h3 class="includes-photo">
+			<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
+				<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
+			</a></div>
+			<%= hike.user.name %> Went
+			<% if hike.nights > 0 %>
+				Backpacking
+			<% else %>
+				Hiking
+			<% end %>
+		</h3>
+		<% end %>
 		<%= markdown(hike.report) %>
-		<p><%= image_tag("comment.png") %> <%= link_to "#{hike.comments.length} comments", "#{user_hike_path(@user,hike)}#comments" %></p>
+		<p>
+			<%= comments_and_likes(hike) %>
+		</p>
 		</div>
 		<div class="column subordinant last">
 		<h3>
@@ -20,7 +35,7 @@
 		<ul class="meta">
 			<li><%= hike.mileage % 1 == 0 ? hike.mileage.to_i : hike.mileage  %> miles of hiking</li>
 			<li><%= hike.elevation %>' elevation gain</li>
-			<%= "<li>#{hike.nights} #{hike.nights == 1 ? 'night' : 'nights'}</li>" if hike.nights > 0 %>
+			<%= "<li>#{hike.nights} #{hike.nights == 1 ? 'night' : 'nights'}</li>".html_safe if hike.nights > 0 %>
 		</ul>
 		<% unless hike.photos.blank? %>
 		<div class="photo_box">

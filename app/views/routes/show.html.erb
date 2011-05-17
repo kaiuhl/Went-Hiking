@@ -1,4 +1,4 @@
-<% title h(@route.title) %>
+<% page_title h(@route.title) %>
 <style type="text/css" media="screen">
 	#map {
 		position:absolute;
@@ -20,7 +20,7 @@
 </script>
 <% end %>
 
-<% form_remote_for(@route) do |f| %>
+<% form_for(@route) do |f| %>
 	<%= f.hidden_field :title %>
 	<%= f.hidden_field :lat %>
 	<%= f.hidden_field :lng %>

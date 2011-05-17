@@ -1,4 +1,4 @@
-<% title "#{@user.name}" %>
+<% page_title "#{@user.name}" %>
 <% unless @hikes.blank? %>
 
 <% content_for :header do %>
@@ -6,11 +6,11 @@
 
 	<h1><%= "In #{@year}," unless @year.blank? %>
 	<%= @year == DateTime.now.year ? "#{@user.name} has taken" : "#{@user.name} went on" %> 
-	<%= "#{@hikes.length} trips, hiked a total of #{@hikes.map(&:mileage).sum.to_i} miles, #{'and' if @hikes.map(&:nights).sum == 0} climbed #{@hikes.map(&:elevation).sum} feet" %><%= @hikes.map(&:nights).sum > 0 ? ", and spent #{@hikes.map(&:nights).sum} nights under the stars.</a></h1>": ".</h1>" %>
+	<%= "#{@hikes.length} trips, hiked a total of #{@hikes.map(&:mileage).sum.to_i} miles, #{'and' if @hikes.map(&:nights).sum == 0} climbed #{@hikes.map(&:elevation).sum} feet" %><%= @hikes.map(&:nights).sum > 0 ? ", and spent #{@hikes.map(&:nights).sum} nights under the stars.</a></h1>".html_safe : ".</h1>".html_safe %>
 <% end %>
 
 <% content_for :before_header do %>
-<div id="map" style="height:250px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
+<div id="map" style="height:150px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
 <%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
 <% end %>
 
@@ -18,7 +18,7 @@
 	<%= @year %> Hikes <%= " To Date" if DateTime.now.year == @year %>
 	<%= link_to(image_tag("rss.png", :alt => "Subscribe via RSS"), user_hikes_path(@user, :rss)) %>
 </h2>
-<%= render @hikes %>
+<%= render @hikes, :include_name => false %>
 
 <% unless @other_years_hikes.blank? %>
 <p>
@@ -43,7 +43,7 @@ $(document).ready(function(){
 		:lat 			=> hike.lat,
 		:lng			=> hike.lng,
 		:info			=> hike.name
-	} }.to_json %>);
+	} }.to_json.html_safe %>);
 	beef.zoomToMarkers();
 	topo();
 });
@@ -51,7 +51,7 @@ $(document).ready(function(){
 <% end %>
 
 <% else %>
-	<% if current_user.id != params[:user_id].to_i %>
+	<% if current_user.try(:id) != params[:user_id].to_i %>
 		<h2><%= @user.name %> hasn't added any hikes yet!</h2>
 	<% else %>
 		<h2>You haven't added any hikes yet! <%= link_to "Add a hike!", new_user_hike_path(@user) %></h2>

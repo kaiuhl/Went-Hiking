@@ -9,8 +9,8 @@
 #navigation .nav {
 	color:#aaa;
 	line-height:1;
-	height:14px;
-	padding:18px 0 22px 0;
+	height:25px;
+	padding:14px 0 14px 0;
 	position:absolute;
 	right:0;
 	top:0;
@@ -43,3 +43,7 @@ a#add_link:hover { background: url(../images/add.png) no-repeat 20px center; col
 
 a#logout_link { padding-left:20px }
 a#logout_link:hover { color:#BC3C4D }
+
+#search { display:inline; padding-left:40px; margin:0}
+#search #q { background-color:#222; border:1px solid #444; padding:5px; color:white; border-radius:5px; margin:0 }
+#search_link { vertical-align:middle; }

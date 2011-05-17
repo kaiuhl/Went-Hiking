@@ -1,4 +1,4 @@
-<% div_for comment do %>
+<%= div_for comment do %>
 	<div class="column meta">
 		<div class="profile-photo"><a href="<%= user_hikes_path(comment.user) %>" class="micro-profile-photo">
 			<%= image_tag(comment.user.avatar.url(:micro)) unless comment.user.avatar_file_name.blank? %>

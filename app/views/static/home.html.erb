@@ -1,5 +1,5 @@
-<% title "Hiking and backpacking statistics tracker" %>
-<% @hikes = Hike.all %>
+<% page_title("Hiking and backpacking statistics tracker") %>
+<% @hikes = Hike.limit(100) %>
 <% content_for :before_header do %>
 <div id="map" style="height:150px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
 <%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		:info			=> "<p>#{link_to(hike.name, user_hike_path(hike.user, hike))}</p>
 							<p>Hiked #{hike.hiked_at.strftime('%D')} by
 							#{link_to(hike.user.name, user_hikes_path(hike.user))}</p>"
-	} }.to_json %>);
+	} }.to_json.html_safe %>);
 	
 	// beef.zoomToMarkers();
 });
@@ -42,7 +42,6 @@ $(document).ready(function(){
 	<h2>Latest Hikes</h2>
 	<% @hikes = Hike.all(:limit => 15, :order => "hiked_at DESC, created_at DESC") %>
 	<% @hikes.each do |hike| %>
-	<% cache "#{hike.cache_key}_home" do %>
 	<div class="hike">
 		<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
 			<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
@@ -59,8 +58,8 @@ $(document).ready(function(){
 		<div class="report">
 			<%= markdown("#{hike.report[0..180]}&hellip;") unless hike.report.blank? %>
 			<p class="links">
-				<%= link_to("#{image_tag("page_white_text.png")} Read full report", user_hike_path(hike.user, hike)) unless hike.report.blank? %>
-				<%= link_to("#{image_tag("comment.png")} #{hike.comments.length} comments", "#{user_hike_path(hike.user, hike)}#comments") %>
+				<%= link_to("#{image_tag("page_white_text.png")} Read full report".html_safe, user_hike_path(hike.user, hike)) unless hike.report.blank? %>
+				<%= comments_and_likes(hike) %>
 			</p>
 		</div>
 		<div class="photos"><%= render :partial => 'hikes/photo', :collection => hike.photos, :locals => { :size => :micro } %></div>
@@ -70,7 +69,6 @@ $(document).ready(function(){
 		</p>
 		
 	</div>
-	<% end %>
 	<% end %>
 </div>
 <div class="column last">
@@ -82,12 +80,10 @@ $(document).ready(function(){
 		</tr>
 		<% @users = User.all(:limit => 10, :order => "ytd_mileage DESC") %>
 		<% @users.each do |user| %>
-		<% cache "#{user.cache_key}_miles" do %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
 			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
 			<td><%= user.ytd_mileage %> total miles</td>
 		</tr>
-		<% end %>
 		<% end %>
 	</table>
 	
@@ -100,12 +96,10 @@ $(document).ready(function(){
 		<% @users = User.all(:conditions => ["ytd_mileage > ? AND ytd_elevation > ?", 0, 0]) %>
 		<% @users.sort!{|a,b| (b.ytd_elevation) <=> (a.ytd_elevation) } %>
 		<% @users[0..9].each do |user| %>
-		<% cache "#{user.cache_key}_uphill" do %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
 			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
 			<td><%= user.ytd_elevation %>'</td>
 		</tr>
-		<% end %>
 		<% end %>
 	</table>
 	
@@ -118,12 +112,10 @@ $(document).ready(function(){
 		<% @users = User.all(:conditions => ["ytd_nights > ? AND ytd_mileage > ?", 0, 0]) %>
 		<% @users.sort!{|a,b| (b.ytd_nights) <=> (a.ytd_nights) } %>
 		<% @users[0..9].each do |user| %>
-		<% cache "#{user.cache_key}_nights" do %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
 			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
 			<td><%= user.ytd_nights %></td>
 		</tr>
-		<% end %>
 		<% end %>
 	</table>
 	

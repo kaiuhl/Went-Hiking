@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
 	belongs_to :hike
 	belongs_to :user
 	
-  after_commit_on_create :add_stats
+  after_commit :add_stats, :if => :not_persisted?
   
   has_attached_file :image, :styles => {
 		:micro => ["25x25#", :jpg],
@@ -57,7 +57,7 @@ class Photo < ActiveRecord::Base
 		output = ""
 		output << "Taken " + taken_at.strftime("%A, %B #{taken_at.day.ordinalize} %Y") + ", " unless taken_at.blank?
 		output << camera_model unless camera_model.blank?
-		output << ", ƒ/" + camera_f_stop.to_s unless camera_f_stop.blank? || camera_f_stop == 0.0
+		output << ", f/" + camera_f_stop.to_s unless camera_f_stop.blank? || camera_f_stop == 0.0
 		output << ", " + camera_exposure.to_s + "s" unless camera_exposure.blank?
 		output << ", ISO " + camera_iso.to_s unless camera_iso.blank?
 	end
@@ -68,7 +68,7 @@ class Photo < ActiveRecord::Base
     self.taken_at = parse_exif_date exif(@magick, "DateTimeOriginal")
 		
 		if self.image_content_type == "image/jpeg"
-			exifr = EXIFR::JPEG.new("#{RAILS_ROOT}/public#{self.image.url(:original, false)}")
+			exifr = EXIFR::JPEG.new("#{Rails.root}/public#{self.image.url(:original, false)}")
 			self.lat = latlng_to_decimal(exifr.gps_latitude_ref, exifr.gps_latitude) unless exifr.gps_latitude.blank?
 			self.lng = latlng_to_decimal(exifr.gps_longitude_ref, exifr.gps_longitude) unless exifr.gps_longitude.blank?
 			self.camera_model = exifr.model
@@ -82,7 +82,7 @@ class Photo < ActiveRecord::Base
   private  
   
   def mini_magick
-    MiniMagick::Image.from_file("#{RAILS_ROOT}/public#{self.image.url(:original, false)}")
+    @mini_magick ||= MiniMagick::Image.open("#{Rails.root}/public#{self.image.url(:original, false)}")
   end
   
   def exif(photo, tag)
@@ -102,5 +102,9 @@ class Photo < ActiveRecord::Base
 			latlng *= -1
 		end
 		latlng
+	end
+	
+	def not_persisted?
+		!persisted?
 	end
 end

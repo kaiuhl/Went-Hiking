@@ -1,16 +1,15 @@
-<% title "Edit your comment" %>
+<% page_title "Edit your comment" %>
 
 <h1>Now Editing</h1>
 <p class="note">In response to &ldquo;<%= @hike.name %>&rdquo;</p>
 <div class="column">
-<% semantic_form_for([@hike, @comment]) do |f| %>
-<%= f.error_messages %>
-<% f.inputs do %>
+<%= semantic_form_for([@hike, @comment]) do |f| %>
+<%= f.inputs do %>
 	<%= f.input :body, :label => "Comment" %>
 	<%= f.input :hike_id, :as => :hidden %>
 	<%= f.input :user_id, :as => :hidden %>
 <% end %>
-<% f.buttons do %>
+<%= f.buttons do %>
 	<%= f.submit "Edit your comment", :class => "super awesome large button" %>
 	<%= link_to "or cancel", :back %>
 <% end %>

@@ -14,9 +14,12 @@ class Hike < ActiveRecord::Base
 	
 	after_save :update_user
 	default_scope :order => "hiked_at DESC"
-	named_scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.parse("1/1/#{year}"), Date.parse("12/31/#{year}")]} }
+	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)]} }
 	
 	acts_as_mappable
+	
+	cattr_reader :per_page
+  @@per_page = 15
 	
 	def to_bbcode
 		output = ""
@@ -40,7 +43,7 @@ class Hike < ActiveRecord::Base
 		output << "\n\n#{report}\n\n"
 		photos.each do |photo|
 			unless photo.id.blank?
-				output << link_to("<img src='http://wenthiking.com#{photo.image.url(:bpl)}' />", "http://wenthiking.com#{photo.image.url(:original)}")
+				output << link_to("<img src='http://wenthiking.com#{photo.image.url(:bpl)}' />".html_safe, "http://wenthiking.com#{photo.image.url(:original)}")
 				output << "\n#{photo.caption}" unless photo.caption.blank?
 				output << "\n\n"
 			end

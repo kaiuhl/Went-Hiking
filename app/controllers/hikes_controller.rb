@@ -19,15 +19,20 @@ class HikesController < ApplicationController
 	end
 	
 	def search
-		@hikes = Hike.all(:order => "hiked_at ASC")
+		@hikes = Hike.where("name LIKE ? OR report LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").order("hiked_at DESC, name ASC")
+	end
+	
+	def advanced_search
+		@hikes = Hike.all
 	end
 	
 	def show
 		@hike = Hike.find(params[:id])
 		@user = @hike.user
+		@heart = @hike.hearts.find_or_initialize_by_hike_id_and_user_id(@hike.id, current_user.try(:id))
 		@comments = @hike.comments
 		@comment = Comment.new(:hike_id => @hike.id, :user_id => current_user.id) rescue nil
-		@nearby_hikes = Hike.all(:origin => [@hike.lat,@hike.lng], :within => 10, :conditions => ["id != ?", @hike.id], :order => 'distance', :limit => 5 )
+		@nearby_hikes = Hike.within(10, :origin => [@hike.lat,@hike.lng]).order("distance DESC").where("id != ?", @hike.id).limit(10)
 	end
 	def new
 		@user = User.find(params[:user_id])

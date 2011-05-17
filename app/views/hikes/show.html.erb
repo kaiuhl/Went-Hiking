@@ -1,8 +1,8 @@
-<% title @hike.name %>
+<% page_title @hike.name %>
 
-<% content_for :header do %>
+<%= content_for :header do %>
 <p class="breadcrumbs">
-	<%= link_to "&laquo; View all of #{@user.name}&rsquo;s hikes", user_hikes_path(@user)  %>
+	<%= link_to "&laquo; View all of #{@user.name}&rsquo;s hikes".html_safe, user_hikes_path(@user)  %>
 </p>
 <h1>
 	<%= @hike.name %>
@@ -19,7 +19,7 @@
 	<% end %>
 </h2>
 <% end %>
-<% content_for :head do %>
+<%= content_for :head do %>
 <script type="text/javascript">
 $(document).ready(function(){
 	beef.defaults.zoom 			= 5;
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		:lat 			=> hike.lat,
 		:lng			=> hike.lng,
 		:info			=> hike.name
-	} }.to_json %>, true);
+	} }.to_json.html_safe %>, true);
 	// beef.zoomToMarkers();
 	topo();
 	map.setMapTypeId("topography");
@@ -44,22 +44,21 @@ $(document).ready(function(){
 });
 </script>
 <% end %>
-<% content_for :before_header do %>
+<%= content_for :before_header do %>
 <div id="map" style="height:150px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
 <%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
 <% end %>
 
-
-<% cache @hike do %>
 <div class="column dominant">
 	<div class="box">
+	<%= render "hearts/form" if current_user %>
 	<p style="color:#999"><%= @hike.mileage % 1 == 0 ? @hike.mileage.to_i : @hike.mileage  %> miles of hiking &bull;
 	<%= @hike.elevation %>' elevation gain
-	<%= "&bull; #{@hike.nights} night(s)" if @hike.nights > 0 %>
+	<%= "&bull; #{@hike.nights} night(s)".html_safe if @hike.nights > 0 %>
 	</p>
 	<% if @hike.report.blank? %>
 		<% if personal_current_user %>
-			<% semantic_form_for([@user, @hike]) do |f| %>
+			<%= semantic_form_for([@user, @hike]) do |f| %>
 				<h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
 				<p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
 				<%= f.text_area :report, :id => "hike_report" %><br />
@@ -73,7 +72,7 @@ $(document).ready(function(){
 	<% unless @hike.url.blank? %>
 	<div class="box">
 	<p class="note">
-		<%= link_to "View the resource page used for this hike<span class=\"meta\">#{h @hike.url}</span>", @hike.url, :rel => "nofollow" %>
+		<%= link_to "View the resource page used for this hike<span class=\"meta\">#{h @hike.url}</span>".html_safe, @hike.url, :rel => "nofollow" %>
 	</p></div>
 	<% end  %>
 </div>
@@ -85,7 +84,7 @@ $(document).ready(function(){
 	</div>
 
 	
-	<% form_for([@hike, @hike.photos.build], :html => {:multipart => true}) do |f| %>
+	<%= form_for([@hike, @hike.photos.build], :html => {:multipart => true}) do |f| %>
 	<div class="box">
 	<h2>Add photo</h2>
 		<p><%= f.file_field :image %></p>
@@ -132,23 +131,23 @@ $(document).ready(function(){
 	})</script>
 	</div>
 	<% else %>
-	<% unless @nearby_hikes.blank? %>
-	<div class="box">
-		<h3>Nearby Hike Reports</h3>
-		<% @nearby_hikes.each do |hike| %>
-		<div class="small_hike">
-			<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
-				<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
-			</a></div>
-			<p class="title"><%= link_to hike.name, user_hike_path(hike.user, hike) %></p>
-			<p class="meta">
-				<b><%= link_to h(hike.user.name), user_hikes_path(hike.user) %></b> 
-				hiked this <%= hike.hiked_at.strftime("%D") %>
-			</p>
+		<% unless @nearby_hikes.blank? %>
+		<div class="box">
+			<h3>Nearby Hike Reports</h3>
+			<% @nearby_hikes.each do |hike| %>
+			<div class="small_hike">
+				<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
+					<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
+				</a></div>
+				<p class="title"><%= link_to hike.name, user_hike_path(hike.user, hike) %></p>
+				<p class="meta">
+					<b><%= link_to h(hike.user.name), user_hikes_path(hike.user) %></b> 
+					hiked this <%= hike.hiked_at.strftime("%D") %>
+				</p>
+			</div>
+			<% end %>
 		</div>
 		<% end %>
-	</div>
-	<% end %>
 	<% end %>
 </div>
 
@@ -196,5 +195,4 @@ $(document).ready(function(){
 	</div>
 	<div class="clearer"></div>
 </div>
-<% end %>
 </div>

@@ -13,6 +13,7 @@ $(function(){
 		'changeSpeed'  	: 100,
 		'speedIn'       : 100,
 		'speedOut'      : 100,
+		'margin' 				: -20,
 		'onStart'				: function(){
 			$('object, embed, iframe').css("margin-left", "-10000px");
 		},
@@ -316,7 +317,7 @@ var	beef = {
 			tileSize: new google.maps.Size(256, 256),
       isPng: true,
 			maxZoom: 15,
-			minZoom: 3,
+			minZoom: 5,
 			name: "Topography",
 			alt: "Detailed topographic maps"
 		});

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title><%= h(yield(:title) || "Untitled") %> | Went Hiking</title>
+<title><%= page_title %> | Went Hiking</title>
 <meta name="description" content="<%= yield(:meta) || 'Hiking &amp; backpacking trip logs made easy.' %>" />
 <%= stylesheet_link_tag :all, :cache => "bundle" %>
-<%= javascript_include_tag :defaults, :cache => "rails" %>
+<%= javascript_include_tag "application", "jquery", "jquery-ui", "rails", :cache => "defaults" %>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.4&amp;libraries=geometry&amp;language=en" type="text/javascript"></script>
 <%= javascript_include_tag "cufon", "helvetica_300.font", "jquery.easing", "jquery.fancybox", "scripts", :cache => "bundle" %>
 <%= yield :head %>
@@ -17,7 +17,7 @@
 		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path, :id => "logo") %>
 		<div class="nav">
 		<% if current_user.blank? %>
-			<%= link_to "#{image_tag('star.png')} Log in", login_path %>
+			<%= link_to image_tag('star.png') + " Log in", login_path %>
 		<% else %>
 			<span class="nav-unit">Hey <%=h current_user.name %>!</span>
 			<%= link_to "Add a hike", new_user_hike_path(current_user), :id => "add_link" %>
@@ -25,11 +25,15 @@
 			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
 			<%= link_to "Log out", logout_path, :id => "logout_link" %>
 		<% end %>
+		<%= form_tag "/search", :method => :get, :id => "search" do %>
+			<%= text_field_tag :q, nil, :placeholder => "Search…" %>
+			<%= image_submit_tag "magnifier.png", :id => "search_link" %>
+		<% end %>
 		</div>
 	</div>
 	</div>
 	<%= yield :before_header %>
-			<% if @content_for_header %>
+			<% if content_for? :header %>
 			<div id="header">
 			<div class="container">
 				<%= yield :header %>

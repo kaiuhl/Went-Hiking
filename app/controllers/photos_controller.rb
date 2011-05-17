@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
 		
 		@photo = @hike.photos.build(params[:photo])
 		if @photo.save
-			redirect_to :back, :notice => "Added photo."
+			redirect_to user_hike_path(@user, @hike), :notice => "Added photo."
 		else
 			render :file => "hikes/show", :layout => "application"
 		end
@@ -19,6 +19,5 @@ class PhotosController < ApplicationController
 			@photo.destroy
 			redirect_to :back, :notice => "Deleted photo."
 		end
-		
 	end
 end

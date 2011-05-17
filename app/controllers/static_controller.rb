@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   def index
     unless params[:path].blank?
-      if template_exists?(path = "static/#{params[:path].join('/')}") && params[:path].last.include?(".js")
+      if template_exists?(path = "static/#{params[:path]}") && params[:path].last.include?(".js")
 				render :file => path    
       elsif template_exists?(path)
         	render :file => path, :layout => "layouts/#{path}" rescue render :file => path, :layout => "application"

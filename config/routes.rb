@@ -1,19 +1,26 @@
-ActionController::Routing::Routes.draw do |map|
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.password 'reset_password', :controller => 'users', :action => 'password'
+HikingStats::Application.routes.draw do
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'reset_password' => 'users#password', :as => :password
+	match 'search' => 'hikes#search', :as => :search
+	match 'advanced_search' => 'hikes#advanced_search', :as => :advanced_search
 
-  map.resources :user_sessions
-  map.resources :users, :as => :with, :has_many => [:hikes, :comments]
-  map.resources :hikes, :has_many => [:photos, :comments], :collection => [:search]
-	map.resources :map_layers
-	map.resources :routes
-	map.resources :photos
-	map.resources :forecasts
-	map.resources :comments
+  resources :user_sessions
+  resources :users do
+		resources :hikes
+	end
+  resources :hikes, :collection => :search do
+		resources :comments
+		resources :photos
+		resources :hearts
+	end
+  resources :map_layers
+  resources :routes
+  resources :photos
+  resources :forecasts
+  resources :comments
 
-	map.root :controller => 'static'
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-	map.connect '*path', :controller => 'static', :action => 'index'
+  match '/' => 'static#index', :as => :root
+  match '/:controller(/:action(/:id))'
+  match '*path' => 'static#index'
 end

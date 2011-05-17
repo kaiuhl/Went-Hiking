@@ -1,4 +1,4 @@
-<% title "Edit your hike" %>
+<% page_title "Edit your hike" %>
 <h2>Edit this hike</h2>
 <%= render :partial => 'form' %><br /><br />
 <p>Make a mistake? You can also <%= link_to(image_tag("cancel.png") + " delete this entry.", user_hike_path(@user, @hike), :method => :delete, :confirm => "Are you CERTAIN you wish to delete this hike?") %></p>

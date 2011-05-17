@@ -1,5 +1,5 @@
 class MapLayer < ActiveRecord::Base
-	include GeoRuby::Shp4r
+	#include GeoRuby::Shp4r
 
   belongs_to :layer_group
   has_many :shapes, :dependent => :delete_all
@@ -9,8 +9,8 @@ class MapLayer < ActiveRecord::Base
   
   after_save :create_shapes
   
-  named_scope :only, lambda { |array| { :conditions => { :layer_group_id => array } } }
-  named_scope :except, lambda { |array| { :conditions => ["layer_group_id NOT IN (?)", array] } }
+  scope :only, lambda { |array| { :conditions => { :layer_group_id => array } } }
+  scope :except, lambda { |array| { :conditions => ["layer_group_id NOT IN (?)", array] } }
   
   private
   
