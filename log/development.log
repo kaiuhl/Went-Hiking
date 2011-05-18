@@ -45532,3 +45532,560 @@ Rendered layouts/_analytics.html.erb (0.3ms)
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
 Rendered static/privacy_policy.html.erb within layouts/application (122.6ms)
 Completed 200 OK in 131ms (Views: 129.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 14:36:59 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[35mHike Load (0.4ms)[0m  SELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (3.7ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (3.6ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (149.7ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (94.5ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (2.8ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+Rendered hikes/_photo.html.erb (19.4ms)
+Rendered hikes/_small_hike.html.erb (128.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_mileage DESC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 10
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+Rendered layouts/_analytics.html.erb (0.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+Rendered static/home.html.erb within layouts/application (679.9ms)
+Completed 200 OK in 740ms (Views: 671.4ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:30:54 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.4ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+  [1m[35mUser Load (3.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mSQL (3.4ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)[0m
+  [1m[35mSQL (3.8ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mPhoto Load (0.5ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (149.5ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (94.7ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC
+  [1m[36mHike Load (2.8ms)[0m  [1mSELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Rendered hikes/_photo.html.erb (19.0ms)
+Rendered hikes/_small_hike.html.erb (126.5ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Rendered layouts/_analytics.html.erb (0.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Rendered static/home.html.erb within layouts/application (675.0ms)
+Completed 200 OK in 737ms (Views: 665.3ms | ActiveRecord: 17.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:31:55 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[35mHike Load (0.4ms)[0m  SELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (1.1ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (4.3ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (148.9ms)
+  [1m[35mSQL (0.4ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (98.1ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (2.8ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+Rendered hikes/_photo.html.erb (14.0ms)
+Rendered hikes/_small_hike.html.erb (123.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (534.2ms)
+Completed 200 OK in 643ms (Views: 529.0ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:32:53 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.5ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+Completed   in 77ms
+
+NoMethodError (undefined method `include' for #<Array:0x000001045044c0>):
+  app/controllers/static_controller.rb:3:in `home'
+  actionpack (3.0.7) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:150:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rendering.rb:11:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:446:in `_run__3167185521245756117__process_action__3568521484069913170__callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:94:in `run_callbacks'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.7) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rescue.rb:17:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:119:in `process'
+  actionpack (3.0.7) lib/abstract_controller/rendering.rb:41:in `process'
+  actionpack (3.0.7) lib/action_controller/metal.rb:138:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal.rb:178:in `block in action'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:27:in `call'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:148:in `block in call'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:93:in `block in recognize'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:68:in `optimized_each'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:92:in `recognize'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:139:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:493:in `call'
+  bullet (2.0.1) lib/bullet/rack.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/head.rb:14:in `call'
+  rack (1.2.2) lib/rack/methodoverride.rb:24:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/flash.rb:182:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/cookies.rb:302:in `call'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:32:in `block in call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:12:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:31:in `call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+  rack (1.2.2) lib/rack/sendfile.rb:107:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+  railties (3.0.7) lib/rails/rack/logger.rb:13:in `call'
+  rack (1.2.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.0.7) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.2.2) lib/rack/lock.rb:11:in `block in call'
+  <internal:prelude>:10:in `synchronize'
+  rack (1.2.2) lib/rack/lock.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/static.rb:30:in `call'
+  railties (3.0.7) lib/rails/application.rb:168:in `call'
+  railties (3.0.7) lib/rails/application.rb:77:in `method_missing'
+  railties (3.0.7) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.2.2) lib/rack/content_length.rb:13:in `call'
+  rack (1.2.2) lib/rack/handler/webrick.rb:52:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.7ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:32:58 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[35mHike Load (0.4ms)[0m  SELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC
+Completed   in 77ms
+
+NoMethodError (undefined method `includes' for #<Array:0x00000103bc2718>):
+  app/controllers/static_controller.rb:3:in `home'
+  actionpack (3.0.7) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:150:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rendering.rb:11:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:446:in `_run__3167185521245756117__process_action__3568521484069913170__callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:94:in `run_callbacks'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.7) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rescue.rb:17:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:119:in `process'
+  actionpack (3.0.7) lib/abstract_controller/rendering.rb:41:in `process'
+  actionpack (3.0.7) lib/action_controller/metal.rb:138:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal.rb:178:in `block in action'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:27:in `call'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:148:in `block in call'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:93:in `block in recognize'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:68:in `optimized_each'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:92:in `recognize'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:139:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:493:in `call'
+  bullet (2.0.1) lib/bullet/rack.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/head.rb:14:in `call'
+  rack (1.2.2) lib/rack/methodoverride.rb:24:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/flash.rb:182:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/cookies.rb:302:in `call'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:32:in `block in call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:12:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:31:in `call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+  rack (1.2.2) lib/rack/sendfile.rb:107:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+  railties (3.0.7) lib/rails/rack/logger.rb:13:in `call'
+  rack (1.2.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.0.7) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.2.2) lib/rack/lock.rb:11:in `block in call'
+  <internal:prelude>:10:in `synchronize'
+  rack (1.2.2) lib/rack/lock.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/static.rb:30:in `call'
+  railties (3.0.7) lib/rails/application.rb:168:in `call'
+  railties (3.0.7) lib/rails/application.rb:77:in `method_missing'
+  railties (3.0.7) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.2.2) lib/rack/content_length.rb:13:in `call'
+  rack (1.2.2) lib/rack/handler/webrick.rb:52:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:33:32 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.4ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+Completed   in 29ms
+
+NoMethodError (undefined method `include' for #<Array:0x00000103c9c328>):
+  app/controllers/static_controller.rb:3:in `home'
+  actionpack (3.0.7) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:150:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rendering.rb:11:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:446:in `_run__3167185521245756117__process_action__3568521484069913170__callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:410:in `_run_process_action_callbacks'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:94:in `run_callbacks'
+  actionpack (3.0.7) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `block in instrument'
+  activesupport (3.0.7) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (3.0.7) lib/active_support/notifications.rb:52:in `instrument'
+  actionpack (3.0.7) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.0.7) lib/action_controller/metal/rescue.rb:17:in `process_action'
+  actionpack (3.0.7) lib/abstract_controller/base.rb:119:in `process'
+  actionpack (3.0.7) lib/abstract_controller/rendering.rb:41:in `process'
+  actionpack (3.0.7) lib/action_controller/metal.rb:138:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.0.7) lib/action_controller/metal.rb:178:in `block in action'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:27:in `call'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:148:in `block in call'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:93:in `block in recognize'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:68:in `optimized_each'
+  rack-mount (0.6.14) lib/rack/mount/code_generation.rb:92:in `recognize'
+  rack-mount (0.6.14) lib/rack/mount/route_set.rb:139:in `call'
+  actionpack (3.0.7) lib/action_dispatch/routing/route_set.rb:493:in `call'
+  bullet (2.0.1) lib/bullet/rack.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/head.rb:14:in `call'
+  rack (1.2.2) lib/rack/methodoverride.rb:24:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/flash.rb:182:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/cookies.rb:302:in `call'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:32:in `block in call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:12:in `cache'
+  activerecord (3.0.7) lib/active_record/query_cache.rb:31:in `call'
+  activerecord (3.0.7) lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+  activesupport (3.0.7) lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
+  actionpack (3.0.7) lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+  rack (1.2.2) lib/rack/sendfile.rb:107:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+  railties (3.0.7) lib/rails/rack/logger.rb:13:in `call'
+  rack (1.2.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.0.7) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.2.2) lib/rack/lock.rb:11:in `block in call'
+  <internal:prelude>:10:in `synchronize'
+  rack (1.2.2) lib/rack/lock.rb:11:in `call'
+  actionpack (3.0.7) lib/action_dispatch/middleware/static.rb:30:in `call'
+  railties (3.0.7) lib/rails/application.rb:168:in `call'
+  railties (3.0.7) lib/rails/application.rb:77:in `method_missing'
+  railties (3.0.7) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.2.2) lib/rack/content_length.rb:13:in `call'
+  rack (1.2.2) lib/rack/handler/webrick.rb:52:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/kylemeyer/.rvm/rubies/ruby-1.9.2-p136/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.7ms)
+Rendered /Users/kylemeyer/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:33:44 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[35mHike Load (0.4ms)[0m  SELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` IN (2,1))[0m
+  [1m[35mUser Load (0.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (1.2ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (4.0ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (174.2ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (21.8ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (3.0ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+Rendered hikes/_photo.html.erb (14.6ms)
+Rendered hikes/_small_hike.html.erb (101.0ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (351.7ms)
+Completed 200 OK in 485ms (Views: 346.8ms | ActiveRecord: 13.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:33:53 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.4ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` IN (2,1))
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)[0m
+  [1m[35mSQL (1.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mPhoto Load (0.4ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (115.2ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (21.5ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC
+  [1m[36mHike Load (3.5ms)[0m  [1mSELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1[0m
+Rendered hikes/_photo.html.erb (15.1ms)
+Rendered hikes/_small_hike.html.erb (103.1ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5[0m
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (343.9ms)
+Completed 200 OK in 469ms (Views: 340.8ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:35:46 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[35mHike Load (0.4ms)[0m  SELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` IN (2,1))[0m
+  [1m[35mUser Load (2.7ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (2.7ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (2.3ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (118.5ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (20.7ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (0.9ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+Rendered hikes/_photo.html.erb (12.3ms)
+Rendered hikes/_small_hike.html.erb (98.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (346.0ms)
+Completed 200 OK in 474ms (Views: 342.0ms | ActiveRecord: 12.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2011-05-18 15:37:07 -0400
+  Processing by UserSessionsController#destroy as HTML
+Geokit is using the domain: localhost
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 100ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:37:07 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.4ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` IN (2,1))
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `users`[0m
+  [1m[35mSQL (1.2ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (3.4ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (118.2ms)
+  [1m[35mSQL (0.4ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (21.0ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (3.0ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+Rendered hikes/_photo.html.erb (15.7ms)
+Rendered hikes/_small_hike.html.erb (101.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (393.3ms)
+Completed 200 OK in 523ms (Views: 390.3ms | ActiveRecord: 13.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-18 15:37:08 -0400
+  Processing by StaticController#home as HTML
+Geokit is using the domain: localhost
+  [1m[36mHike Load (0.4ms)[0m  [1mSELECT `hikes`.* FROM `hikes` ORDER BY hiked_at DESC, created_at DESC[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` IN (2,1))
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `users`[0m
+  [1m[35mSQL (2.8ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 3)
+  [1m[36mSQL (3.9ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 3)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 3) ORDER BY photos.taken_at ASC[0m
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (120.5ms)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 2)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 2)[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 2) ORDER BY photos.taken_at ASC
+Rendered hikes/_photo.html.erb (0.0ms)
+Rendered hikes/_small_hike.html.erb (21.3ms)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `comments` WHERE (`comments`.hike_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `hearts` WHERE (`hearts`.hike_id = 1)
+  [1m[36mPhoto Load (0.5ms)[0m  [1mSELECT `photos`.* FROM `photos` WHERE (`photos`.hike_id = 1) ORDER BY photos.taken_at ASC[0m
+  [1m[35mHike Load (0.9ms)[0m  SELECT `hikes`.* FROM `hikes` WHERE `hikes`.`id` = 1 ORDER BY hiked_at DESC, created_at DESC LIMIT 1
+Rendered hikes/_photo.html.erb (13.2ms)
+Rendered hikes/_small_hike.html.erb (98.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY ytd_mileage DESC LIMIT 10[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (ytd_mileage > 0 AND ytd_elevation > 0) ORDER BY ytd_elevation DESC LIMIT 5
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (ytd_nights > 0 AND ytd_mileage > 0) ORDER BY ytd_nights DESC LIMIT 5[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` ORDER BY created_at DESC LIMIT 5
+Rendered layouts/_analytics.html.erb (0.3ms)
+Rendered static/home.html.erb within layouts/application (343.2ms)
+Completed 200 OK in 472ms (Views: 340.1ms | ActiveRecord: 11.7ms)

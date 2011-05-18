@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 	end
 
   def current_user
-    @current_user = UserSession.find.record rescue nil
+    @current_user ||= UserSession.find.record rescue nil
   end
 
 	def personal_current_user

@@ -6,7 +6,7 @@
 <% end %>
 
 <% content_for :header do %>
-<p class="main_lede">A tool for recording your trips into the wilderness, and discovering new ones. Join the <%= User.count %> members and add to the <%= Hike.count %> hikes already recorded.</p>
+<p class="main_lede">A tool for recording your trips into the wilderness, and discovering new ones. Join the <%= @user_count %> members and add to the <%= @hikes.size %> hikes already recorded.</p>
 <% end if current_user.blank? %>
 
 <% content_for :head do %>
@@ -21,7 +21,7 @@ $(document).ready(function(){
 	topo();
 	
 	// Load all the markers
-	beef.markers.populate(<%= @hikes.map { |hike| { 
+	beef.markers.populate(<%= @hikes[0..100].map { |hike| { 
 		:id 			=> hike.id, 
 		:lat 			=> hike.lat,
 		:lng			=> hike.lng,
