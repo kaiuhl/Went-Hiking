@@ -1,21 +1,15 @@
 class StaticController < ApplicationController
-  def index
-    unless params[:path].blank?
-      if template_exists?(path = "static/#{params[:path]}") && params[:path].last.include?(".js")
-				render :file => path    
-      elsif template_exists?(path)
-        	render :file => path, :layout => "layouts/#{path}" rescue render :file => path, :layout => "application"
-			else
-        raise ::ActionController::RoutingError, "Recognition failed for #{request.path.inspect}"
-      end
-    else
-      render :file => "static/home", :layout => "application"
-    end
-  end
-  
-  private
-  
-  def template_exists?(path)
-    self.view_paths.find_template(path, response.template.template_format) rescue ActionView::MissingTemplate
-  end
+	def home
+		@hikes = Hike.all
+		@top_mileage = User.limit(10).order("ytd_mileage DESC")
+		@top_elevation = User.where(["ytd_mileage > ? AND ytd_elevation > ?", 0, 0]).order("ytd_elevation DESC")
+		@top_nights = User.where(["ytd_nights > ? AND ytd_mileage > ?", 0, 0]).order("ytd_mileage DESC")
+		@newest_members = User.limit(10).order("created_at DESC")
+	end
+	def about
+	end
+	def map
+	end
+	def privacy_policy
+	end
 end

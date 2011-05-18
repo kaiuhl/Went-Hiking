@@ -4,6 +4,9 @@ HikingStats::Application.routes.draw do
   match 'reset_password' => 'users#password', :as => :password
 	match 'search' => 'hikes#search', :as => :search
 	match 'advanced_search' => 'hikes#advanced_search', :as => :advanced_search
+	match 'map' => 'static#map'
+	match 'about' => 'static#about'
+	match 'privacy_policy' => 'static#privacy_policy'
 
   resources :user_sessions
   resources :users do
@@ -20,7 +23,7 @@ HikingStats::Application.routes.draw do
   resources :forecasts
   resources :comments
 
-  match '/' => 'static#index', :as => :root
+  match '/' => 'static#home', :as => :root
   match '/:controller(/:action(/:id))'
-  match '*path' => 'static#index'
+  # match '*path' => 'static#index'
 end

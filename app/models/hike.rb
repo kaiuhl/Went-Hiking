@@ -13,7 +13,7 @@ class Hike < ActiveRecord::Base
 	belongs_to :user	
 	
 	after_save :update_user
-	default_scope :order => "hiked_at DESC"
+	default_scope :order => "hiked_at DESC, created_at DESC"
 	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)]} }
 	
 	acts_as_mappable
