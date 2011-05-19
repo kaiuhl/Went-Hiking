@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
 	def home
 		@hikes = Hike.all(:include => :user)
+		@users = User.all
 		@top_mileage = User.limit(10).order("ytd_mileage DESC")
 		@top_elevation = User.where(["ytd_mileage > ? AND ytd_elevation > ?", 0, 0]).order("ytd_elevation DESC").limit(5)
 		@top_nights = User.where(["ytd_nights > ? AND ytd_mileage > ?", 0, 0]).order("ytd_nights DESC").limit(5)
@@ -11,6 +12,7 @@ class StaticController < ApplicationController
 	def about
 	end
 	def map
+		render :layout => "map"
 	end
 	def privacy_policy
 	end

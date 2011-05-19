@@ -58,6 +58,11 @@ $(document).ready(function(){
 		</tr>
 		<% end %>
 	</table>
+	<% if current_user && !current_user.ytd_mileage.blank? # && !@top_mileage.include?(current_user) %>
+	<p class="table-note">
+		You are #<%= @users.reject{|a| a.ytd_mileage.blank? }.sort{|a,b| b.ytd_mileage <=> a.ytd_mileage }.index(current_user) + 1 %> for the year
+	</p>
+	<% end %>
 	
 	<h2>Most Uphill in <%= DateTime.now.year %></h2>
 	<table>
@@ -72,6 +77,12 @@ $(document).ready(function(){
 		</tr>
 		<% end %>
 	</table>
+	<% if current_user && !current_user.ytd_elevation.blank? # && !@top_elevation.include?(current_user) %>
+	<p class="table-note">
+		You are #<%= @users.reject{|a| a.ytd_elevation.blank? }.sort{|a,b| b.ytd_elevation <=> a.ytd_elevation }.index(current_user) + 1 %> for the year
+	</p>
+	<% end %>
+	
 	
 	<h2>Most Nights in <%= DateTime.now.year %></h2>
 	<table>
@@ -86,6 +97,11 @@ $(document).ready(function(){
 		</tr>
 		<% end %>
 	</table>
+	<% if current_user && !current_user.ytd_nights.blank? # && !@top_nights.include?(current_user) %>
+	<p class="table-note">
+		You are #<%= @users.reject{|a| a.ytd_nights.blank? }.sort{|a,b| b.ytd_nights <=> a.ytd_nights }.index(current_user) + 1 %> for the year
+	</p>
+	<% end %>
 	
 	<h2>Newest Members</h2>
 	<table>

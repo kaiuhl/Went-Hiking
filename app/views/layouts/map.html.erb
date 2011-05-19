@@ -9,20 +9,28 @@
 <%= javascript_include_tag "cufon", "helvetica_300.font", "jquery.easing", "jquery.fancybox", "scripts" %>
 <%= yield :head %>
 <%= render :partial => 'layouts/analytics' %>
+<script type="text/javascript" charset="utf-8">$(document).ready(function(){
+	var geocoder = new google.maps.Geocoder();
+	$("#geolocate").keyup(function(){
+		if(event.keyCode == 13){
+		$("#geolocate").select();	
+		geocoder.geocode({address: $("#geolocate").val()}, function(result){
+			map.fitBounds(result[0].geometry.viewport); 
+			map.setZoom(map.getZoom() -1);
+		})
+		}
+	})
+})</script>
 </head>
 <body>
 	<div id="navigation">
 	<div class="container">
 		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path) %>
 		<div class="nav">
-			<% if @route.id.blank? %>
-			<a onclick="beef.polylines.startDrawing();return false;" href="#">start drawing</a> |
-			<a onclick="beef.polylines.stepBack();return false;" href="#">undo</a> |
-			<input type="text" id="title" placeholder="title the hike" /> and
-			<a onclick="$('form')[0].submit();return false;" href="#">save</a>
-			<% else %>
-				<h2><%=h @route.title %></h2>
-			<% end %>
+			<input type="search" id="geolocate" placeholder="Search the map" />
+			<a onclick="beef.polylines.startDrawing();return false;" href="#"><img src="/images/pencil_add.png" alt="start drawing" title="start drawing"></a>
+			<a onclick="beef.polylines.stopDrawing();return false;" href="#"><img src="/images/pencil_delete.png" alt="stop drawing" title="stop drawing"></a>
+			<a onclick="beef.polylines.stepBack();return false;" href="#"><img src="/images/arrow_undo.png" alt="undo" title="undo"></a>
 		</div>
 	</div>
 	</div>

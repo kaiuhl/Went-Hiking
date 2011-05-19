@@ -35,7 +35,7 @@ table {
 	border-collapse:collapse;
 	border-top:1px solid #ddd;
 	width:100%;
-	margin-bottom:1em;
+/*	margin-bottom:1em;*/
 }
 table tr {
 	background-color:white;
@@ -105,9 +105,12 @@ p.main_lede {
 	line-height:1;
 	margin-bottom:0;
 }
-p.note {
+p.note, p.table-note {
 	color:#999;
 	font-size:12px;
+}
+p.table-note {
+	margin-top:-20px;
 }
 span.meta {
 	font-size:10px;
@@ -230,17 +233,21 @@ div.heart img { vertical-align:text-bottom }
 
 
 div.popup {
-	border:1px solid white;
-	background-color: black;
-	padding:20px;
-	position:relative;
-	width:200px;
-}
-div.popup .pointer {
 	position:absolute;
-	top:-17px;
-	left:112px;
+	right:20px;
+	width:400px;
+	z-index:1500;
+	padding-top:21px;
+	background:transparent url(../images/point_up.png) no-repeat top center;
+	margin-top:13px;
 }
+div.popup .box {
+	border:0;
+	background-color:#111;
+	border-radius:5px;
+}
+div.popup h2 { text-shadow: 0 2px 0 #333;	color:white; margin-bottom:20px }
+div.popup#login_form fieldset ol li label { color:#aaa ! important }
 
 #footer {
 	background:#dadada url(../images/bevel.png) repeat-x top left;

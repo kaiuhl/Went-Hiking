@@ -17,7 +17,9 @@
 		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path, :id => "logo") %>
 		<div class="nav">
 		<% if current_user.blank? %>
-			<%= link_to image_tag('star.png') + " Log in", login_path %>
+			<%= link_to image_tag('star.png') + " Log in", login_path, :id => "login", :onclick => "$('#login_form').fadeToggle(75);$('#user_session_email').focus();return false" %>
+			<% @user_session = UserSession.new %>
+			<%= render "user_sessions/popup" %>
 		<% else %>
 			<span class="nav-unit">Hey <%=h current_user.name %>!</span>
 			<%= link_to "Add a hike", new_user_hike_path(current_user), :id => "add_link" %>
@@ -57,7 +59,7 @@
 			<p>Went Hiking &copy; 2010. All rights reserved.<br /> <%= link_to "About", "/about" %> | <%= link_to "Privacy Policy", "/privacy_policy" %></p>
 		</div>
 		<div class="column last">
-			<p>This website was lovingly crafted by <a href="http://kaiuhl.com">Kyle Meyer</a>, a web designer, developer, and backpacker in Portland, Oregon</p>
+			<p>This website was lovingly crafted by <a href="http://kaiuhl.com">Kyle Meyer</a>, a web designer, developer, and backpacker in Portland, Oregon.</p>
 		</div>
 		<div class="clearer"></div>
 		</div>
