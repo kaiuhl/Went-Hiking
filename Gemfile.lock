@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/mislav/will_paginate.git
-  revision: b1a5beeec9f56ecbe3594fcdca76d92b6767ce50
-  branch: rails3
-  specs:
-    will_paginate (3.0.pre3)
-
-GIT
   remote: https://github.com/odorcicd/authlogic.git
   revision: a087ad0cba3c165ba22fcf176c28b6f7517931e8
   branch: rails3
@@ -16,7 +9,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    aaronh-chronic (0.3.9)
+    GeoRuby (1.3.4)
     abstract (1.0.0)
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
@@ -50,8 +43,6 @@ GEM
     arel (2.0.9)
     bluecloth (2.1.0)
     builder (2.1.2)
-    bullet (2.0.1)
-      uniform_notifier (~> 1.0.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     exifr (1.0.5)
@@ -63,7 +54,6 @@ GEM
     geokit-rails3 (0.1.3)
       geokit (~> 1.5.0)
       rails (~> 3.0.4)
-    gpx (0.6)
     i18n (0.5.0)
     jquery-rails (1.0)
       rails (~> 3.0)
@@ -81,6 +71,7 @@ GEM
     noaa (0.2.4)
       geokit (>= 1.5.0)
       nokogiri (>= 0.9.7)
+    nofxx-georuby (1.9.2)
     nokogiri (1.4.4)
     paperclip (2.3.1.1)
     polyglot (0.3.1)
@@ -108,16 +99,15 @@ GEM
       activerecord (>= 3.0.3)
       arel (>= 2.0.6)
       rgeo (>= 0.2.8)
+    spatial_adapter (1.2.0)
+      GeoRuby (>= 1.3.0)
+      activerecord (>= 2.2.2)
     sqlite3 (1.3.3)
     subexec (0.0.4)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
-    uniform_notifier (1.0.1)
-    whenever (0.6.7)
-      aaronh-chronic (>= 0.3.9)
-      activesupport (>= 2.3.4)
 
 PLATFORMS
   ruby
@@ -126,19 +116,17 @@ DEPENDENCIES
   activerecord-mysql2spatial-adapter
   authlogic!
   bluecloth
-  bullet
   exifr
   formtastic
   geokit-rails3
-  gpx
   jquery-rails (>= 0.2.6)
   libxml-ruby
   mini_magick
   mysql2 (<= 0.2.7)
   noaa
+  nofxx-georuby
+  nokogiri
   paperclip
   rails (= 3.0.7)
-  rgeo
+  spatial_adapter
   sqlite3
-  whenever
-  will_paginate!

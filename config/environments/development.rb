@@ -23,8 +23,8 @@ HikingStats::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-	Bullet.enable = true
-  Bullet.bullet_logger = true
-  Bullet.disable_browser_cache = true
+	# 	Bullet.enable = true
+	#   Bullet.bullet_logger = true
+	#   Bullet.disable_browser_cache = true
 end
 

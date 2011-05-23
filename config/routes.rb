@@ -23,7 +23,8 @@ HikingStats::Application.routes.draw do
   resources :forecasts
   resources :comments
 
-  match '/' => 'static#home', :as => :root
+	# match '/with/:id(/hikes(/:hike_id))' => redirect("/users/%{id}")
+	match '/with/:id' => redirect("/users/%{id}/hikes")
   match '/:controller(/:action(/:id))'
-  # match '*path' => 'static#index'
+	root :to => 'static#home'
 end

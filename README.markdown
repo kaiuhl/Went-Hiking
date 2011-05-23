@@ -6,3 +6,4 @@ Went Hiking is a kickass way to keep track of your trips into the wilderness, re
 
 - GPX integration
 - The sketching of hiking trails during new hikes
+- Add [SNOTEL data](http://www.wcc.nrcs.usda.gov/snow/) to /map 

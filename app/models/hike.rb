@@ -7,10 +7,11 @@ class Hike < ActiveRecord::Base
 	validates_presence_of :lat
 	validates_presence_of :lng
 	
-	has_many :photos
-	has_many :hearts
-	has_many :comments
-	belongs_to :user	
+	has_many 		:photos
+	has_many 		:hearts
+	has_many 		:comments
+	has_one	 		:gpx
+	belongs_to 	:user	
 	
 	after_save :update_user
 	default_scope :order => "hiked_at DESC, created_at DESC"

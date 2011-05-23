@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 	before_filter :authorize
 		
 	def index
-		@comments = Comment.all
+		@comments = Comment.where(:user_id => current_user.id)
 	end
 	
   def create
