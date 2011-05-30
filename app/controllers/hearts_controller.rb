@@ -4,6 +4,7 @@ class HeartsController < ApplicationController
 		if current_user.id != params[:current_user]
 			@heart = Heart.find_or_create_by_user_id_and_hike_id(:user_id => current_user.id, :hike_id => params[:hike_id])
 			@hike = @heart.hike
+			@hearts = @hike.hearts
 		else
 			render "nope"
 		end
@@ -12,6 +13,7 @@ class HeartsController < ApplicationController
   def destroy
 		@heart = Heart.find_by_user_id_and_hike_id(current_user.id, params[:hike_id])
 		@hike = @heart.hike
+		@hearts = @hike.hearts
 		@heart.destroy
   end
 end

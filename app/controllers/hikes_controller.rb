@@ -31,6 +31,7 @@ class HikesController < ApplicationController
 		@user = @hike.user
 		@heart = @hike.hearts.find_or_initialize_by_hike_id_and_user_id(@hike.id, current_user.try(:id))
 		@comments = @hike.comments
+		@hearts = @hike.hearts
 		@comment = Comment.new(:hike_id => @hike.id, :user_id => current_user.id) rescue nil
 		@nearby_hikes = Hike.within(10, :origin => [@hike.lat,@hike.lng]).order("distance DESC").where("id != ?", @hike.id).limit(10)
 	end

@@ -1,1 +1,2 @@
-$("#heart_<%= @hike.id %>").replaceWith('<%=h(render "form").gsub("\n", "") %>')
+$("#heart_<%= @hike.id %>").replaceWith('<%= escape_javascript(render "form") %>');
+$("#hearted").replaceWith('<%= escape_javascript(render "hearts/hearts") %>').effect("highlight", {}, 500);

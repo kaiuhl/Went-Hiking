@@ -230,7 +230,14 @@ div.heart {
 }
 div.heart input, div.heart form { display:inline }
 div.heart img { vertical-align:text-bottom }
-
+div#hearted {
+	padding-left:26px;
+	height:16px;
+	background: url(../images/heart.png) no-repeat left center;
+	font-size:12px;
+	color:#999;
+	margin:20px 0;
+}
 
 div.popup {
 	position:absolute;

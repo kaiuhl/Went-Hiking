@@ -152,10 +152,11 @@ $(document).ready(function(){
 </div>
 
 <div class="column dominant" id="comments">
-<% unless @comments.blank? && current_user.blank? %>
+<% unless @comments.blank? && current_user.blank? && @hearts.blank? %>
 <div class="box">
-	<% unless @comments.blank? %>
+	<% unless @comments.blank? && @hearts.blank? %>
 	<h2>Comments</h2>
+	<%= render "hearts/hearts" %>
 	<%= render @comments %>
 	<% end %>
 	<% unless current_user.blank? %>
