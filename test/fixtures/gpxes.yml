@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hike_id: 1
+  track: 
+  data_file_name: MyString
+  data_content_type: MyString
+  data_file_size: 1
+
+two:
+  hike_id: 1
+  track: 
+  data_file_name: MyString
+  data_content_type: MyString
+  data_file_size: 1
