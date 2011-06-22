@@ -1,17 +1,28 @@
 <% page_title "Fullscreen Topographic Map" %>
 <% @hikes = Hike.all %>
-
+<style type="text/css" media="print">
+	#map {
+		width:100%;	height:100%;
+		top:0;
+	}
+	.nav { display:none }
+	#navigation {
+		background:transparent;
+	}
+</style>
+<div id="map" style="width:100%;height:92%"></div>
+<% content_for :head do %>
 <style type="text/css" media="all">
 	#map {
 		position:absolute;
 		top:63px;	left:0;
 		width:100%;	height:98%;
 		background-color:black;
-		z-index:2;
+		z-index:0;
 	}
 	#navigation {
 		position:relative;
-		z-index:3;
+		z-index:30;
 	}
 	.day {
 		float:left;
@@ -37,18 +48,6 @@
 		margin-bottom:10px;
 	}
 </style>
-<style type="text/css" media="print">
-	#map {
-		width:100%;	height:100%;
-		top:0;
-	}
-	.nav { display:none }
-	#navigation {
-		background:transparent;
-	}
-</style>
-<div id="map" style="width:100%;height:92%"></div>
-<% content_for :head do %>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(window).resize(function(){
@@ -154,3 +153,14 @@ $(document).ready(function(){
 });
 </script>
 <% end %>
+
+<% form_for(Route.new, :id => "gpx") do |f| %>
+	<%= f.text_field :title %>
+	<%= f.file_field :gpx %>
+	<%= f.hidden_field :lat %>
+	<%= f.hidden_field :lng %>
+	<%= f.hidden_field :zoom %>
+	<%= f.hidden_field :map_type %>
+	<%= f.hidden_field :path %>
+<% end %>
+
