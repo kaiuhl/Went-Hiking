@@ -5,6 +5,8 @@
 	padding:5px 0;
 	line-height:1;
 	font-size:14px;
+	z-index:5;
+	position:relative;
 }
 #navigation .nav {
 	color:#aaa;
@@ -22,7 +24,6 @@
 #navigation .nav img {
 	vertical-align:text-bottom;
 }
-
 .nav-unit, .nav a {
 	padding-left:40px;
 	opacity:0.8;

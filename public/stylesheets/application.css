@@ -1,13 +1,13 @@
 #flash_notice, #flash_error {
-  padding: 8px 10px;
+  padding: 8px 10px 8px 31px;
   margin: 10px 0;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 #flash_notice {
-  background-color: #CFC;
+  background: #CFC url(../images/accept.png) no-repeat 10px center;
   border: solid 1px #6C6;
 }
 
