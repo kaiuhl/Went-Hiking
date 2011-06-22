@@ -5,7 +5,7 @@ class RoutesController < ApplicationController
 		render :layout => "application"
 	end
   def new
-		@route = Route.new
+		@route = Route.new(:zoom => params[:zoom], :lat => params[:lat], :lng => params[:lng], :map_type => params[:map_type])
 		@route.user_id = current_user.id unless current_user.blank?
   end
 	def create
@@ -15,6 +15,8 @@ class RoutesController < ApplicationController
 				format.js
 				format.html { redirect_to route_path(@route), :notice => "Saved your route." }
 			end
+		else
+			
 		end
 	end
 	def show
