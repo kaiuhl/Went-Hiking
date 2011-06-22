@@ -2,21 +2,7 @@
 <style type="text/css" media="screen">
 	#map {
 		position:absolute;
-		top:53px;	left:0;
-		width:100%;	height:98%;
-		background-color:black;
-		z-index:2;
-	}
-	#navigation {
-		position:relative;
-		z-index:3;
-	}
-	#gpx {
-		position:absolute;
-		z-index:1001;
-	}
-	#map {
-		z-index:100;
+		top:63px;	left:0;
 	}
 </style>
 <div id="map" style="width:100%;height:92%"></div>
@@ -27,7 +13,7 @@
 </script>
 <% end %>
 
-<% form_for(@route, :id => "gpx") do |f| %>
+<% form_for(map_path(@route)) do |f| %>
 	<%= f.text_field :title %>
 	<%= f.file_field :gpx %>
 	<%= f.hidden_field :lat %>
