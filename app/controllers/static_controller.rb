@@ -3,8 +3,9 @@ class StaticController < ApplicationController
 		@hikes = Hike.all(:include => :user)
 		@users = User.all
 		@top_mileage = User.limit(10).order("ytd_mileage DESC")
-		@top_elevation = User.where(["ytd_mileage > ? AND ytd_elevation > ?", 0, 0]).order("ytd_elevation DESC").limit(5)
-		@top_nights = User.where(["ytd_nights > ? AND ytd_mileage > ?", 0, 0]).order("ytd_nights DESC").limit(5)
+		@top_elevation = User.where(["ytd_mileage > ? AND ytd_elevation > ?", 0, 0]).order("ytd_elevation DESC").limit(10)
+		@top_nights = User.where(["ytd_nights > ? AND ytd_mileage > ?", 0, 0]).order("ytd_nights DESC").limit(10)
+		@top_elevation_per_mile = User.where(["ytd_mileage >= ?", 100]).limit(10).sort{|a,b| (b.ytd_elevation / b.ytd_mileage) <=> (a.ytd_elevation / a.ytd_mileage) }
 		@newest_members = User.limit(5).order("created_at DESC")
 		@top_hikes = Hike.limit(5).where("")		
 		@user_count = User.count

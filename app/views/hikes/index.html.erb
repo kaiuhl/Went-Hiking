@@ -6,7 +6,7 @@
 
 	<h1><%= "In #{@year}," unless @year.blank? %>
 	<%= @year == DateTime.now.year ? "#{@user.name} has taken" : "#{@user.name} went on" %> 
-	<%= "#{@hikes.length} trips, hiked a total of #{@hikes.map(&:mileage).sum.to_i} miles, #{'and' if @hikes.map(&:nights).sum == 0} climbed #{@hikes.map(&:elevation).sum} feet" %><%= @hikes.map(&:nights).sum > 0 ? ", and spent #{@hikes.map(&:nights).sum} nights under the stars.</a></h1>".html_safe : ".</h1>".html_safe %>
+	<%= "#{@hikes.length} trips, hiked a total of #{@user.ytd_mileage} miles, #{'and' if @hikes.map(&:nights).sum == 0} climbed #{number_with_precision(@user.ytd_elevation, :significant => true, :delimiter => ',')} feet" %><%= @hikes.map(&:nights).sum > 0 ? ", and spent #{@user.ytd_nights} nights under the stars.</a></h1>".html_safe : ".</h1>".html_safe %>
 <% end %>
 
 <% content_for :before_header do %>

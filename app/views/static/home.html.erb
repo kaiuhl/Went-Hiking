@@ -73,7 +73,7 @@ $(document).ready(function(){
 		<% @top_elevation.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
 			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
-			<td><%= user.ytd_elevation %>'</td>
+			<td><%= number_with_precision(user.ytd_elevation, :significant => true, :delimiter => ',') %>'</td>
 		</tr>
 		<% end %>
 	</table>
@@ -83,6 +83,21 @@ $(document).ready(function(){
 	</p>
 	<% end %>
 	
+	
+	<h2>Most Uphill Per Mile in <%= DateTime.now.year %></h2>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th style="width:48%">Feet Gained per Mile</th>
+		</tr>
+		<% @top_elevation_per_mile.each do |user| %>
+		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= number_with_precision(user.ytd_elevation / user.ytd_mileage, :significant => true, :delimiter => ',') %>' per mile</td>
+		</tr>
+		<% end %>
+	</table>
+	<p class="table-note">Statistic returned thanks to <%= link_to "Eric Peterson", user_hikes_path("35-Eric-Peterson") %></p>
 	
 	<h2>Most Nights in <%= DateTime.now.year %></h2>
 	<table>
