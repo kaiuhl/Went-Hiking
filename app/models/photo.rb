@@ -12,8 +12,8 @@ class Photo < ActiveRecord::Base
   }, :convert_options => {
 		:micro => "-quality 65",
     :thumbnail => "-quality 65",
-		:bpl => "-quality 65",
-		:large => "-quality 65"
+		:bpl => "-quality 85",
+		:large => "-quality 85"
 	}
   
   default_scope :order => "photos.taken_at ASC"
