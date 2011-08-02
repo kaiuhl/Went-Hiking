@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,5 +25,4 @@ gem 'geokit-rails3'
 # gem 'GeoRuby'
 gem 'nofxx-georuby', :require => "geo_ruby"
 gem 'spatial_adapter'
-# gem 'rgeo'
 gem 'activerecord-mysql2spatial-adapter'
