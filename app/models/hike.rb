@@ -13,6 +13,8 @@ class Hike < ActiveRecord::Base
 	has_one	 		:gpx
 	belongs_to 	:user	
 	
+	accepts_nested_attributes_for :photos, :allow_destroy => true
+	
 	after_save :update_user
 	default_scope :order => "hiked_at DESC, created_at DESC"
 	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)]} }

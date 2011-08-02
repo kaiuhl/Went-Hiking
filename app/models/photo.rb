@@ -7,10 +7,14 @@ class Photo < ActiveRecord::Base
   has_attached_file :image, :styles => {
 		:micro => ["25x25#", :jpg],
     :thumbnail => ["125x125#", :jpg],
-		:medium => ["200x200#", :jpg],
 		:bpl => ["550x900>", :jpg],
-    :large => ["800x1000>", :jpg]
-  }
+    :large => ["800x1200>", :jpg]
+  }, :convert_options => {
+		:micro => "-quality 65",
+    :thumbnail => "-quality 65",
+		:bpl => "-quality 65",
+		:large => "-quality 65"
+	}
   
   default_scope :order => "photos.taken_at ASC"
   
