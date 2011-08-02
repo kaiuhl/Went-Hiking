@@ -29,4 +29,8 @@ class ApplicationController < ActionController::Base
   def admin?
     UserSession.find.record.admin rescue nil
   end
+
+	def authorize_admin
+		redirect_to login_path unless admin? 
+	end
 end
