@@ -1,0 +1,5 @@
+<% page_title "Photos" %>
+
+<h1>Latest Photos</h1>
+
+<%= render :partial => 'hikes/photo', :collection => @photos, :locals => { :size => :thumbnail } %>
