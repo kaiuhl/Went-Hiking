@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110519153513) do
+ActiveRecord::Schema.define(:version => 20110802225033) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20110519153513) do
     t.integer  "camera_iso"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "stats_added",        :default => false
   end
 
   add_index "photos", ["hike_id"], :name => "index_photos_on_hike_id"
