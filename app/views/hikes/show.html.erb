@@ -86,6 +86,13 @@ $(document).ready(function(){
 	
 	<%= form_for([@hike, @hike.photos.build], :html => {:multipart => true}) do |f| %>
 	<div class="box">
+	<script src="/javascripts/jquery.fileupload.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="/javascripts/jquery.iframe-transport.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script type="text/javascript">
+	$(function(){
+		
+	});
+	</script>
 	<h2>Add photo</h2>
 		<p><%= f.file_field :image %></p>
 		<p><%= f.text_field :caption, :placeholder => "photo's caption" %></p>
