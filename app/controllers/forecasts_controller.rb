@@ -1,16 +1,30 @@
 class ForecastsController < ApplicationController
+	before_filter :authorize, :only => [:new, :index, :show, :destroy, :edit, :update]
+
+	def index
+		@forecasts = current_user.forecasts
+		@forecast = Forecast.new(:user_id => current_user.id)
+	end
+	def show
+		@forecast = Forecast.find(params[:id])
+	end
+	def new
+		@forecast = Forecast.new(:user_id => current_user.id)
+	end
 	def create
-		@forecast = Forecast.find_or_create_by_lat_and_lng(params[:lat], params[:lng])
-		@forecast.save if @forecast.created_at <= 1.hour.ago
-		respond_to do |format|
-			format.js do
-				render :json => @forecast.details[0..4].map { |day| 
-					{ :high => day.high, :low => day.low, 
-						:title => day.starts_at.strftime("%A"),
-						:daytime_precipitation_probability => day.daytime_precipitation_probability,
-						:evening_precipitation_probability => day.evening_precipitation_probability,
-						:weather_summary => day.weather_summary, :image_url => day.image_url }
-				}.to_json
+		@forecast = Forecast.new(params[:forecast])
+		if @forecast.save
+			respond_to do |format|
+				format.html { redirect_to user_forecasts_path(current_user) }
+				format.js { render :json => @forecast.details }
+			end
+		else
+			respond_to do |format|
+				format.html do
+					@forecasts = current_user.forecasts
+				 	render :index, :error => "Unable to add forecast. View the 'Add a forecast' form below for the details."  
+				end
+				format.js
 			end
 		end
 	end

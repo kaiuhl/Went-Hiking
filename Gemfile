@@ -21,3 +21,4 @@ gem 'geokit-rails3'
 gem 'nofxx-georuby', :require => "geo_ruby"
 gem 'spatial_adapter'
 gem 'activerecord-mysql2spatial-adapter'
+gem 'dynamic_form'

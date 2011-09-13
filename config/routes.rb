@@ -12,6 +12,7 @@ HikingStats::Application.routes.draw do
   resources :user_sessions
   resources :users do
 		resources :hikes
+		resources :forecasts
 	end
   resources :hikes, :collection => :search do
 		resources :comments

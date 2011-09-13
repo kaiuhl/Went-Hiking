@@ -46,7 +46,7 @@ $(document).ready(function(){
 		beef.variables.info.open(map);
 		eService = new google.maps.ElevationService();
 		
-		$.post("<%= forecasts_path %>", { lat: e.latLng.lat(), lng: e.latLng.lng() }, function(forecast){
+		$.post("<%= forecasts_path %>", { forecast: { lat: e.latLng.lat(), lng: e.latLng.lng() } }, function(forecast){
 			var $output = $("<div class='forecast'></div>");
 			
 			

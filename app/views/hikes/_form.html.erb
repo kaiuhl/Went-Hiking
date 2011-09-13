@@ -29,9 +29,6 @@
 		beef.defaults.lng		= -118;
 		beef.load();
 		beef.markerListeners();
-		// google.maps.event.addListener(map, "dragend", beef.updateForm);
-		// google.maps.event.addListener(map, "zoom_changed", beef.updateForm);
-		// google.maps.event.addListener(map, "tilesloaded", beef.updateForm);
 		topo();
 		<%= 'map.setMapTypeId("mytopo_id");' unless @hike.id.blank? %>
 		$("#hike_name").focus();

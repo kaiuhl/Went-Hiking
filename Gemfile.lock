@@ -44,6 +44,7 @@ GEM
     bluecloth (2.1.0)
     builder (2.1.2)
     cocaine (0.1.0)
+    dynamic_form (1.1.4)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     formtastic (1.2.3)
@@ -124,6 +125,7 @@ DEPENDENCIES
   activerecord-mysql2spatial-adapter
   authlogic!
   bluecloth
+  dynamic_form
   formtastic
   geokit-rails3
   jquery-rails (>= 0.2.6)

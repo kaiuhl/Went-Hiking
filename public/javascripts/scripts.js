@@ -26,8 +26,20 @@ $(function(){
 					    return '<div id="tip7-title" style="padding:10px 0; text-align:left">' + title + '<p>Image ' + (currentIndex + 1) + ' of ' + currentArray.length + "</p>" + '<div class="clearer"></div></div>';
 		}
 	});
+	
+	geocoder = new google.maps.Geocoder();
+	$("#geolocate").keyup(function(e){
+		if(event.keyCode == 13){
+		$("#geolocate").select();	
+		geocoder.geocode({address: $("#geolocate").val()}, function(result){
+			map.fitBounds(result[0].geometry.viewport); 
+			map.setZoom(map.getZoom() -1);
+		});
+		}
+		e.preventDefault();
+	});
 });
-
+var geocoder;
 var map;
 var	beef = {
 		variables: {
@@ -244,8 +256,8 @@ var	beef = {
 		placeMarker: function(e){
 			if (!that.markerOnMap) {
 					//Form insertion
-					$("#hike_lat").val(e.latLng.lat());
-					$("#hike_lng").val(e.latLng.lng());
+					$("#hike_lat, #forecast_lat").val(e.latLng.lat());
+					$("#hike_lng, #forecast_lng").val(e.latLng.lng());
 
 					beef.variables.markers["new"] = new google.maps.Marker({
 						map: 					map,
@@ -306,7 +318,7 @@ var	beef = {
 					map.panBy(0,original);
 				}, 150);
 			}
-		}
+		}		
 	}
 	
 	function topo() {

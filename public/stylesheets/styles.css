@@ -222,6 +222,23 @@ div.comment .body { width:339px }
 div.comment .edit { position:absolute; top:0px; right:0; opacity:0 }
 div.comment:hover .edit { opacity:1}
 
+div.forecast #map { width:858px; height:250px; float:left; margin-right:25px }
+div.forecast a { color:#999 }
+div.forecast a img { vertical-align:text-bottom }
+div.forecast #geolocate { position:absolute; right:40px; bottom:40px }
+div.forecast img.forecast-map { float:left; margin-right:10px }
+div.forecast p.more { margin: 20px 0 0 0; line-height:1; float:right}
+
+div.forecast #map-hover { background-color:white; padding:10px ; position:absolute; bottom:40px; left:40px }
+div.forecast #map-hover #forecast_title { margin-right:10px }
+
+
+.day { float:left;	width:75px;	margin-right:10px;	position:relative;	text-align:center; }
+.day .weather_summary {	color:#999;	font-size:75%;	height:35px; }
+.day .high {	color:#671D21;	font-size:125%; }
+.day .low {	color:#5FA8CC; }
+.day .forecast_title {	font-weight:bold;	margin-bottom:10px;}
+
 div.heart {
 	position:absolute;
 	right:20px;top:20px;
