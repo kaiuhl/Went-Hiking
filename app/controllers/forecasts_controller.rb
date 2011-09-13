@@ -1,11 +1,11 @@
 class ForecastsController < ApplicationController
-	before_filter :authorize, :only => [:new, :index, :show, :destroy, :edit, :update]
+	before_filter :authorize, :only => [:new, :show, :destroy, :edit, :update]
 	before_filter :personal_authorize, :only => [:edit, :create, :destroy, :update]
 
 	def index
 		@user = User.find(params[:user_id])
 		@forecasts = @user.forecasts
-		@forecast = Forecast.new(:user_id => current_user.id)
+		@forecast = Forecast.new(:user_id => @user.id) unless @user.blank?
 	end
 	def show
 		@forecast = Forecast.find(params[:id])

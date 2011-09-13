@@ -2,7 +2,9 @@ class Forecast < ActiveRecord::Base
 	belongs_to :user
 	serialize :details
 	before_save :update_forecast
-	validates_presence_of :lat, :lng, :title
+	validates_presence_of :lat, :lng
+	
+	default_scope :order => "title ASC"
 	
 	def update_forecast
 		if self.updated_at.blank? or self.updated_at <= 1.hour.ago

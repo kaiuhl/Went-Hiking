@@ -138,6 +138,28 @@ $(document).ready(function(){
 	})</script>
 	</div>
 	<% else %>
+		<div class="box forecast" id="forecast">
+			<h3>Upcoming Forecast</h3>
+			
+			<script type="text/javascript">$(function(){
+				var forecast = <%= @forecast.details.html_safe %>;
+				var $output = $("#forecast");
+				$.each(forecast, function(i, day){
+					if (i < 3) { 
+					var $day = $("<div class='day'></div>");
+					$day.append("<div class='forecast_title'>"+ day.title +"</div>")
+					$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
+					$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
+					$day.append("<div class='high'>" + day.high + "</div>");
+					$day.append("<div class='low'>" + day.low + "</div>");
+					$output.append($day);
+					}
+				});
+				$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= @forecast.lat %> +"&textField2="+ <%= @forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
+			})</script>
+		</div>
+	
+	
 		<% unless @nearby_hikes.blank? %>
 		<div class="box">
 			<h3>Nearby Hike Reports</h3>
