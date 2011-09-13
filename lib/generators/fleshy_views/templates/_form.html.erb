@@ -1,0 +1,17 @@
+<%%= semantic_form_for(@<%= name.singularize.underscore %>) do |f| %>
+	<%%= f.inputs do %>
+		<%- name.singularize.constantize.new.attributes.each do |k,v| -%>
+		<%- unless k == "created_at" || k == "updated_at" -%>
+		<%%= f.input :<%= k %> %>
+		<%- end -%>
+		<%- end -%>
+	<%% end %>
+	<%%= f.buttons do %>
+		<%%= f.submit :class => "super awesome large button" %>
+		<%%= link_to "or cancel", :back %>
+	<%% end %>
+<%% end %>
+
+<%% if @<%= name.singularize.underscore %>.persisted? %>
+	<p>You can also <%%= link_to "Delete this <%= name.singularize.humanize %>", @<%= name.singularize.underscore %>, :method => :delete, :confirm => 'ARE YOU CERTAIN you want to delete this?\n\nThis cannot be reversed.' %></p>
+<%% end %>

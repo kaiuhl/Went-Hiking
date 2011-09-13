@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate fleshy_views Thing
+
+    This will create:
+        what/will/it/create

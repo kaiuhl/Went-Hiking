@@ -1,0 +1,35 @@
+class <%= name.pluralize.camelize %>Controller < ApplicationController
+	def index
+		@<%= name.underscore.pluralize %> = <%= name.singularize.camelize %>.all
+	end
+	def new
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.new
+	end
+	def create
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.new(params[:<%= name.singularize.underscore %>])
+		if @<%= name.singularize.underscore %>.save
+			redirect_to :back, :notice => "Added <%= name.humanize.singularize %> successfully."
+		else
+			render :new
+		end
+	end
+	def show
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.find(params[:id])
+	end
+	def edit
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.find(params[:id])
+	end
+	def update
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.find(params[:id])
+		if @<%= name.singularize.underscore %>.update_attributes(params[:<%= name.singularize.underscore %>])
+			redirect_to :back, :notice => "Updated <%= name.humanize.singularize %> successfully."
+		else
+			render :edit
+		end
+	end
+	def destroy
+		@<%= name.singularize.underscore %> = <%= name.singularize.camelize %>.find(params[:id])
+		@<%= name.singularize.underscore %>.destroy
+		redirect_to :back, :notice => "Deleted succesfully."
+	end
+end
