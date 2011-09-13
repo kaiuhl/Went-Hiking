@@ -1,4 +1,5 @@
 class Forecast < ActiveRecord::Base
+	belongs_to :user
 	serialize :details
 	before_save :update_forecast
 	
