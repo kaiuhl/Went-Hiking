@@ -1,0 +1,26 @@
+<%= semantic_form_for(@forecast) do |f| %>
+	<%= f.error_messages %>
+	<%= f.inputs do %>
+		<%= f.input :lat, :as => :hidden %>
+		<%= f.input :lng, :as => :hidden %>
+		<%= f.input :user_id, :as => :hidden %>
+	<% end %>
+	<div id="map"></div>
+	<div id="map-hover">
+	<%= f.text_field :title, :placeholder => "Title this location…" %>
+	<%= f.submit "Add forecast", :class => "super awesome large button" %>
+	</div>
+<% end %>
+<%= text_field_tag :geolocate, nil, :id => "geolocate", :placeholder => "Search the map…" %>
+<% content_for :head do %>
+<script type="text/javascript">;
+	$(document).ready(function(){
+		beef.defaults.zoom 		= 4;
+		beef.defaults.lat		= 40;
+		beef.defaults.lng		= -108;
+		beef.load();
+		beef.markerListeners();
+		topo();
+	})
+</script>
+<% end %>

@@ -1,0 +1,40 @@
+<%= page_title 'Your Forecasts' %>
+
+<h1><%= personal_current_user ? "Your Forecasts" : "#{@user.name}&rsquo;s Forecasts".html_safe %></h1>
+<% @forecasts.each do |forecast| %>
+<div class="box forecast" id="forecast_<%= forecast.id %>">
+	<h2><%= forecast.title %></h2>
+	<%= image_tag(static_map(forecast.lat, forecast.lng, "415x200", 10), :class => "forecast-map") %>
+	<script type="text/javascript">$(function(){
+		var forecast_<%= forecast.id %> = <%= forecast.details.html_safe %>;
+		var $output = $("#forecast_<%= forecast.id %>");
+		$.each(forecast_<%= forecast.id %>, function(i, day){
+			var $day = $("<div class='day'></div>");
+			$day.append("<div class='forecast_title'>"+ day.title +"</div>")
+			$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
+			$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
+			$day.append("<div class='high'>" + day.high + "</div>");
+			$day.append("<div class='low'>" + day.low + "</div>");
+			$output.append($day);
+		});
+		$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= forecast.lat %> +"&textField2="+ <%= forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
+	})</script>
+	<%= link_to(image_tag("cancel.png"), user_forecast_path(@user, forecast), :method => :delete, :confirm => "Are you sure you want to delete this forecast?", :class => "corner") if personal_current_user %>
+</div>
+<% end %>
+<% if personal_current_user %>
+<div class="box forecast">
+	<h2>Add a forecast</h2>
+	<p class="note">Zoom and pan the map, then double-click the location you want regular forecasts for. Title the area, and then click "Add forecast". <br /> Please note that this will give you an <i>exact forecast</i> for the exact elevation and location you choose.</p>
+	<%= render "form" %>
+	<div class="clearer"></div>
+</div>
+<% end %>
+<% unless @forecasts.blank? %>
+<div class="box">
+	<h2>Important Note</h2>
+	<p>Forecasts are from the <a href="http://www.noaa.gov/" target="_blank">National Oceanic and Atmospheric Administration (NOAA)</a>. They are inaccurate at best and should serve as a <i>guide</i>, not an absolute truth. When traveling into the wilderness, please prepare yourself for adverse conditions regardless of the forecast.</p>
+</div>
+<% else %>
+<h2><%= @user.name %> hasn't added any forecasts yet!</h2>
+<% end %>

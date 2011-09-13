@@ -1,8 +1,10 @@
 class ForecastsController < ApplicationController
 	before_filter :authorize, :only => [:new, :index, :show, :destroy, :edit, :update]
+	before_filter :personal_authorize, :only => [:edit, :create, :destroy, :update]
 
 	def index
-		@forecasts = current_user.forecasts
+		@user = User.find(params[:user_id])
+		@forecasts = @user.forecasts
 		@forecast = Forecast.new(:user_id => current_user.id)
 	end
 	def show
@@ -27,5 +29,11 @@ class ForecastsController < ApplicationController
 				format.js
 			end
 		end
+	end
+	def destroy
+		@forecast = Forecast.find(params[:id])
+		@forecast.user_id = nil
+		@forecast.save
+		redirect_to :back, :notice => "Removed the forecast."
 	end
 end

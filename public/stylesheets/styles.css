@@ -145,13 +145,13 @@ a.micro-profile-photo {
 	line-height:0.1;
 	margin-right:3px;
 }
-.photo .corner {
+.photo .corner, .forecast .corner {
 	position:absolute;
 	top:2px;
 	right:2px;
 	display:none;
 }
-.photo:hover .corner {
+.photo:hover .corner, .forecast:hover .corner {
 	opacity:1;
 	display:block;
 }
@@ -225,11 +225,11 @@ div.comment:hover .edit { opacity:1}
 div.forecast #map { width:858px; height:250px; float:left; margin-right:25px }
 div.forecast a { color:#999 }
 div.forecast a img { vertical-align:text-bottom }
-div.forecast #geolocate { position:absolute; right:40px; bottom:40px }
+div.forecast #geolocate { position:absolute; left:40px; bottom:50px; font-size:15px }
 div.forecast img.forecast-map { float:left; margin-right:10px }
 div.forecast p.more { margin: 20px 0 0 0; line-height:1; float:right}
 
-div.forecast #map-hover { background-color:white; padding:10px ; position:absolute; bottom:40px; left:40px }
+div.forecast #map-hover { background-color:white; padding:10px ; position:absolute; bottom:40px; right:40px }
 div.forecast #map-hover #forecast_title { margin-right:10px }
 
 
@@ -271,6 +271,14 @@ div.popup .box {
 }
 div.popup h2 { text-shadow: 0 2px 0 #333;	color:white; margin-bottom:20px }
 div.popup#login_form fieldset ol li label { color:#aaa ! important }
+
+span.new {
+	font-family:georgia,times,serif;
+	color:#F6394C;
+	font-style:italic;
+/*	font-size:85%;*/
+	font-weight:bold;
+}
 
 #footer {
 	background:#dadada url(../images/bevel.png) repeat-x top left;
