@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+  <title>Something Broke (500)</title>
+  <link rel="stylesheet" href="/stylesheets/bundle.css">
+<style type="text/css" media="screen">
+	
+</style>
 </head>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-  </div>
+<body style="background-color:red">
+	<div class="container small box" id="small_container">
+	<div id="navigation">
+		<img src="/images/went_hiking.png" alt="Went Hiking"/>
+	</div>
+		<h1 style="color:red">&ldquo;I MAYBE BROKE IT&rdquo;</h1>
+		<img src="/images/monsterfail.jpg" />
+		<p class="lede">We're terribly sorry, but something went wrong. you can try <a href="javascript:location.reload(true)">refreshing the page</a>, and if that doesn't work, please <a href="javascript:history.go(-1)">head back</a> to what you were doing before.</p>
+		<p class="lede">If you'd like to help, please email <a href="mailto:kyle@wenthiking.com">kyle@wenthiking.com</a> and let me know what you were doing when this travesty occured.</p>
+	</div>
 </body>
 </html>

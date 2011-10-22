@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 			
 			@replies = @hike.comments.map{ |c| c.user }.uniq
 			@replies.each do |previous_poster|
+			begin
 				if previous_poster.id != @author.id # don't email if the current poster is also a previous one
 				if previous_poster.id != @hike.user.id # don't email if the current poster is the hike poster
 				if previous_poster.notify_on_comment # make sure notifications are on
@@ -21,6 +22,8 @@ class CommentsController < ApplicationController
 				end
 				end
 				end
+			rescue
+			end
 			end
 			
 			redirect_to user_hike_path(@comment.hike.user, @comment.hike) + "#comment_#{@comment.id}"

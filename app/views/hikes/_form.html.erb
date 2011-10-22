@@ -10,6 +10,7 @@
 		<li class="map optional">
 			<label for="map">Locate your hike</label>
 			<div id="map" style="width:550px;height:400px;background-color:#eee;margin-left:200px"></div>
+			<p class="inline-hints"><input type="search" id="geolocate" placeholder="Search the map…" /></p>
 			<p class="inline-hints">Double click to mark the location</p>
 			<%= f.input :lat, :as => :hidden %>
 			<%= f.input :lng, :as => :hidden %>

@@ -12,7 +12,7 @@ gem 'mini_magick'
 gem 'paperclip', ">= 2.3.16"
 gem 'mini_exiftool'
 gem 'libxml-ruby', :require => "libxml"
-gem 'noaa'
+gem 'noaa', :git => "https://github.com/rtwomey/noaa.git"
 gem 'nokogiri'
 # gem 'whenever'
 # gem 'gpx'

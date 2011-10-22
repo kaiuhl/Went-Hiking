@@ -1,6 +1,6 @@
 class ForecastsController < ApplicationController
 	before_filter :authorize, :only => [:new, :show, :destroy, :edit, :update]
-	before_filter :personal_authorize, :only => [:edit, :create, :destroy, :update]
+	before_filter :personal_authorize, :only => [:edit, :destroy, :update]
 
 	def index
 		@user = User.find(params[:user_id])
@@ -26,7 +26,7 @@ class ForecastsController < ApplicationController
 					@forecasts = current_user.forecasts
 				 	render :index, :error => "Unable to add forecast. View the 'Add a forecast' form below for the details."  
 				end
-				format.js
+				format.js { render :json => { error: true } }
 			end
 		end
 	end

@@ -5,7 +5,7 @@ class RoutesController < ApplicationController
 		render :layout => "application"
 	end
   def new
-		@route = Route.new(:zoom => params[:zoom], :lat => params[:lat], :lng => params[:lng], :map_type => params[:map_type])
+		@route = Route.new(:zoom => params[:zoom], :lat => params[:lat], :lng => params[:lng], :map_type => params[:map_type], :path => params[:hikepath])
 		@route.user_id = current_user.id unless current_user.blank?
   end
 	def create

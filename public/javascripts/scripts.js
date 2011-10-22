@@ -29,6 +29,7 @@ $(function(){
 	
 	geocoder = new google.maps.Geocoder();
 	$("#geolocate").keyup(function(e){
+		e.preventDefault();
 		if(event.keyCode == 13){
 		$("#geolocate").select();	
 		geocoder.geocode({address: $("#geolocate").val()}, function(result){
@@ -36,8 +37,8 @@ $(function(){
 			map.setZoom(map.getZoom() -1);
 		});
 		}
-		e.preventDefault();
 	});
+	
 });
 var geocoder;
 var map;

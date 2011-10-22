@@ -17,15 +17,16 @@ $(document).ready(function(){
 	
 	<% unless @route.path.blank? %>
 	// Add the drawn path to the map
-	var path = google.maps.geometry.encoding.decodePath(unescape('<%= @route.path %>'));
+	
+	var path = google.maps.geometry.encoding.decodePath('<%= @route.path %>');
 	
 	beef.polylines.startDrawing();
 	
-	path.forEach(function(point,key){
-		if (key == path.length - 1) {
-			beef.polylines.addLatLng({latLng: point})
+	for(i=0; i < path.length; i++) {
+		if (i == path.length -1 ) {
+				beef.polylines.addLatLng({latLng: path[i]})
 		} else {
-			beef.variables.polylinePath.push(point);
+			beef.variables.polylinePath.push(path[i]);
 			beef.infoWindow.open("new", "<a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
 			if (beef.variables.polylinePath.getLength() == 1) {
 				beef.variables.markers["new"] = new google.maps.Marker({
@@ -34,7 +35,7 @@ $(document).ready(function(){
 				});
 			}
 		}
-	})
+	}
 	beef.polylines.stopDrawing();
 	<% end %>
 
@@ -86,7 +87,7 @@ $(document).ready(function(){
 		$("#route_map_type").val(map.getMapTypeId());
 		$("#route_title").val($("#title").val());
 		try { 		
-			$("#route_path").val(escape(google.maps.geometry.encoding.encodePath(beef.variables.polylinePath.getArray())));
+	$("#route_path").val(escape(google.maps.geometry.encoding.encodePath(beef.variables.polylinePath.getArray())));
 		} catch(e) {}
 	}
 	

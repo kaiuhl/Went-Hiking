@@ -14,7 +14,9 @@
 			$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
 			$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
 			$day.append("<div class='high'>" + day.high + "</div>");
-			$day.append("<div class='low'>" + day.low + "</div>");
+			if (day.low != null) {
+				$day.append("<div class='low'>" + day.low + "</div>");
+			}
 			$output.append($day);
 		});
 		$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= forecast.lat %> +"&textField2="+ <%= forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
