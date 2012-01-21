@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913213318) do
+ActiveRecord::Schema.define(:version => 20111130173801) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20110913213318) do
   create_table "hikes", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "nights"
+    t.integer  "nights",     :default => 0
     t.float    "mileage"
     t.integer  "elevation"
     t.datetime "hiked_at"
@@ -100,6 +100,17 @@ ActiveRecord::Schema.define(:version => 20110913213318) do
     t.datetime "shx_updated_at"
     t.datetime "dbf_updated_at"
     t.integer  "layer_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "content_type"
+    t.integer  "content_id"
+    t.string   "creator_type"
+    t.integer  "creator_id"
+    t.string   "uri"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -16,13 +16,23 @@ class Hike < ActiveRecord::Base
 	accepts_nested_attributes_for :photos, :allow_destroy => true
 	
 	after_save :update_user
-	default_scope :order => "hiked_at DESC, created_at DESC"
-	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)]} }
+	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)], :order => "hiked_at DESC" }}
 	
 	acts_as_mappable
 	
 	cattr_reader :per_page
   @@per_page = 15
+
+	def self.algorithmic_sort
+		# SCORE FORMULA: HEARTS + 1 DIVIDED BY THE NUMBER OF HOURS AGO
+		hikes = order("created_at DESC").limit(100).includes(:hearts, :user, :comments)
+		hikes.sort! {|a,b| b.score <=> a.score }
+		hikes[0..35]
+	end
+	
+	def score
+		@score ||= (hearts.size  + comments.size**0.5 + 1) / ((Time.now - created_at) / 3600)
+	end
 	
 	def to_bbcode
 		output = ""

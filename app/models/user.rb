@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :forecasts
 	
+	
 	has_attached_file :avatar, :styles => {
 		:micro => ["25x25#", :jpg],
     :thumbnail => ["75x75#", :jpg],

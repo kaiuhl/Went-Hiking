@@ -1,2 +1,2 @@
-$("#heart_<%= @hike.id %>").replaceWith('<%= escape_javascript(render "form") %>');
+$("#heart_<%= @hike.id %>").replaceWith('<%= escape_javascript(render :partial => "form", :locals => { :hike => @hike }) %>');
 $("#hearted").replaceWith('<%= escape_javascript(render "hearts/hearts") %>').effect("highlight", {}, 500);

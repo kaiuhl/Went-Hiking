@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 <div class="column dominant">
 	<div class="box">
-	<%= render "hearts/form" if current_user %>
+	<%= render :partial => "hearts/form", :locals => { :hike => @hike } if current_user %>
 	<p style="color:#999"><%= @hike.mileage % 1 == 0 ? @hike.mileage.to_i : @hike.mileage  %> miles of hiking &bull;
 	<%= @hike.elevation %>' elevation gain
 	<%= "&bull; #{@hike.nights} night(s)".html_safe if @hike.nights > 0 %>
@@ -197,32 +197,7 @@ $(document).ready(function(){
 
 
 <div class="box">
-	<div class="column">
-			<script type="text/javascript"><!--
-			google_ad_client = "ca-pub-1241074684976245";
-			/* Wenthiking */
-			google_ad_slot = "8360797832";
-			google_ad_width = 250;
-			google_ad_height = 250;
-			//-->
-			</script>
-			<script type="text/javascript"
-			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-			</script>
-	</div>
-	<div class="column last">
-			<script type="text/javascript"><!--
-			google_ad_client = "ca-pub-1241074684976245";
-			/* Wenthiking */
-			google_ad_slot = "8360797832";
-			google_ad_width = 250;
-			google_ad_height = 250;
-			//-->
-			</script>
-			<script type="text/javascript"
-			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-			</script>
-	</div>
+	<%= render "google" %>
 	<div class="clearer"></div>
 </div>
 </div>

@@ -26,10 +26,6 @@ module ApplicationHelper
 	def comments_and_likes(hike)
 		buffer = image_tag("comment.png") << " "
 		buffer << link_to("#{hike.comments.size} comments", "#{user_hike_path(hike.user,hike)}#comments")
-		if hike.hearts.size > 0
-			buffer << " " << image_tag("heart.png") << " "
-			buffer << link_to(pluralize(hike.hearts.size, 'heart'), user_hike_path(hike.user,hike))
-		end
 		buffer
 	end
 end

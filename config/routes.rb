@@ -24,10 +24,10 @@ HikingStats::Application.routes.draw do
   resources :photos
   resources :forecasts
   resources :comments
+  resources :notifications
 
 	# legacy route support
 	match '/with(/*path)' => redirect{|params| "/users/#{params[:path]}".chomp("/") }
-	
   match '/:controller(/:action(/:id))'
 	root :to => 'static#home'
 end
