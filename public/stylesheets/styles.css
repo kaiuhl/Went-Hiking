@@ -192,7 +192,7 @@ div.hike .dominant { width:559px }
 div.hike .subordinant { width:279px }
 div.hike.box { padding-left:20px; }
 div.hike .profile-photo { position:absolute; top:20px; left:20px }
-div.hike p.title { color:#444; font-size:18px; margin-bottom:0 }
+div.hike p.title { color:#444; font-size:18px; margin-bottom:0; padding-right:30px }
 div.hike p.meta, div.hike p.date { font-size:10px; font-weight:normal; color:#444 }
 div.hike p.meta { margin-top:10px }
 div.hike div.report p,
@@ -207,12 +207,7 @@ div.hike h3 { color:#555 }
 div.hike h3.includes-photo { padding-left:35px; position:relative }
 div.hike h3.includes-photo .profile-photo { top:-5px;left:0 }
 
-
-div.small_hike { padding-left:40px; line-height:normal; position:relative }
-div.small_hike p {  }
-div.small_hike .profile-photo, .profile-photo { position:absolute; top:0px; left:0px }
-div.small_hike p.title { margin-bottom:0; font-size:11px; text-decoration:underline; font-weight:bold }
-div.small_hike p.meta, div.small_hike p.meta a { font-size:11px; font-weight:normal; color:#444 }
+div.small_hike p.title { margin-bottom:0; font-size:11px; text-decoration:underline; font-weight:bold;padding-right:50px }
 
 div.comment { margin-bottom:20px; position:relative }
 div.comment .meta, div.comment p { font-size:12px; color:#555 }
