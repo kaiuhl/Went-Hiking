@@ -31,7 +31,7 @@ class Hike < ActiveRecord::Base
 	end
 	
 	def score
-		@score ||= (hearts.size  + comments.size**0.5 + 1) / ((Time.now - created_at) / 3600)
+		@score ||= (hearts.size  + comments.size**0.25 + 1) / ((Time.now - created_at) / 3600)
 	end
 	
 	def to_bbcode
