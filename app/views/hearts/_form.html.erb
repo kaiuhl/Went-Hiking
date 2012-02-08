@@ -1,13 +1,17 @@
 <div id="heart_<%= hike.id %>" class="heart">
-<% heart = Heart.personal(hike, current_user) %>
-<% if heart.persisted? %>
-	<%= link_to [hike, heart], :method => :delete, :remote => true do %>
-		<%= image_tag("heart.png", :alt => "Unheart this hike") %>
+<% if current_user %>
+	<% heart = Heart.personal(hike, current_user) %>
+	<% if heart.persisted? %>
+		<%= link_to [hike, heart], :method => :delete, :remote => true do %>
+			<%= image_tag("heart.png", :alt => "Unheart this hike") %>
+		<% end %>
+	<% else %>
+		<%= form_for [hike, heart], :remote => true do |f| %>
+			<%= image_submit_tag "heart_bw.png", :title => "Heart this hike!" %>
+		<% end %>
 	<% end %>
 <% else %>
-	<%= form_for [hike, heart], :remote => true do |f| %>
-		<%= image_submit_tag "heart_bw.png", :title => "Heart this hike!" %>
-	<% end %>
+	<%= link_to image_tag("heart_bw.png"), new_user_path %>
 <% end %>
 <%= hike.hearts.count if hike.hearts.count > 0 %>
 </div>
