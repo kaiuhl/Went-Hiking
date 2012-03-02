@@ -1,0 +1,29 @@
+.button, .button:visited, .previous_page, .next_page, .previous_page:visited, .next_page:visited {
+	background: #eee;
+	display: inline-block;
+	padding: 15px;
+	border: 1px solid #bbb;
+	color: #444;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius:5px;
+	position: relative;
+	cursor: pointer;
+	z-index:5;
+	text-transform:uppercase;
+	font-weight:bold ! important;
+	
+	img {
+		vertical-align:text-bottom;
+		margin-left:-10px;
+	}
+}
+.button:hover, .previous_page:hover, .next_page:hover {
+	background-color: #e4e4e4;
+	color: #333;
+}
+.button:active, .previous_page:active, .next_page.active {
+	background-color: #ddd;
+	color:#222;
+}

@@ -1,0 +1,20 @@
+table {
+	border-collapse:collapse;
+	border-top:1px solid #ccc;
+	width:98%;
+	margin-bottom:1em;
+	
+	th { 
+		background-color:#ccc; 
+		color:#666;
+		font-weight:normal;
+		text-align:left;
+		background-color:#eee;
+	}
+	th, td {
+		padding:2px 5px;
+		border-bottom:1px solid #ccc;
+		line-height:1.5;
+	}
+	td { vertical-align: top }
+}

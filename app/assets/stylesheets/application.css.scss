@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import "../../../vendor/assets/stylesheets/formtastic.css.scss";
+@import "../../../vendor/assets/stylesheets/jquery.fancybox.css.scss";
+@import "variables";
+@import "button";
+@import "classes";
+@import "fonts";
+@import "forms";
+@import "navigation";
+@import "table";
+@import "typography";
+@import "styles";
+
+.flash {
+	padding: 10px 10px 10px 26px;
+	-moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+	border-radius:3px;
+	margin-bottom:$unit;
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	
+	&.error {
+		border-color:$error_color;
+		color:$error_color;
+		background: transparent image-url("icons/exclamation.png") no-repeat left center;
+	}
+	&.notice {
+		border-color:$notice_color;
+		color:$notice_color;
+		background: transparent image-url("icons/accept.png") no-repeat left center;
+	}
+}

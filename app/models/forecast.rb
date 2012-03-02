@@ -9,20 +9,8 @@ class Forecast < ActiveRecord::Base
 	
 	def update_forecast
 		if self.updated_at.blank? or self.updated_at < 1.hour.ago or self.details.blank?
-			self.details = jsonify(NOAA.forecast(7, lat, lng))
+			self.details = NOAA.new(lat, lng)
 			self.save if self.persisted?
 		end
-	end
-	
-	private 
-	
-	def jsonify(noaa)
-		noaa[0..4].map { |day| 
-		{ 	:high => day.high, :low => day.low, 
-				:title => day.starts_at.strftime("%A"),
-				:daytime_precipitation_probability => day.daytime_precipitation_probability,
-				:evening_precipitation_probability => day.evening_precipitation_probability,
-				:weather_summary => day.weather_summary, :image_url => day.image_url }
-		}.to_json
 	end
 end

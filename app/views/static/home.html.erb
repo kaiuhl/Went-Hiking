@@ -6,7 +6,7 @@
 <% end %>
 
 <% content_for :header do %>
-<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= Hike.count %> hikes already recorded.</p>
+<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= Trip.count %> hikes already recorded.</p>
 <% end if current_user.blank? %>
 
 <% content_for :head do %>

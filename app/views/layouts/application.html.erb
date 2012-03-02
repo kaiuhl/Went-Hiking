@@ -4,10 +4,9 @@
 <meta charset="utf-8" />
 <title><%= page_title %> | Went Hiking</title>
 <meta name="description" content="<%= yield(:meta) || 'Hiking &amp; backpacking trip logs made easy. View local trail descriptions, trip reports, and photos, and create your own hiking blog to record your trips into thw wilderness.' %>" />
-<%= stylesheet_link_tag :all, :cache => "bundle" %>
-<%= javascript_include_tag "application", "jquery", "jquery-ui", "rails", :cache => "defaults" %>
+<%= stylesheet_link_tag :application %>
+<%= javascript_include_tag :application %>
 <script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.4&amp;libraries=geometry&amp;language=en" type="text/javascript"></script>
-<%= javascript_include_tag "cufon", "helvetica_300.font", "jquery.easing", "jquery.fancybox", "partymode", "scripts", :cache => "bundle" %>
 <%= yield :head %>
 <%= render :partial => 'layouts/analytics' %>
 </head>
@@ -47,7 +46,7 @@
 	<div id="content">
 	<div class="container">
 			<%- flash.each do |name, msg| -%>
-	      		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	      		<%= content_tag :div, msg, :id => "flash #{name}" %>
 	    	<%- end -%>
 			<%= yield %>
 	</div>

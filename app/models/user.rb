@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :email
   acts_as_authentic
-	has_many :hikes
+	has_many :trips
 	has_many :routes
 	has_many :photos
 	has_many :hearts
