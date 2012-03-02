@@ -1,5 +1,5 @@
 <div class="box hike">
-	<%= render :partial => "hearts/form", :locals => { :hike => hike } if current_user %>
+	<%= render :partial => "hearts/form", :locals => { :hike => hike } %>
 	<div class="column dominant">
 		<h2>
 			<%= link_to hike.name, user_hike_path(hike.user, hike) %>

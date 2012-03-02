@@ -1,5 +1,5 @@
 <div class="hike">
-	<%= render :partial => "hearts/form", :locals => { :hike => hike } if current_user %>
+	<%= render :partial => "hearts/form", :locals => { :hike => hike } %>
 	<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
 		<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
 	</a></div>

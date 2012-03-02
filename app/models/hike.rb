@@ -18,7 +18,7 @@ class Hike < ActiveRecord::Base
 	after_save :update_user
 	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)], :order => "hiked_at DESC" }}
 	
-	acts_as_mappable
+	# acts_as_mappable
 	
 	cattr_reader :per_page
   @@per_page = 15

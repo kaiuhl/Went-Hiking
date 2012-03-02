@@ -6,7 +6,7 @@
 <% end %>
 
 <% content_for :header do %>
-<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= @hikes.size %> hikes already recorded.</p>
+<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= Hike.count %> hikes already recorded.</p>
 <% end if current_user.blank? %>
 
 <% content_for :head do %>
@@ -102,7 +102,7 @@ $(document).ready(function(){
 		</tr>
 		<% end %>
 	</table>
-	<p class="table-note">Statistic returned thanks to <%= link_to "Eric Peterson", user_hikes_path("35-Eric-Peterson") %></p>
+	<p class="table-note">* only displays users that have hiked over 50 miles</p>
 	
 	<h2>Most Nights in <%= DateTime.now.year %></h2>
 	<table>

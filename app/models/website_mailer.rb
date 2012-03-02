@@ -46,4 +46,8 @@ class WebsiteMailer < ActionMailer::Base
     body          :comment => comment, :options => @@options, :user => user
     content_type  "text/html"
 	end
+	
+	def admin_email(message)
+		recipients 		User.where()
+	end
 end

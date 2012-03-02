@@ -33,7 +33,7 @@ class HikesController < ApplicationController
 		@comments = @hike.comments
 		@hearts = @hike.hearts
 		@comment = Comment.new(:hike_id => @hike.id, :user_id => current_user.id) rescue nil
-		@nearby_hikes = Hike.within(10, :origin => [@hike.lat,@hike.lng]).order("distance DESC").where("id != ?", @hike.id).limit(10)
+		@nearby_hikes = Hike.within(10, :origin => [@hike.lat,@hike.lng]).order("created_at DESC").where("id != ?", @hike.id).limit(5)
 		@forecast = Forecast.find_or_create_by_lat_and_lng(@hike.lat, @hike.lng) rescue nil
 	end
 	def new
