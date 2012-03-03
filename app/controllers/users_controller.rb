@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "#{@user.name} successfully added and emailed."
-      WebsiteMailer.deliver_welcome_email(params[:user][:password], @user, current_user)
+      WebsiteMailer.welcome_email(params[:user][:password], @user, current_user).deliver
       redirect_to user_hikes_path(@user)
     else
       render :action => 'new', :layout => "small"
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email]) 
     if @user     
       if @user.reset_password!
-        WebsiteMailer.deliver_reset_password(@user)
+        WebsiteMailer.reset_password(@user).deliver
         flash[:notice] = "We've just sent you a new password! Check your email."
         redirect_to login_path
       else

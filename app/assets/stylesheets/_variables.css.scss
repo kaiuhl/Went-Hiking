@@ -1,0 +1,24 @@
+$unit: 15px;
+
+$h1: $unit * 2;
+$h2: $unit * 1.5;
+$h3: $unit * 1;
+$h4: $unit * 1;
+
+$error_color: #990B03;
+$link_color: #469EE4;
+$notice_color: #356729;
+
+@mixin box-shadow {
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+@mixin border-radius {
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+@mixin condensed {
+	font-family:"helvetica-std-condensed", helvetica, arial, sans-serif;
+}

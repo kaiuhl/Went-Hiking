@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 		@hike = @comment.hike
 		@author = @comment.user
 		if @comment.save
-			WebsiteMailer.deliver_comment_posted(@comment) if @hike.user.notify_on_comment && (@hike.user.id != @author.id)
+			WebsiteMailer.comment_posted(@comment).deliver if @hike.user.notify_on_comment && (@hike.user.id != @author.id)
 			
 			@replies = @hike.comments.map{ |c| c.user }.uniq
 			@replies.each do |previous_poster|

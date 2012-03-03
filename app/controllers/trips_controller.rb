@@ -9,12 +9,12 @@ class TripsController < ApplicationController
 		@user = User.find(params[:user_id]) unless params[:user_id].blank?
 		@user ||= current_user rescue nil
 		
-		@hikes = @user.hikes.year(@year)
-		@other_years_hikes = @user.hikes.map{|h| h.hiked_at.year }.uniq.reject{|h| h == @year}
+		@hikes = @user.trips.year(@year)
+		@other_years_hikes = @user.trips.map{|h| h.hiked_at.year }.uniq.reject{|h| h == @year}
 		
 		if @hikes.blank?
 			@year = 1.year.ago.year
-			@hikes = @user.hikes.year(@year)
+			@hikes = @user.trips.year(@year)
 		end
 	end
 	

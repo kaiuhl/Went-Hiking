@@ -36,14 +36,11 @@ $(document).ready(function(){
 <% if current_user.blank? %>
 	<p class="lede"><b>Not a member yet?</b> <%= link_to "Sign up now", new_user_path %> to start tracking your hikes!</p>
 <% else %>
-	<div class="box">
-		<span class="new">New!</span> <%= link_to "Save and view pinpoint forecasts to help you plan trips &raquo;".html_safe, user_forecasts_path(current_user) %>
-		<a href="#" onclick="$(this).parent().fadeOut();" style="position:absolute;right:15px;"><%= image_tag("cancel.png") %></a>
-	</div>
+
 <% end %>
 
 <div class="column">
-	<h2>Latest Hikes</h2>
+	<h2>Popular &amp; Recent Hikes</h2>
 	<% @hikes[0..25].each do |hike| %>
 		<%= render "hikes/small_hike", :hike => hike %>
 	<% end %>

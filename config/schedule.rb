@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every :monday, :at => '12pm' do
-	runner "WebsiteMailer.deliver_feedback"
+	runner "WebsiteMailer.feedback.deliver"
 end
