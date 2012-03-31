@@ -54,7 +54,7 @@ $(document).ready(function(){
 	<%= render :partial => "hearts/form", :locals => { :hike => @hike } if current_user %>
 	<p style="color:#999"><%= @hike.mileage % 1 == 0 ? @hike.mileage.to_i : @hike.mileage  %> miles of hiking &bull;
 	<%= @hike.elevation %>' elevation gain
-	<%= "&bull; #{@hike.nights} night(s)".html_safe if @hike.nights > 0 %>
+	<%= "&bull; #{pluralize(@hike.nights, "night") if @hike.nights > 0 %>
 	</p>
 	<% if @hike.report.blank? %>
 		<% if personal_current_user %>

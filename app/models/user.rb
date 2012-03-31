@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :forecasts
 	
+	has_pretty_param :name
 	
 	has_attached_file :avatar, :styles => {
 		:micro => ["25x25#", :jpg],
@@ -27,8 +28,5 @@ class User < ActiveRecord::Base
 		
 		self.save
 	end
-	
-	def to_param
-    "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/, '-')}".gsub(/-{2,}/, "-")
-  end
+
 end

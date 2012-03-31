@@ -9,7 +9,7 @@ class Forecast < ActiveRecord::Base
 	
 	def update_forecast
 		if self.updated_at.blank? or self.updated_at < 1.hour.ago or self.details.blank?
-			self.details = NOAA.new(lat, lng)
+			self.details = NOAAPresenter.get_forecast(lat, lng)
 			self.save if self.persisted?
 		end
 	end

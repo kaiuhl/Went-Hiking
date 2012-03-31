@@ -14,7 +14,7 @@ HikingStats::Application.routes.draw do
 		resources :trips, :as => :hikes
 		resources :forecasts
 	end
-  resources :hikes, :collection => :search do
+  resources :trips, :collection => :search, :as => :hikes do
 		resources :comments
 		resources :photos
 		resources :hearts

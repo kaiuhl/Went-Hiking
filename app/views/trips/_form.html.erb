@@ -1,4 +1,4 @@
-<%= semantic_form_for([@user,@hike]) do |f| %>
+<%= semantic_form_for([@user,@hike], :html => {:action => user_hike_path(@user, @hike)}) do |f| %>
 	<% f.inputs do %>
 		<%= f.input :name, :label => "Name of your hike" %>
 		<%= f.input :hiked_at, :as => :date, :label => "When was it?", :include_blank => false, :order => [:month,:day,:year], :include_time => false %>

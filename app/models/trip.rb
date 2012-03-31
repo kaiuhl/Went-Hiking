@@ -18,6 +18,8 @@ class Trip < ActiveRecord::Base
 	after_save :update_user
 	scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)], :order => "hiked_at DESC" }}
 	
+	has_pretty_param :name
+	
 	# acts_as_mappable
 	
 	cattr_reader :per_page
@@ -63,10 +65,6 @@ class Trip < ActiveRecord::Base
 		end
 		output
 	end
-	
-	def to_param
-    "#{id}-#{name.downcase.gsub(/[^[:alnum:]]/, '-')}".gsub(/-{2,}/, "-")
-  end
 	
 	private
 	

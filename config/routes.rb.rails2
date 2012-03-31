@@ -4,8 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.password 'reset_password', :controller => 'users', :action => 'password'
 
   map.resources :user_sessions
-  map.resources :users, :as => :with, :has_many => [:hikes, :comments]
-  map.resources :hikes, :has_many => [:photos, :comments], :collection => [:search]
+  map.resources :users, :as => :with, :has_many => [:trips, :comments]
+  map.resources :trips, :has_many => [:photos, :comments], :collection => [:search]
 	map.resources :map_layers
 	map.resources :routes
 	map.resources :photos

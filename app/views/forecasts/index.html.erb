@@ -4,7 +4,7 @@
 <% @forecasts.each do |forecast| %>
 <div class="box forecast" id="forecast_<%= forecast.id %>">
 	<h2><%= forecast.title %></h2>
-	<%= image_tag(static_map(forecast.lat, forecast.lng, "415x200", 10), :class => "forecast-map") %>
+	<%= image_tag(static_map(forecast.lat, forecast.lng, "400x200", 10), :class => "forecast-map") %>
 	<script type="text/javascript">$(function(){
 		var forecast_<%= forecast.id %> = <%= forecast.details.html_safe %>;
 		var $output = $("#forecast_<%= forecast.id %>");
@@ -22,6 +22,7 @@
 		$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= forecast.lat %> +"&textField2="+ <%= forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
 	})</script>
 	<%= link_to(image_tag("cancel.png"), user_forecast_path(@user, forecast), :method => :delete, :confirm => "Are you sure you want to delete this forecast?", :class => "corner") if personal_current_user %>
+	<div class="clearer"></div>
 </div>
 <% end %>
 <% if personal_current_user %>

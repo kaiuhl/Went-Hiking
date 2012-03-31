@@ -23,7 +23,7 @@
 			<%= link_to "Add hike", new_user_hike_path(current_user), :id => "add_link" %>
 			<%= link_to "Profile", user_hikes_path(current_user), :id => "profile_link" %>
 			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
-			<%= link_to "Forecasts", forecast_path(current_user), :id => "forecasts_link" %>
+			<%= link_to "Forecasts", user_forecasts_path(current_user), :id => "forecasts_link" %>
 			<%= link_to "Map", map_path(current_user), :id => "map_link" %>
 			<%= link_to "Log out", logout_path, :id => "logout_link" %>
 		<% end %>

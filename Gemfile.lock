@@ -87,6 +87,7 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.3)
+    pretty_param (1.0.0)
     rack (1.4.1)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -158,6 +159,7 @@ DEPENDENCIES
   nofxx-georuby
   nokogiri
   paperclip (>= 2.3.16)
+  pretty_param
   rails (= 3.2.0)
   sass-rails (~> 3.2.3)
   sqlite3

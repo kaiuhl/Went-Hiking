@@ -1,12 +1,12 @@
 class NOAAPresenter
-	def initialize(lat,lng)
+	def self.get_forecast(lat,lng)
 		@response = NOAA.forecast(7, lat, lng)
 		return parse(@response)
 	end
 	
 	private
 	
-	def parse(response)
+	def self.parse(response)
 		response[0..4].map { |day| 
 		{ 	:high => day.high, :low => day.low, 
 				:title => day.starts_at.strftime("%A"),
