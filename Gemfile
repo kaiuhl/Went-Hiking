@@ -18,6 +18,7 @@ gem 'nofxx-georuby'
 gem 'activerecord-mysql2spatial-adapter'
 gem 'dynamic_form'
 gem 'pretty_param'
+gem 'bourbon'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"

@@ -8,6 +8,7 @@ p,li,td {
 h1,h2,h3,h4 {
 	font-weight:200;
 	text-transform:uppercase;
+	@include condensed;
 }
 h1 {
 	font-size: $h1 * 0.9;

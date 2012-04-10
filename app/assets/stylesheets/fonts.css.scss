@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-bold-webfont.eot');
-    src: image-url('helveticaltstd-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-bold-webfont.woff') format('woff'),
-         image-url('helveticaltstd-bold-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-bold-webfont.svg#HelveticaLTStdBold') format('svg');
+    src: image-url('helveticaltstd-bold-webfont.eot' );
+    src: image-url('helveticaltstd-bold-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-bold-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-bold-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-bold-webfont.svg#HelveticaLTStdBold' ) format('svg');
     font-weight: bold;
     font-style: normal;
 
@@ -12,11 +12,11 @@
 
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-boldobl-webfont.eot');
-    src: image-url('helveticaltstd-boldobl-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-boldobl-webfont.woff') format('woff'),
-         image-url('helveticaltstd-boldobl-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-boldobl-webfont.svg#HelveticaLTStdBoldOblique') format('svg');
+    src: image-url('helveticaltstd-boldobl-webfont.eot' );
+    src: image-url('helveticaltstd-boldobl-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-boldobl-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-boldobl-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-boldobl-webfont.svg#HelveticaLTStdBoldOblique' ) format('svg');
     font-weight: bold;
     font-style: italic;
 
@@ -24,11 +24,11 @@
 
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-light-webfont.eot');
-    src: image-url('helveticaltstd-light-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-light-webfont.woff') format('woff'),
-         image-url('helveticaltstd-light-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-light-webfont.svg#HelveticaLTStdLight') format('svg');
+    src: image-url('helveticaltstd-light-webfont.eot' );
+    src: image-url('helveticaltstd-light-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-light-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-light-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-light-webfont.svg#HelveticaLTStdLight' ) format('svg');
     font-weight: 200;
     font-style: normal;
 
@@ -36,11 +36,11 @@
 
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-lightobl-webfont.eot');
-    src: image-url('helveticaltstd-lightobl-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-lightobl-webfont.woff') format('woff'),
-         image-url('helveticaltstd-lightobl-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-lightobl-webfont.svg#HelveticaLTStdLightOblique') format('svg');
+    src: image-url('helveticaltstd-lightobl-webfont.eot' );
+    src: image-url('helveticaltstd-lightobl-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-lightobl-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-lightobl-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-lightobl-webfont.svg#HelveticaLTStdLightOblique' ) format('svg');
     font-weight: 200;
     font-style: italic;
 
@@ -48,11 +48,11 @@
 
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-obl-webfont.eot');
-    src: image-url('helveticaltstd-obl-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-obl-webfont.woff') format('woff'),
-         image-url('helveticaltstd-obl-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-obl-webfont.svg#HelveticaLTStdOblique') format('svg');
+    src: image-url('helveticaltstd-obl-webfont.eot' );
+    src: image-url('helveticaltstd-obl-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-obl-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-obl-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-obl-webfont.svg#HelveticaLTStdOblique' ) format('svg');
     font-weight: normal;
     font-style: italic;
 
@@ -60,12 +60,34 @@
 
 @font-face {
     font-family: 'helvetica-std';
-    src: image-url('helveticaltstd-roman-webfont.eot');
-    src: image-url('helveticaltstd-roman-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('helveticaltstd-roman-webfont.woff') format('woff'),
-         image-url('helveticaltstd-roman-webfont.ttf') format('truetype'),
-         image-url('helveticaltstd-roman-webfont.svg#HelveticaLTStdRoman') format('svg');
+    src: image-url('helveticaltstd-roman-webfont.eot' );
+    src: image-url('helveticaltstd-roman-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaltstd-roman-webfont.woff' ) format('woff'),
+         image-url('helveticaltstd-roman-webfont.ttf' ) format('truetype'),
+         image-url('helveticaltstd-roman-webfont.svg#HelveticaLTStdRoman' ) format('svg');
     font-weight: normal;
     font-style: normal;
 
+}
+
+@font-face {
+    font-family: 'helvetica-std-condensed';
+    src: image-url('helveticaneueltstd-ltcn-webfont.eot' );
+    src: image-url('helveticaneueltstd-ltcn-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaneueltstd-ltcn-webfont.woff' ) format('woff'),
+         image-url('helveticaneueltstd-ltcn-webfont.ttf' ) format('truetype'),
+         image-url('helveticaneueltstd-ltcn-webfont.svg#HelveticaNeueLTStd47LtCn' ) format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'helvetica-std-condensed';
+    src: image-url('helveticaneueltstd-cn-webfont.eot' );
+    src: image-url('helveticaneueltstd-cn-webfont.eot?#iefix' ) format('embedded-opentype'),
+         image-url('helveticaneueltstd-cn-webfont.woff' ) format('woff'),
+         image-url('helveticaneueltstd-cn-webfont.ttf' ) format('truetype'),
+         image-url('helveticaneueltstd-cn-webfont.svg#HelveticaNeueLTStd47Cn' ) format('svg');
+    font-weight: 400;
+    font-style: normal;
 }

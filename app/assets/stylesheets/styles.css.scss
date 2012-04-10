@@ -88,7 +88,7 @@ h1,h2,h3,h4 {
 #user-left {
 	padding:5px;
 	padding-left:16px;
-	background: url(../images/point_left.png) no-repeat top left;
+	background: image-url('point_left.png') no-repeat top left;
 }
 
 #content .container {
@@ -98,7 +98,8 @@ h1,h2,h3,h4 {
 	
 }
 p.lede {
-	font-size:150%;
+	font-size:200%;
+	a { font-weight:bold; }
 }
 p.main_lede {
 	font-size:250%;
@@ -137,7 +138,7 @@ a.micro-profile-photo {
 	padding:3px 7px 4px 2px;
 	height:25px;
 	width:25px;
-	background: url(../images/point_right_small.png) no-repeat top left;
+	background: image-url("point_right_small.png") no-repeat top left;
 }
 .photo {
 	display:inline-block;
@@ -244,7 +245,7 @@ div.heart input, div.heart form { display:inline }
 div.heart img { vertical-align:text-bottom }
 div#hearted {
 	padding-left:26px;
-	background: url(../images/heart.png) no-repeat left top;
+	background: image-url("heart.png") no-repeat left top;
 	font-size:12px;
 	color:#999;
 	margin:20px 0;
@@ -256,7 +257,7 @@ div.popup {
 	width:400px;
 	z-index:1500;
 	padding-top:21px;
-	background:transparent url(../images/point_up.png) no-repeat top center;
+	background:transparent image-url("point_up.png") no-repeat top center;
 	margin-top:13px;
 }
 div.popup .box {
@@ -276,7 +277,7 @@ span.new {
 }
 
 #footer {
-	background:#dadada url(../images/bevel.png) repeat-x top left;
+	background:#dadada image-url("bevel.png") repeat-x top left;
 	padding:50px 0;
 	margin-bottom:0;
 }

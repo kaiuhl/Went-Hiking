@@ -2,7 +2,7 @@
 	background: #111;
 	display: inline-block;
 	padding: 10px 20px ! important;
-	border: 1px solid #555;
+	border: 1px solid #333;
 	color: white;
 	text-decoration: none;
 	-moz-border-radius: 5px;
@@ -13,14 +13,13 @@
 	z-index:5;
 	text-transform:uppercase;
 	font-weight:bold ! important;
-	
+	@include linear-gradient(#333, #111);
 	img {
 		vertical-align:text-bottom;
 		margin-left:-10px;
 	}
 }
 .button:hover, .previous_page:hover, .next_page:hover {
-	background-color: #222;
 	color: $link_color;
 	border-color:$link_color;
 }
@@ -28,4 +27,5 @@
 	background-color: #000;
 	color:#555;
 	border-color:#333;
+	@include linear-gradient(#000, #111);
 }
