@@ -1,5 +1,5 @@
-class ChangeHikesToTripsBecauseRails31IsADick < ActiveRecord::Migration
+class ChangeTripsToTripsBecauseRails31IsADick < ActiveRecord::Migration
   def change
-		rename_table :hikes, :trips
+		rename_table :trips, :trips
 	end
 end

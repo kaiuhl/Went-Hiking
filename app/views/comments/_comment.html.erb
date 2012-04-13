@@ -9,7 +9,7 @@
 	<div class="column last body">
 		<%= markdown h(comment.body) %>
 		
-		<%= link_to(image_tag("edit.png", :alt => "edit", :class => "edit"), edit_hike_comment_path(@hike, comment)) if comment.user_id == current_user.try(:id) && comment.created_at > 1.week.ago rescue nil%>
+		<%= link_to(image_tag("edit.png", :alt => "edit", :class => "edit"), edit_trip_comment_path(@trip, comment)) if comment.user_id == current_user.try(:id) && comment.created_at > 1.week.ago rescue nil%>
 	</div>
 	<div class="clearer"></div>
 <% end %>

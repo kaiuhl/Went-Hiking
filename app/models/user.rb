@@ -15,12 +15,14 @@ class User < ActiveRecord::Base
 		:micro => ["25x25#", :jpg],
     :thumbnail => ["75x75#", :jpg],
 		:medium => ["800x800>", :jpg],
-  }
+  },
+	:path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+	:url => "/system/:attachment/:id/:style/:filename"
 	
 	def update_stats(year = DateTime.now.year)
-		self.ytd_mileage = hikes.year(year).map(&:mileage).sum 
-		self.ytd_elevation = hikes.year(year).map(&:elevation).sum
-		self.ytd_nights = hikes.year(year).map(&:nights).sum
+		self.ytd_mileage = trips.year(year).map(&:mileage).sum 
+		self.ytd_elevation = trips.year(year).map(&:elevation).sum
+		self.ytd_nights = trips.year(year).map(&:nights).sum
 		
 		self.ytd_mileage = 0 if self.ytd_mileage.blank?
 		self.ytd_elevation = 0 if self.ytd_elevation.blank?

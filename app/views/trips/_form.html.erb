@@ -1,14 +1,14 @@
-<%= semantic_form_for([@user,@hike], :html => {:action => user_hike_path(@user, @hike)}) do |f| %>
-	<% f.inputs do %>
-		<%= f.input :name, :label => "Name of your hike" %>
+<%= semantic_form_for([@user,@trip], :url => user_hike_path(@user,@trip),:html => {:action => user_hike_path(@user, @trip)}) do |f| %>
+	<%= f.inputs do %>
+		<%= f.input :name, :label => "Name of your trip" %>
 		<%= f.input :hiked_at, :as => :date, :label => "When was it?", :include_blank => false, :order => [:month,:day,:year], :include_time => false %>
 		
 		<%= f.input :nights, :label => "Spend the night?", :as => :select, :collection => (0..100).to_a.map{|v| ["#{v} nights",v]}, :include_blank => false %>
 		<%= f.input :mileage, :label => "Rough mileage",  :as => :select, :collection => (1.0..3000).step(0.5).to_a.map{|v| ["#{v} miles",v]}, :include_blank => false %>
 		<%= f.input :elevation, :label => "Rough elevation",  :as => :select, :collection => (0..50000).step(250).to_a.map{|v| ["#{v} feet gained",v]}, :include_blank => false %>
-		<%= f.input :url, :label => "URL of reference website", :hint => "If you found the hike on a website, or know of a page that gives a good description of this hike, you can include it here." %>
+		<%= f.input :url, :label => "URL of reference website", :hint => "If you found the trip on a website, or know of a page that gives a good description of this trip, you can include it here." %>
 		<li class="map optional">
-			<label for="map">Locate your hike</label>
+			<label for="map">Locate your trip</label>
 			<div id="map" style="width:550px;height:400px;background-color:#eee;margin-left:200px"></div>
 			<p class="inline-hints"><input type="search" id="geolocate" placeholder="Search the map…" /></p>
 			<p class="inline-hints">Double click to mark the location</p>
@@ -18,8 +18,8 @@
 		</li>
 		<%= f.input :report, :label => "Trip Report", :hint => "This field takes Markdown" %>
 	<% end %>
-	<% f.buttons do %>
-		<%= f.submit "Save the hike", :class => "super awesome large button" %>
+	<%= f.actions do %>
+		<%= f.submit "Save the trip", :class => "super awesome large button" %>
 	<% end %>
 <% end %>
 <% content_for :head do %>
@@ -31,7 +31,7 @@
 		beef.load();
 		beef.markerListeners();
 		topo();
-		$("#hike_name").focus();
+		$("#trip_name").focus();
 	})
 </script>
 <% end %>

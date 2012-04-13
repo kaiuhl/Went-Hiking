@@ -32,9 +32,9 @@ class WebsiteMailer < ActionMailer::Base
 	end
 	
 	def comment_posted(comment)
-    recipients    comment.hike.user.email
+    recipients    comment.trip.user.email
     from          @@options[:from]
-    subject       "Comment posted on #{comment.hike.name}"
+    subject       "Comment posted on #{comment.trip.name}"
     body          :comment => comment, :options => @@options
     content_type  "text/html"
 	end
@@ -42,7 +42,7 @@ class WebsiteMailer < ActionMailer::Base
 	def reply_posted(comment, user)
     recipients    user.email
     from          @@options[:from]
-    subject       "Reply posted on #{comment.hike.name}"
+    subject       "Reply posted on #{comment.trip.name}"
     body          :comment => comment, :options => @@options, :user => user
     content_type  "text/html"
 	end

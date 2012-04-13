@@ -1,19 +1,19 @@
 class HeartsController < ApplicationController
 	before_filter :authorize
   def create
-		@hike = Trip.find(params[:hike_id])
-		if current_user.id != @hike.user.id
-			@heart = Heart.find_or_create_by_user_id_and_hike_id(:user_id => current_user.id, :hike_id => params[:hike_id])
-			@hearts = @hike.hearts
+		@trip = Trip.find(params[:trip_id])
+		if current_user.id != @trip.user.id
+			@heart = Heart.find_or_create_by_user_id_and_trip_id(:user_id => current_user.id, :trip_id => params[:trip_id])
+			@hearts = @trip.hearts
 		else
 			render "nope"
 		end
   end
 
   def destroy
-		@heart = Trip.find_by_user_id_and_hike_id(current_user.id, params[:hike_id])
-		@hike = @heart.hike
-		@hearts = @hike.hearts
+		@heart = Trip.find_by_user_id_and_trip_id(current_user.id, params[:trip_id])
+		@trip = @heart.trip
+		@hearts = @trip.hearts
 		@heart.destroy
   end
 end

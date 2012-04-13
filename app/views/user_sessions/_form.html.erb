@@ -2,8 +2,9 @@
 	<%= f.inputs do %>
 		<%= f.input :email %>
 		<%= f.input :password %>
+		<%= hidden_field_tag :whence, @whence %>
 	<% end %>
-	<%= f.buttons do %>
+	<%= f.actions do %>
 		<%= f.submit "Login", :class => "super awesome large button" %>
 		<%= link_to "Forgot password?", password_path %>
 	<% end %>

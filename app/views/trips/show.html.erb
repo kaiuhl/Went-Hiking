@@ -1,21 +1,21 @@
-<% page_title @hike.name %>
+<% page_title @trip.name %>
 
 <%= content_for :header do %>
 <p class="breadcrumbs">
-	<%= link_to "&laquo; View all of #{@user.name}&rsquo;s hikes".html_safe, user_hikes_path(@user)  %>
+	<%= link_to "&laquo; Back to all of  #{@user.name}&rsquo;s trips".html_safe, user_hikes_path(@user)  %>
 </p>
 <h1>
-	<%= @hike.name %>
-	<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,@hike)) if personal_current_user %>
+	<%= @trip.name %>
+	<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,@trip)) if personal_current_user %>
 </h1>
 <h2>
 	<%=h @user.name %> Went
-	<% if @hike.nights > 0 %>
+	<% if @trip.nights > 0 %>
 		Backpacking from 
-		<%= @hike.hiked_at.strftime("%A, %B #{@hike.hiked_at.day.ordinalize}") %> to 
-		<%= (@hike.hiked_at + @hike.nights.days).strftime("%A, %B #{(@hike.hiked_at + @hike.nights.days).day.ordinalize} %Y") %>
+		<%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}") %> to 
+		<%= (@trip.hiked_at + @trip.nights.days).strftime("%A, %B #{(@trip.hiked_at + @trip.nights.days).day.ordinalize} %Y") %>
 	<% else %>
-		Hiking on <%= @hike.hiked_at.strftime("%A, %B #{@hike.hiked_at.day.ordinalize}, %Y") %>
+		Hiking on <%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}, %Y") %>
 	<% end %>
 </h2>
 <% end %>
@@ -28,11 +28,11 @@ $(document).ready(function(){
 	beef.defaults.doubleclick 	= true;
 	beef.defaults.scrollwheel 	= false;
 	beef.load();
-	beef.markers.populate(<%= [@hike].map { |hike| { 
-		:id 			=> hike.id, 
-		:lat 			=> hike.lat,
-		:lng			=> hike.lng,
-		:info			=> hike.name
+	beef.markers.populate(<%= [@trip].map { |trip| { 
+		:id 			=> trip.id, 
+		:lat 			=> trip.lat,
+		:lng			=> trip.lng,
+		:info			=> trip.name
 	} }.to_json.html_safe %>, true);
 	// beef.zoomToMarkers();
 	topo();
@@ -51,40 +51,40 @@ $(document).ready(function(){
 
 <div class="column dominant">
 	<div class="box">
-	<%= render :partial => "hearts/form", :locals => { :hike => @hike } if current_user %>
-	<p style="color:#999"><%= @hike.mileage % 1 == 0 ? @hike.mileage.to_i : @hike.mileage  %> miles of hiking &bull;
-	<%= @hike.elevation %>' elevation gain
-	<%= "&bull; #{pluralize(@hike.nights, "night") if @hike.nights > 0 %>
+	<%= render :partial => "hearts/form", :locals => { :trip => @trip } if current_user %>
+	<p style="color:#999"><%= @trip.mileage % 1 == 0 ? @trip.mileage.to_i : @trip.mileage  %> miles of hiking &bull;
+	<%= @trip.elevation %>' elevation gain
+	<%= "&bull; #{pluralize(@trip.nights, "night") if @trip.nights > 0}".html_safe %>
 	</p>
-	<% if @hike.report.blank? %>
+	<% if @trip.report.blank? %>
 		<% if personal_current_user %>
-			<%= semantic_form_for([@user, @hike]) do |f| %>
+			<%= semantic_form_for([@user, @trip], url: user_hike_path(@user, @trip)) do |f| %>
 				<h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
 				<p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
-				<%= f.text_area :report, :id => "hike_report" %><br />
+				<%= f.text_area :report, :id => "trip_report" %><br />
 				<%= f.submit "Save your report", :class => "super awesome large button" %>
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= markdown @hike.report %>
+		<%= markdown @trip.report %>
 	<% end %>
 	</div>
-	<% unless @hike.url.blank? %>
+	<% unless @trip.url.blank? %>
 	<div class="box">
 	<p class="note">
-		<%= link_to "View the resource page used for this hike<span class=\"meta\">#{h @hike.url}</span>".html_safe, @hike.url, :rel => "nofollow" %>
+		<%= link_to "View the resource page used for this trip<span class=\"meta\">#{h @trip.url}</span>".html_safe, @trip.url, :rel => "nofollow" %>
 	</p></div>
 	<% end  %>
 </div>
 <div class="column subordinant last">
 	
 	<div class="box photos">
-	<%= image_tag(static_map(@hike.lat, @hike.lng, "254x125", 4)) %>
-	<%= render :partial => 'photo', :collection => @hike.photos, :locals => { :size => :thumbnail } %>
+	<%= image_tag(static_map(@trip.lat, @trip.lng, "254x125", 4)) %>
+	<%= render :partial => 'photo', :collection => @trip.photos, :locals => { :size => :thumbnail } %>
 	</div>
 
 	
-	<%= form_for([@hike, @hike.photos.build], :html => {:multipart => true}) do |f| %>
+	<%= form_for([@trip, @trip.photos.build], :html => {:multipart => true}) do |f| %>
 	<div class="box">
 	<script src="/javascripts/jquery.fileupload.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script src="/javascripts/jquery.iframe-transport.js" type="text/javascript" charset="utf-8" async defer></script>
@@ -107,14 +107,14 @@ $(document).ready(function(){
 	<div style="display:none">
 	<div id="bbcode_share" style="width:525px">
 		<h2>Share on a Forum</h2>
-		<p>Want to post this report on a forum that uses BBCode (like <a href="http://portlandhikers.org">PortlandHikers.org</a>) or HTML (like <a href="http://backpackinglight.com">BackpackingLight.com</a>)? Simply copy and paste the text below to get a good start at posting your trip report!</p>
+		<p>Want to post this report on a forum that uses BBCode (like <a href="http://portlandtriprs.org">PortlandTriprs.org</a>) or HTML (like <a href="http://backpackinglight.com">BackpackingLight.com</a>)? Simply copy and paste the text below to get a good start at posting your trip report!</p>
 		<div class="column">
 			<h3>BBCode</h3>
-			<textarea style="width:250px;height:150px"><%= @hike.to_bbcode %></textarea>
+			<textarea style="width:250px;height:150px"><%= @trip.to_bbcode %></textarea>
 		</div>
 		<div class="column last">
 			<h3>HTML</h3>
-			<textarea style="width:250px;height:150px"><%= @hike.to_html %></textarea>
+			<textarea style="width:250px;height:150px"><%= @trip.to_html %></textarea>
 		</div>
 		<div class="clearer"></div>
 	</div>
@@ -160,18 +160,18 @@ $(document).ready(function(){
 		</div>
 	
 	
-		<% unless @nearby_hikes.blank? %>
+		<% unless @nearby_trips.blank? %>
 		<div class="box">
-			<h3>Nearby Hike Reports</h3>
-			<% @nearby_hikes.each do |hike| %>
-			<div class="small_hike">
-				<div class="profile-photo"><a href="<%= user_hikes_path(hike.user) %>" class="micro-profile-photo">
-					<%= image_tag(hike.user.avatar.url(:micro)) unless hike.user.avatar_file_name.blank? %>
+			<h3>Nearby Trip Reports</h3>
+			<% @nearby_trips.each do |trip| %>
+			<div class="small_trip">
+				<div class="profile-photo"><a href="<%= user_hikes_path(trip.user) %>" class="micro-profile-photo">
+					<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
 				</a></div>
-				<p class="title"><%= link_to hike.name, user_hike_path(hike.user, hike) %></p>
+				<p class="title"><%= link_to trip.name, user_hike_path(trip.user, trip) %></p>
 				<p class="meta">
-					<b><%= link_to h(hike.user.name), user_hikes_path(hike.user) %></b> 
-					hiked this <%= hike.hiked_at.strftime("%D") %>
+					<b><%= link_to h(trip.user.name), user_hikes_path(trip.user) %></b> 
+					hiked this <%= trip.hiked_at.strftime("%D") %>
 				</p>
 			</div>
 			<% end %>

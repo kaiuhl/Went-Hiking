@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	
 	$(window).resize(function(){
-		$("#map").css("height", ($(window).height() - 63) + "px");
+		$("#map").css("height", ($(window).height() - 46) + "px");
 	});
-	$("#map").css("height", ($(window).height() - 63) + "px");
+	$("#map").css("height", ($(window).height() - 46) + "px");
 	
 	beef.defaults.zoom 		= <%= @route.zoom.blank? ? 5 : h(@route.zoom) %>;
 	beef.defaults.lat			= <%= @route.lat.blank? ? 40 : h(@route.lat) %>;
@@ -72,7 +72,7 @@ $(document).ready(function(){
 			"&zoom=" 		+ map.getZoom() +
 			"&map_type=" 	+ map.getMapTypeId();
 			if (beef.variables.polylinePath != null) {
-				queryString += "&hikepath=" + 
+				queryString += "&trippath=" + 
 				escape(google.maps.geometry.encoding.encodePath(beef.variables.polylinePath.getArray()));
 			}
 		

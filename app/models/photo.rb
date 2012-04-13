@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base  
-	belongs_to :hike
+	belongs_to :trip
 	belongs_to :user
 	
   after_commit :add_stats, :if => :stats_not_yet_added?
@@ -14,7 +14,10 @@ class Photo < ActiveRecord::Base
     :thumbnail => "-quality 65",
 		:bpl => "-quality 85",
 		:large => "-quality 85"
-	}
+	},
+	:path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+	:url => "/system/:attachment/:id/:style/:filename"
+	
   
   default_scope :order => "taken_at ASC, id ASC"
   

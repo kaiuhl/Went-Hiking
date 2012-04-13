@@ -12,8 +12,9 @@
 	cursor: pointer;
 	z-index:5;
 	text-transform:uppercase;
-	font-weight:bold ! important;
 	@include linear-gradient(#333, #111);
+	@include condensed;
+	
 	img {
 		vertical-align:text-bottom;
 		margin-left:-10px;

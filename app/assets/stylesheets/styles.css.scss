@@ -165,8 +165,12 @@ td .report {
 }
 td .report p { color:#999; }
 p.breadcrumbs {
-	margin:0;
-	margin-top:-10px;
+	border-bottom:1px solid #ccc;
+	padding:10px;
+	margin:0 0 30px 0;
+	margin-top:-30px;
+	@include condensed;
+	text-transform:uppercase;
 }
 #resize {
 	cursor:pointer;
@@ -180,7 +184,7 @@ p.breadcrumbs {
 }
 
 
-div.hike, div.box, table {
+div.trip, div.box, table {
 	margin-bottom:20px;
 	padding:20px;
 	background:white;
@@ -188,27 +192,27 @@ div.hike, div.box, table {
 	box-shadow:0 1px 3px rgba(0,0,0,.05);
 	position:relative;
 }
-div.hike { padding-left:60px; position:relative; border-bottom:1px solid #ddd }
-div.hike .dominant { width:559px }
-div.hike .subordinant { width:279px }
-div.hike.box { padding-left:20px; }
-div.hike .profile-photo { position:absolute; top:20px; left:20px }
-div.hike p.title { color:#444; font-size:18px; margin-bottom:0; padding-right:30px }
-div.hike p.meta, div.hike p.date { font-size:10px; font-weight:normal; color:#444 }
-div.hike p.meta { margin-top:10px }
-div.hike div.report p,
-div.hike div.report li { font-size:80%; color:#999; line-height:1.5; margin-bottom:0.5em; }
-div.hike div.report p a { color:#444; }
-div.hike .links a { display:inline-block; margin-right:20px }
-div.hike .staticmap { float:right; margin-left:20px; }
-div.hike ul.meta { list-style:none; color:#555; margin:0; padding:0; font-size:12px }
-div.hike .photo_box { margin-top:20px }
-div.hike h2 { text-style:normal; font-size:25px; }
-div.hike h3 { color:#555 }
-div.hike h3.includes-photo { padding-left:35px; position:relative }
-div.hike h3.includes-photo .profile-photo { top:-5px;left:0 }
+div.trip { padding-left:60px; position:relative; border-bottom:1px solid #ddd }
+div.trip .dominant { width:559px }
+div.trip .subordinant { width:279px }
+div.trip.box { padding-left:20px; }
+div.trip .profile-photo { position:absolute; top:20px; left:20px }
+div.trip p.title { color:#444; font-size:20px; margin-bottom:0; padding-right:30px; @include condensed; text-transform:uppercase; }
+div.trip p.meta, div.trip p.date { font-size:10px; font-weight:normal; color:#444 }
+div.trip p.meta { margin-top:10px }
+div.trip div.report p,
+div.trip div.report li { font-size:80%; color:#999; line-height:1.5; margin-bottom:0.5em; }
+div.trip div.report p a { color:#444; }
+div.trip .links a { display:inline-block; margin-right:20px; @include condensed;text-transform:uppercase; }
+div.trip .staticmap { float:right; margin-left:20px; }
+div.trip ul.meta { list-style:none; color:#555; margin:0; padding:0; font-size:12px }
+div.trip .photo_box { margin-top:20px }
+div.trip h2 { text-style:normal; font-size:25px; }
+div.trip h3 { color:#555 }
+div.trip h3.includes-photo { padding-left:35px; position:relative }
+div.trip h3.includes-photo .profile-photo { top:-5px;left:0 }
 
-div.small_hike p.title { margin-bottom:0; font-size:11px; text-decoration:underline; font-weight:bold;padding-right:50px }
+div.small_trip p.title { margin-bottom:0; font-size:11px; text-decoration:underline; font-weight:bold;padding-right:50px }
 
 div.comment { margin-bottom:20px; position:relative }
 div.comment .meta, div.comment p { font-size:12px; color:#555 }
@@ -258,7 +262,7 @@ div.popup {
 	z-index:1500;
 	padding-top:21px;
 	background:transparent image-url("point_up.png") no-repeat top center;
-	margin-top:13px;
+	margin-top:5px;
 }
 div.popup .box {
 	border:0;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302225003) do
+ActiveRecord::Schema.define(:version => 20120413184918) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120302225003) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "hike_id"
+    t.integer  "trip_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20120302225003) do
 
   create_table "hearts", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "hike_id"
+    t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20120302225003) do
     t.float    "lat"
     t.float    "lng"
     t.string   "caption"
-    t.integer  "hike_id"
+    t.integer  "trip_id"
     t.integer  "user_id"
     t.string   "camera_model"
     t.string   "camera_exposure"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20120302225003) do
     t.boolean  "stats_added",        :default => false
   end
 
-  add_index "photos", ["hike_id"], :name => "index_photos_on_hike_id"
+  add_index "photos", ["trip_id"], :name => "index_photos_on_hike_id"
   add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
 
 # Could not dump table "routes" because of following StandardError

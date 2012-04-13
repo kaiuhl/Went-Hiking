@@ -6,7 +6,7 @@
 <% end %>
 
 <% content_for :header do %>
-<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= Trip.count %> hikes already recorded.</p>
+<p class="main_lede">A tool for recording your trips into the wilderness and discovering new ones. Join the <%= @user_count %> members and add to the <%= Trip.count %> trips already recorded.</p>
 <% end if current_user.blank? %>
 
 <% content_for :head do %>
@@ -21,28 +21,28 @@ $(document).ready(function(){
 	topo();
 	
 	// Load all the markers
-	beef.markers.populate(<%= @hikes[0..100].map { |hike| { 
-		:id 			=> hike.id, 
-		:lat 			=> hike.lat,
-		:lng			=> hike.lng,
-		:info			=> "<p>#{link_to(hike.name, user_hike_path(hike.user, hike))}</p>
-							<p>Hiked #{hike.hiked_at.strftime('%D')} by
-							#{link_to(hike.user.name, user_hikes_path(hike.user))}</p>"
+	beef.markers.populate(<%= @trips[0..100].map { |trip| { 
+		:id 			=> trip.id, 
+		:lat 			=> trip.lat,
+		:lng			=> trip.lng,
+		:info			=> "<p>#{link_to(trip.name, user_hike_path(trip.user, trip))}</p>
+							<p>Tripd #{trip.hiked_at.strftime('%D')} by
+							#{link_to(trip.user.name, user_hikes_path(trip.user))}</p>"
 	} }.to_json.html_safe %>);
 });
 </script>
 <% end %>
 
 <% if current_user.blank? %>
-	<p class="lede">Not a member yet? <%= link_to "Sign up now", new_user_path %> to start tracking your hikes!</p>
+	<p class="lede">Not a member yet? <%= link_to "Sign up now", new_user_path %> to start tracking your trips!</p>
 <% else %>
 
 <% end %>
 
 <div class="column">
-	<h2>Popular &amp; Recent Hikes</h2>
-	<% @hikes[0..25].each do |hike| %>
-		<%= render "hikes/small_hike", :hike => hike %>
+	<h2>Popular &amp; Recent Trips</h2>
+	<% @trips[0..25].each do |trip| %>
+		<%= render "trips/small_trip", :trip => trip %>
 	<% end %>
 </div>
 

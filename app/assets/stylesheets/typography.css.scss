@@ -12,8 +12,8 @@ h1,h2,h3,h4 {
 }
 h1 {
 	font-size: $h1 * 0.9;
-	line-height:$h1;
-	margin-bottom:$h1 * .666666;
+	line-height:$h1 * 1.5;
+	margin-bottom:0;
 	color:#999;
 }
 h2 {

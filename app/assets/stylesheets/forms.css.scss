@@ -1,6 +1,6 @@
 form.formtastic fieldset ol li {
 	p.inline-hints { font-size:85%; }
 	textarea { height:200px }
-	#hikereport { width:390px; height:200px  }
+	#tripreport { width:390px; height:200px  }
 }
-form#new_comment textarea, form #hike_report { width:98.5% ! important; height:100px }
+form#new_comment textarea, form #trip_report { width:98.5% ! important; height:100px }

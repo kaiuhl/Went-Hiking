@@ -9,61 +9,61 @@ class TripsController < ApplicationController
 		@user = User.find(params[:user_id]) unless params[:user_id].blank?
 		@user ||= current_user rescue nil
 		
-		@hikes = @user.trips.year(@year)
-		@other_years_hikes = @user.trips.map{|h| h.hiked_at.year }.uniq.reject{|h| h == @year}
+		@trips = @user.trips.year(@year)
+		@other_years_trips = @user.trips.map{|h| h.hiked_at.year }.uniq.reject{|h| h == @year}
 		
-		if @hikes.blank?
+		if @trips.blank?
 			@year = 1.year.ago.year
-			@hikes = @user.trips.year(@year)
+			@trips = @user.trips.year(@year)
 		end
 	end
 	
 	def search
-		@hikes = Trip.where("name LIKE ? OR report LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").order("hiked_at DESC, name ASC")
+		@trips = Trip.where("name LIKE ? OR report LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").order("hiked_at DESC, name ASC")
 	end
 	
 	def advanced_search
-		@hikes = Trip.all
+		@trips = Trip.all
 	end
 	
 	def show
-		@hike = Trip.find(params[:id])
-		@user = @hike.user
-		@heart = @hike.hearts.find_or_initialize_by_hike_id_and_user_id(@hike.id, current_user.try(:id))
-		@comments = @hike.comments
-		@hearts = @hike.hearts
-		@comment = Comment.new(:hike_id => @hike.id, :user_id => current_user.id) rescue nil
-		@nearby_hikes = Trip.within(10, :origin => [@hike.lat,@hike.lng]).order("created_at DESC").where("id != ?", @hike.id).limit(5)
-		@forecast = Forecast.find_or_create_by_lat_and_lng(@hike.lat, @hike.lng) rescue nil
+		@trip = Trip.find(params[:id])
+		@user = @trip.user
+		@heart = @trip.hearts.find_or_initialize_by_trip_id_and_user_id(@trip.id, current_user.try(:id))
+		@comments = @trip.comments
+		@hearts = @trip.hearts
+		@comment = Comment.new(:trip_id => @trip.id, :user_id => current_user.id) rescue nil
+		# @nearby_trips = Trip.within(10, :origin => [@trip.lat,@trip.lng]).order("created_at DESC").where("id != ?", @trip.id).limit(5)
+		@forecast = Forecast.find_or_create_by_lat_and_lng(@trip.lat, @trip.lng) rescue nil
 	end
 	def new
 		@user = User.find(params[:user_id])
-		@hike = Trip.new(:user_id => @user.id, :hiked_at => 1.day.ago)
+		@trip = Trip.new(:user_id => @user.id, :hiked_at => 1.day.ago)
 	end
 	def create
-		@hike = Trip.new(params[:hike])
-		if @hike.save
-			redirect_to user_hike_path(@hike.user, @hike), :notice => "Added the hike!"
+		@trip = Trip.new(params[:trip])
+		if @trip.save
+			redirect_to user_hike_path(@trip.user, @trip), :notice => "Added the trip!"
 		else
 			render :action => "new"
 		end
 	end
 	def edit
-		@hike = Trip.find(params[:id])
-		@user = @hike.user
+		@trip = Trip.find(params[:id])
+		@user = @trip.user
 	end
 	def update
-		@hike = Trip.find(params[:id])
-		if @hike.update_attributes(params[:hike])
-			redirect_to user_hike_path(@hike.user, @hike), :notice => "Updated the hike."
+		@trip = Trip.find(params[:id])
+		if @trip.update_attributes(params[:trip])
+			redirect_to user_hike_path(@trip.user, @trip), :notice => "Updated the trip."
 		else
 			render :action => "edit"
 		end	
 	end
 	def destroy
-		@hike = Trip.find(params[:id])
-		@user = @hike.user
-		@hike.destroy
-		redirect_to user_hikes_path(@user), :notice => "Deleted that hike, as requested."
+		@trip = Trip.find(params[:id])
+		@user = @trip.user
+		@trip.destroy
+		redirect_to user_hikes_path(@user), :notice => "Deleted that trip, as requested."
 	end
 end

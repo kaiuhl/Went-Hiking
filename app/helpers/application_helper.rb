@@ -23,9 +23,9 @@ module ApplicationHelper
     output = default if output.blank?
     output
   end
-	def comments_and_likes(hike)
+	def comments_and_likes(trip)
 		buffer = image_tag("comment.png") << " "
-		buffer << link_to("#{hike.comments.size} comments", "#{user_hike_path(hike.user,hike)}#comments")
+		buffer << link_to("#{trip.comments.size} comments", "#{user_hike_path(trip.user,trip)}#comments")
 		buffer
 	end
 end

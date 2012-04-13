@@ -8,8 +8,13 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "You are now logged in."
-     	redirect_to :back rescue redirect_to root_path
+			if request.fullpath != "/user_sessions"
+     		redirect_to :back rescue redirect_to root_path
+			else
+				redirect_to params[:whence] rescue redirect_to root_path
+			end
     else
+			@whence = request.referer
       render :action => 'new', :layout => "small"
     end
   end

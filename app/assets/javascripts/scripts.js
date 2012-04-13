@@ -177,15 +177,15 @@ var	beef = {
 						icon: 				beef.defaults.markerstyle,
 						shadow: 			beef.defaults.shadowstyle
 					});
-					beef.infoWindow.open("new", "This hike is " + distance.toFixed(1) + "mi long. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
+					beef.infoWindow.open("new", "This trip is " + distance.toFixed(1) + "mi long. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
 				}
 				
 				if (beef.variables.polylinePath.getLength() > 1) {
 					distance = google.maps.geometry.spherical.computeLength(beef.variables.polylinePath.getArray(), 3963.19);
 ;
 					beef.polylines.calculateElevation(function(){
-						beef.variables.info.setContent("This hike is " + distance.toFixed(1) + "mi long with " + beef.variables.polylineElevation.toFixed(0) + "' of climbing. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
-						beef.infoWindow.listener("new", "This hike is " + distance.toFixed(1) + "mi long with " + beef.variables.polylineElevation.toFixed(0) + "' of climbing. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
+						beef.variables.info.setContent("This trip is " + distance.toFixed(1) + "mi long with " + beef.variables.polylineElevation.toFixed(0) + "' of climbing. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
+						beef.infoWindow.listener("new", "This trip is " + distance.toFixed(1) + "mi long with " + beef.variables.polylineElevation.toFixed(0) + "' of climbing. <br /><br /><a href='javascript:beef.undo();'>Remove this trail?</a></em></div>");
 					});
 				}
 			},
@@ -257,8 +257,8 @@ var	beef = {
 		placeMarker: function(e){
 			if (!that.markerOnMap) {
 					//Form insertion
-					$("#hike_lat, #forecast_lat").val(e.latLng.lat());
-					$("#hike_lng, #forecast_lng").val(e.latLng.lng());
+					$("#trip_lat, #forecast_lat").val(e.latLng.lat());
+					$("#trip_lng, #forecast_lng").val(e.latLng.lng());
 
 					beef.variables.markers["new"] = new google.maps.Marker({
 						map: 					map,
@@ -285,9 +285,9 @@ var	beef = {
 		},
 
 		updateForm: function() {
-			$("#hike_lat").val(map.getCenter().lat());
-		 	$("#hike_lng").val(map.getCenter().lng());
-			// $("#hike_zoom").val(map.getZoom());
+			$("#trip_lat").val(map.getCenter().lat());
+		 	$("#trip_lng").val(map.getCenter().lng());
+			// $("#trip_zoom").val(map.getZoom());
 		},
 
 		toggleKML: function(id) {

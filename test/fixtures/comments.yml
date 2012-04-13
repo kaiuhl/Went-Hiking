@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  hike_id: 1
+  trip_id: 1
   body: MyText
 
 two:
   user_id: 1
-  hike_id: 1
+  trip_id: 1
   body: MyText

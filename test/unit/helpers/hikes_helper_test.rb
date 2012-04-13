@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class HikesHelperTest < ActionView::TestCase
+class TripsHelperTest < ActionView::TestCase
 end

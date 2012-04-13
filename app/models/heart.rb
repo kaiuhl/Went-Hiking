@@ -1,9 +1,9 @@
 class Heart < ActiveRecord::Base
 	belongs_to :user
-	belongs_to :hike
+	belongs_to :trip
 	default_scope :order => "created_at DESC"
 	
-	def self.personal(hike, user)
-		self.find_or_initialize_by_hike_id_and_user_id(hike.id, user.try(:id))
+	def self.personal(trip, user)
+		self.find_or_initialize_by_trip_id_and_user_id(trip.id, user.try(:id))
 	end
 end

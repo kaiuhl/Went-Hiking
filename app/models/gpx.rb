@@ -1,5 +1,5 @@
 class Gpx < ActiveRecord::Base
-	belongs_to 					:hike
+	belongs_to 					:trip
 	after_create 				:extract_geometry
 	
 	has_attached_file 	:data, :styles => {}

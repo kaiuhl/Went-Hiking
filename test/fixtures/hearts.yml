@@ -2,8 +2,8 @@
 
 one:
   user_id: 1
-  hike_id: 1
+  trip_id: 1
 
 two:
   user_id: 1
-  hike_id: 1
+  trip_id: 1

@@ -40,18 +40,22 @@
 	<div class="container">
 		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path, :id => "logo") %>
 		<div class="nav">
-			<a onclick="beef.polylines.startDrawing();return false;" href="#"><img src="/images/pencil_add.png" alt="start drawing" title="start drawing">
+			<a onclick="beef.polylines.startDrawing();return false;" href="#">
+				<%= image_tag "pencil_add.png", alt: "start drawing", title: "start drawing" %>
 				draw path
 			</a>
-			<a onclick="beef.polylines.stopDrawing();return false;" href="#"><img src="/images/pencil_delete.png" alt="stop drawing" title="stop drawing">
+			<a onclick="beef.polylines.stopDrawing();return false;" href="#">
+				<%= image_tag "pencil_delete.png", alt: "stop drawing", title: "stop drawing" %>
 				stop drawing
 			</a>
-			<a onclick="beef.polylines.stepBack();return false;" href="#"><img src="/images/arrow_undo.png" alt="undo" title="undo">
+			<a onclick="beef.polylines.stepBack();return false;" href="#">
+				<%= image_tag "arrow_undo.png", alt: "undo", title: "undo" %>
 				undo
 			</a>
-			<a onclick="$('form').first().submit();return false;" href=""><img src="/images/disk.png" alt="undo" title="save">
-				save
-			</a>
+			<!-- <a onclick="$('form').first().submit();return false;" href="">
+					<%= image_tag "disk.png", alt: "save", title: "save" %>
+					save
+				</a> -->
 			
 			<span class="nav-unit">
 				<input type="search" id="geolocate" placeholder="Search the map…" />

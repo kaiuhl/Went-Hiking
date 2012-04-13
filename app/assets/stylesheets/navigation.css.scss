@@ -2,9 +2,9 @@
 	border-bottom:1px solid black;
 	background:#333 image-url('header_fade.png') repeat-x left bottom;
 	margin-bottom:10px;
-	padding:2px 0;
+	padding:5px 0;
 	line-height:1;
-	font-size:12px;
+	font-size:$unit;
 	z-index:5;
 	position:relative;
 	@include condensed;

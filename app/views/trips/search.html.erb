@@ -1,4 +1,4 @@
 <% page_title "Search results for &ldquo;#{h(params[:q].titleize)}&rdquo;".html_safe %>
 
-<h1><%= @hikes.length %> results for &ldquo;<%= h(params[:q].titleize) %>&rdquo;</h1>
-<%= render @hikes, :include_name => true %>
+<h1><%= @trips.length %> results for &ldquo;<%= h(params[:q].titleize) %>&rdquo;</h1>
+<%= render @trips, :include_name => true %>

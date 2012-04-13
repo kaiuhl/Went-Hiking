@@ -27,9 +27,9 @@ class Trip < ActiveRecord::Base
 
 	def self.algorithmic_sort
 		# SCORE FORMULA: HEARTS + 1 DIVIDED BY THE NUMBER OF HOURS AGO
-		hikes = order("created_at DESC").limit(100).includes(:hearts, :user, :comments)
-		hikes.sort! {|a,b| b.score <=> a.score }
-		hikes[0..35]
+		trips = order("created_at DESC").limit(100).includes(:hearts, :user, :comments)
+		trips.sort! {|a,b| b.score <=> a.score }
+		trips[0..35]
 	end
 	
 	def score

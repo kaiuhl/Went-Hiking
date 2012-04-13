@@ -5,22 +5,21 @@
 <div class="box forecast" id="forecast_<%= forecast.id %>">
 	<h2><%= forecast.title %></h2>
 	<%= image_tag(static_map(forecast.lat, forecast.lng, "400x200", 10), :class => "forecast-map") %>
-	<script type="text/javascript">$(function(){
-		var forecast_<%= forecast.id %> = <%= forecast.details.html_safe %>;
-		var $output = $("#forecast_<%= forecast.id %>");
-		$.each(forecast_<%= forecast.id %>, function(i, day){
-			var $day = $("<div class='day'></div>");
-			$day.append("<div class='forecast_title'>"+ day.title +"</div>")
-			$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
-			$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
-			$day.append("<div class='high'>" + day.high + "</div>");
-			if (day.low != null) {
-				$day.append("<div class='low'>" + day.low + "</div>");
-			}
-			$output.append($day);
-		});
-		$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= forecast.lat %> +"&textField2="+ <%= forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
-	})</script>
+	<div class="forecast-days">
+	<% forecast.details.each do |day| %>
+		<div class="day">
+			<div class="forecast_title"><%= day["title"] %></div>
+			<div class="image"><%= image_tag day["image_url"] %></div>
+			<div class="weather_summary"><%= day["weather_summary"] %></div>
+			<div class="high"><%= day["high"] %></div>
+			<% unless day["low"].blank? %>
+			<div class="low"><%= day["low"] %></div>
+			<% end %>
+		</div>
+	<% end %>
+	</div>
+	<p class="more"><a href='http://forecast.weather.gov/MapClick.php?textField1=<%= forecast.lat %>&amp;textField2=<%= forecast.lng %>' target='_blank'><%= image_tag "magnifier.png" %> View more detail on weather.gov</a></p>
+	
 	<%= link_to(image_tag("cancel.png"), user_forecast_path(@user, forecast), :method => :delete, :confirm => "Are you sure you want to delete this forecast?", :class => "corner") if personal_current_user %>
 	<div class="clearer"></div>
 </div>
