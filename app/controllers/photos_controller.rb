@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 		@photos = Photo.all
 	end
 	def create
-		@trip = Trip.find(params[:trip_id])
+		@trip = Trip.find(params[:hike_id])
 		@user = @trip.user
 		redirect_to :back if @user.id != current_user.id
 		
