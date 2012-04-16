@@ -29,7 +29,7 @@ class TripsController < ApplicationController
 	def show
 		@trip = Trip.find(params[:id])
 		@user = @trip.user
-		@heart = @trip.hearts.find_or_initialize_by_trip_id_and_user_id(@trip.id, current_user.try(:id))
+		# @heart = @trip.hearts.find_or_initialize_by_trip_id_and_user_id(@trip.id, current_user.try(:id))
 		@comments = @trip.comments
 		@hearts = @trip.hearts
 		@comment = Comment.new(:trip_id => @trip.id, :user_id => current_user.id) rescue nil

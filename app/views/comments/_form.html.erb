@@ -1,4 +1,4 @@
-<%= form_for([@trip, @comment]) do |f| %>
+<%= form_for([@trip, @comment], url: hike_comments_path(@trip)) do |f| %>
 	<%= f.text_area :body %>
 	<%= f.hidden_field :trip_id %>
 	<%= f.hidden_field :user_id %>

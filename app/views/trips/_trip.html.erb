@@ -1,0 +1,48 @@
+<div class="box trip">
+	<%= render :partial => "hearts/form", :locals => { :trip => trip } %>
+	<div class="column dominant">
+		<h2>
+			<%= link_to trip.name, user_hike_path(trip.user, trip) %>
+			<%= link_to(image_tag("edit.png"), edit_user_hike_path(trip.user,trip)) if personal_current_user %>
+		</h2>
+		<% unless include_name.blank? %>
+		<h3 class="includes-photo">
+			<div class="profile-photo"><a href="<%= user_hikes_path(trip.user) %>" class="micro-profile-photo">
+				<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
+			</a></div>
+			<%= trip.user.name %> Went
+			<% if trip.nights > 0 %>
+				Backpacking
+			<% else %>
+				Hiking
+			<% end %>
+		</h3>
+		<% end %>
+		<%= markdown(trip.report) %>
+		<p>
+			<%= comments_and_likes(trip) %>
+		</p>
+		</div>
+		<div class="column subordinant last">
+		<h3>
+			<% if trip.nights > 0 %>
+				<%= trip.hiked_at.strftime("%B %e") %> &ndash;
+				<%= (trip.hiked_at + trip.nights.days).strftime("%B %e, %Y") %>
+			<% else %>
+				<%= trip.hiked_at.strftime("%B %e, %Y") %>
+			<% end %>
+		</h3>
+		<%= image_tag(static_map(trip.lat, trip.lng)) %>
+		<ul class="meta">
+			<li><%= trip.mileage % 1 == 0 ? trip.mileage.to_i : trip.mileage  %> miles of hiking</li>
+			<li><%= trip.elevation %>' elevation gain</li>
+			<%= "<li>#{trip.nights} #{trip.nights == 1 ? 'night' : 'nights'}</li>".html_safe if trip.nights > 0 %>
+		</ul>
+		<% unless trip.photos.blank? %>
+		<div class="photo_box">
+			<%= render :partial => 'photo', :collection => trip.photos, :locals => { :size => :thumbnail } %>
+		</div>
+		<% end %>
+	</div>
+	<div class="clearer"></div>
+</div>

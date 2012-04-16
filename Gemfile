@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'mysql2'
 gem 'authlogic'
@@ -21,7 +21,15 @@ gem 'pretty_param'
 gem 'bourbon'
 
 group :assets do
+	gem 'execjs'
+	gem 'therubyracer'
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>=1.0.3'
+end
+
+group :development, :test do
+	gem 'awesome_print'
+	gem 'guard-rspec' #continuous testing
+	gem 'steak' #capybara + rake tasks
 end

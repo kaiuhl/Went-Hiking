@@ -84,7 +84,7 @@ $(document).ready(function(){
 	</div>
 
 	
-	<%= form_for([@trip, @trip.photos.build], :html => {:multipart => true}) do |f| %>
+	<%= form_for([@trip, @trip.photos.build], :url => hike_photos_path(@trip), :html => {:multipart => true}) do |f| %>
 	<div class="box">
 	<script src="/javascripts/jquery.fileupload.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script src="/javascripts/jquery.iframe-transport.js" type="text/javascript" charset="utf-8" async defer></script>
@@ -141,22 +141,19 @@ $(document).ready(function(){
 		<div class="box forecast" id="forecast">
 			<h3>Upcoming Forecast</h3>
 			
-			<script type="text/javascript">$(function(){
-				var forecast = <%= @forecast.details.html_safe %>;
-				var $output = $("#forecast");
-				$.each(forecast, function(i, day){
-					if (i < 3) { 
-					var $day = $("<div class='day'></div>");
-					$day.append("<div class='forecast_title'>"+ day.title +"</div>")
-					$day.append("<div class='image'><img src='"+ day.image_url +"' /></div>");
-					$day.append("<div class='weather_summary'>"+ day.weather_summary +"</div>");
-					$day.append("<div class='high'>" + day.high + "</div>");
-					$day.append("<div class='low'>" + day.low + "</div>");
-					$output.append($day);
-					}
-				});
-				$output.append("<p class='more'><a href='http://forecast.weather.gov/MapClick.php?textField1="+ <%= @forecast.lat %> +"&textField2="+ <%= @forecast.lng %> +"' target='_blank'><img src='/images/magnifier.png' /> View more detail on weather.gov</a></p><div class='clearer'></div>");
-			})</script>
+			<% @forecast.details[0..2].each do |day| %>
+				<div class="day">
+					<div class="forecast_title"><%= day["title"] %></div>
+					<div class="image"><%= image_tag day["image_url"] %></div>
+					<div class="weather_summary"><%= day["weather_summary"] %></div>
+					<div class="high"><%= day["high"] %></div>
+					<% unless day["low"].blank? %>
+					<div class="low"><%= day["low"] %></div>
+					<% end %>
+				</div>
+			<% end %>
+			
+			<div class="clearer"></div>
 		</div>
 	
 	
