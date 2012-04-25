@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413184918) do
+ActiveRecord::Schema.define(:version => 20120425030143) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -37,28 +37,34 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
     t.integer  "user_id"
     t.integer  "trip_id"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "forecasts", :force => true do |t|
     t.float    "lat"
     t.float    "lng"
     t.text     "details"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.string   "title"
   end
 
-# Could not dump table "gpxes" because of following StandardError
-#   Unknown type 'geometry' for column 'track'
+  create_table "gpxes", :force => true do |t|
+    t.integer  "hike_id"
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "hearts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "trip_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "map_layers", :force => true do |t|
@@ -80,6 +86,15 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "to"
+    t.integer  "from"
+    t.text     "body"
+    t.string   "subject"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
     t.string   "content_type"
@@ -87,8 +102,8 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
     t.string   "creator_type"
     t.integer  "creator_id"
     t.string   "uri"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -108,8 +123,8 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
     t.string   "camera_exposure"
     t.float    "camera_f_stop"
     t.integer  "camera_iso"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.boolean  "stats_added",        :default => false
   end
 
@@ -119,8 +134,12 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
 # Could not dump table "routes" because of following StandardError
 #   Unknown type 'geometry' for column 'the_geom'
 
-# Could not dump table "shapes" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
+  create_table "shapes", :force => true do |t|
+    t.integer  "layer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "routes_id"
+  end
 
   create_table "tracks", :force => true do |t|
     t.string   "uri"
@@ -129,8 +148,8 @@ ActiveRecord::Schema.define(:version => 20120413184918) do
     t.integer  "zoom"
     t.string   "map_type"
     t.text     "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "trips", :force => true do |t|
