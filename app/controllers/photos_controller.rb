@@ -3,15 +3,16 @@ class PhotosController < ApplicationController
 		@photos = Photo.all
 	end
 	def create
-		@trip = Trip.find(params[:hike_id])
+		@trip = Trip.find(params[:trip_id])
 		@user = @trip.user
 		redirect_to :back if @user.id != current_user.id
-		
+
 		@photo = @trip.photos.build(params[:photo])
 		if @photo.save
-			redirect_to user_hike_path(@user, @trip), :notice => "Added photo."
+			redirect_to user_trip_path(@user, @trip), :notice => "Added photo."
 		else
-			render :file => "trips/show", :layout => "application"
+      flash[:error] = @photo.errors.full_messages.to_s
+      redirect_to user_trip_path(@user, @trip)
 		end
 	end
 	def destroy

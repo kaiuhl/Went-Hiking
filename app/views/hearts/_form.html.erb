@@ -6,7 +6,7 @@
 			<%= image_tag("heart.png", :alt => "Unheart this trip") %>
 		<% end %>
 	<% else %>
-		<%= form_for [trip, heart], :url => hike_hearts_path(trip), :remote => true do |f| %>
+		<%= form_for [trip, heart], :remote => true do |f| %>
 			<%= image_submit_tag "heart_bw.png", :title => "Heart this trip!" %>
 		<% end %>
 	<% end %>

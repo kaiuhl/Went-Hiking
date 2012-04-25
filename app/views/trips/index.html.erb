@@ -16,7 +16,7 @@
 
 <h2>
 	<%= @year %> Trips <%= " To Date" if DateTime.now.year == @year %>
-	<%= link_to(image_tag("rss.png", :alt => "Subscribe via RSS"), user_hikes_path(@user, :rss)) %>
+	<%= link_to(image_tag("rss.png", :alt => "Subscribe via RSS"), user_trips_path(@user, :rss)) %>
 </h2>
 <%= render @trips, :include_name => false %>
 
@@ -24,7 +24,7 @@
 <p>
 	View trips from:
 	<% @other_years_trips.each do |year| %>
-		<%= link_to(year, user_hikes_path(@user, :year => year), :class => "super awesome large button") %>
+		<%= link_to(year, user_trips_path(@user, :year => year), :class => "super awesome large button") %>
 	<% end %>
 </p>
 <% end %>
@@ -54,6 +54,6 @@ $(document).ready(function(){
 	<% if current_user.try(:id) != params[:user_id].to_i %>
 		<h2><%= @user.name %> hasn't added any trips yet!</h2>
 	<% else %>
-		<h2>You haven't added any trips yet! <%= link_to "Add a trip!", new_user_hike_path(@user) %></h2>
+		<h2>You haven't added any trips yet! <%= link_to "Add a trip!", new_user_trip_path(@user) %></h2>
 	<% end %>
 <% end %>

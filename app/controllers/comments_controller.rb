@@ -1,17 +1,17 @@
 class CommentsController < ApplicationController
 	before_filter :authorize
-		
+
 	def index
 		@comments = Comment.where(:user_id => current_user.id)
 	end
-	
+
   def create
 		@comment = Comment.new(params[:comment])
 		@trip = @comment.trip
 		@author = @comment.user
 		if @comment.save
 			WebsiteMailer.comment_posted(@comment).deliver if @trip.user.notify_on_comment && (@trip.user.id != @author.id)
-			
+
 			@replies = @trip.comments.map{ |c| c.user }.uniq
 			@replies.each do |previous_poster|
 			begin
@@ -25,23 +25,23 @@ class CommentsController < ApplicationController
 			rescue
 			end
 			end
-			
-			redirect_to user_hike_path(@comment.trip.user, @comment.trip) + "#comments"
+
+			redirect_to user_trip_path(@comment.trip.user, @comment.trip) + "#comments"
 		end
   end
-	
+
 	def edit
 		@comment = Comment.find(params[:id])
 		@trip = @comment.trip
 		redirect_to :back unless current_user.id == @comment.user_id
 	end
-	
+
 	def update
 		@comment = Comment.find(params[:id])
 		@trip = @comment.trip
 		redirect_to :back unless current_user.id == @comment.user_id
 		if @comment.update_attributes(params[:comment])
-			redirect_to "#{user_hike_path(@trip.user, @trip)}#comment_#{@comment.id}"
+			redirect_to "#{user_trip_path(@trip.user, @trip)}#comment_#{@comment.id}"
 		else
 			render :action => "edit"
 		end

@@ -2,12 +2,12 @@
 	<%= render :partial => "hearts/form", :locals => { :trip => trip } %>
 	<div class="column dominant">
 		<h2>
-			<%= link_to trip.name, user_hike_path(trip.user, trip) %>
-			<%= link_to(image_tag("edit.png"), edit_user_hike_path(trip.user,trip)) if personal_current_user %>
+			<%= link_to trip.name, user_trip_path(trip.user, trip) %>
+			<%= link_to(image_tag("edit.png"), edit_user_trip_path(trip.user,trip)) if personal_current_user %>
 		</h2>
 		<% unless include_name.blank? %>
 		<h3 class="includes-photo">
-			<div class="profile-photo"><a href="<%= user_hikes_path(trip.user) %>" class="micro-profile-photo">
+			<div class="profile-photo"><a href="<%= user_trips_path(trip.user) %>" class="micro-profile-photo">
 				<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
 			</a></div>
 			<%= trip.user.name %> Went

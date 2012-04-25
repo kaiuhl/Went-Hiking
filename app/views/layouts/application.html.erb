@@ -20,8 +20,8 @@
 			<% @user_session = UserSession.new %>
 			<%= render "user_sessions/popup" %>
 		<% else %>
-			<%= link_to "Add trip", new_user_hike_path(current_user), :id => "add_link" %>
-			<%= link_to "Profile", user_hikes_path(current_user), :id => "profile_link" %>
+			<%= link_to "Add trip", new_user_trip_path(current_user), :id => "add_link" %>
+			<%= link_to "Profile", user_trips_path(current_user), :id => "profile_link" %>
 			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
 			<%= link_to "Forecasts", user_forecasts_path(current_user), :id => "forecasts_link" %>
 			<%= link_to "Map", map_path, :id => "map_link" %>

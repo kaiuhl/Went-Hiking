@@ -11,10 +11,10 @@ HikingStats::Application.routes.draw do
 
   resources :user_sessions
   resources :users do
-		resources :hikes, controller: 'trips'
+		resources :hikes, controller: 'trips', as: 'trips'
 		resources :forecasts
 	end
-  resources :hikes, controller: 'trips' do
+  resources :hikes, as: 'trips', controller: 'trips' do
 		resources :comments
 		resources :photos
 		resources :hearts

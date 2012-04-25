@@ -11,7 +11,7 @@
 
 <% content_for :head do %>
 <script type="text/javascript">
-$(document).ready(function(){	
+$(document).ready(function(){
 	beef.defaults.zoom 			= 4;
 	beef.defaults.lat			= 45;
 	beef.defaults.lng			= -105;
@@ -19,15 +19,15 @@ $(document).ready(function(){
 	beef.defaults.scrollwheel 	= false;
 	beef.load();
 	topo();
-	
+
 	// Load all the markers
-	beef.markers.populate(<%= @trips[0..100].map { |trip| { 
-		:id 			=> trip.id, 
+	beef.markers.populate(<%= @trips[0..100].map { |trip| {
+		:id 			=> trip.id,
 		:lat 			=> trip.lat,
 		:lng			=> trip.lng,
-		:info			=> "<p>#{link_to(trip.name, user_hike_path(trip.user, trip))}</p>
+		:info			=> "<p>#{link_to(trip.name, user_trip_path(trip.user, trip))}</p>
 							<p>Tripd #{trip.hiked_at.strftime('%D')} by
-							#{link_to(trip.user.name, user_hikes_path(trip.user))}</p>"
+							#{link_to(trip.user.name, user_trips_path(trip.user))}</p>"
 	} }.to_json.html_safe %>);
 });
 </script>
@@ -55,7 +55,7 @@ $(document).ready(function(){
 		</tr>
 		<% @top_mileage.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
-			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_trips_path(user) %></td>
 			<td><%= user.ytd_mileage %> total miles</td>
 		</tr>
 		<% end %>
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		You are #<%= @users.reject{|a| a.ytd_mileage.blank? }.sort{|a,b| b.ytd_mileage <=> a.ytd_mileage }.index(current_user) + 1 %> for the year
 	</p>
 	<% end %>
-	
+
 	<h2>Most Uphill in <%= DateTime.now.year %></h2>
 	<table>
 		<tr>
@@ -74,7 +74,7 @@ $(document).ready(function(){
 		</tr>
 		<% @top_elevation.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
-			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_trips_path(user) %></td>
 			<td><%= number_with_precision(user.ytd_elevation, :significant => true, :delimiter => ',') %>'</td>
 		</tr>
 		<% end %>
@@ -84,8 +84,8 @@ $(document).ready(function(){
 		You are #<%= @users.reject{|a| a.ytd_elevation.blank? }.sort{|a,b| b.ytd_elevation <=> a.ytd_elevation }.index(current_user) + 1 %> for the year
 	</p>
 	<% end %>
-	
-	
+
+
 	<h2>Most Uphill Per Mile in <%= DateTime.now.year %></h2>
 	<table>
 		<tr>
@@ -94,13 +94,13 @@ $(document).ready(function(){
 		</tr>
 		<% @top_elevation_per_mile.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
-			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_trips_path(user) %></td>
 			<td><%= number_with_precision(user.ytd_elevation / user.ytd_mileage, :significant => true, :delimiter => ',') %>' per mile</td>
 		</tr>
 		<% end %>
 	</table>
 	<p class="table-note">* only displays users that have hiked over 50 miles</p>
-	
+
 	<h2>Most Nights in <%= DateTime.now.year %></h2>
 	<table>
 		<tr>
@@ -109,7 +109,7 @@ $(document).ready(function(){
 		</tr>
 		<% @top_nights.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
-			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_trips_path(user) %></td>
 			<td><%= user.ytd_nights %></td>
 		</tr>
 		<% end %>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 		You are #<%= @users.reject{|a| a.ytd_nights.blank? }.sort{|a,b| b.ytd_nights <=> a.ytd_nights }.index(current_user) + 1 %> for the year
 	</p>
 	<% end %>
-	
+
 	<h2>Newest Members</h2>
 	<table>
 		<tr>
@@ -128,7 +128,7 @@ $(document).ready(function(){
 		</tr>
 		<% @newest_members.each do |user| %>
 		<tr <%= "class='me'" if current_user.try(:id) == user.id %>>
-			<td><%= image_tag('star.png') %> <%= link_to user.name, user_hikes_path(user) %></td>
+			<td><%= image_tag('star.png') %> <%= link_to user.name, user_trips_path(user) %></td>
 			<td><%= time_ago_in_words(user.created_at) %> ago</td>
 		</tr>
 		<% end %>

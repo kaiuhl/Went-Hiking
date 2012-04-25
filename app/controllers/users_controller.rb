@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "#{@user.name} successfully added and emailed."
       WebsiteMailer.welcome_email(params[:user][:password], @user, current_user).deliver
-      redirect_to user_hikes_path(@user)
+      redirect_to user_trips_path(@user)
     else
       render :action => 'new', :layout => "small"
     end
