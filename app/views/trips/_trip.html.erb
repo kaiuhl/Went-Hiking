@@ -18,6 +18,7 @@
 			<% end %>
 		</h3>
 		<% end %>
+    <%= render partial: "metadata", locals: { trip: trip } %>
 		<%= markdown(trip.report) %>
 		<p>
 			<%= comments_and_likes(trip) %>
@@ -32,12 +33,7 @@
 				<%= trip.hiked_at.strftime("%B %e, %Y") %>
 			<% end %>
 		</h3>
-		<%= image_tag(static_map(trip.lat, trip.lng)) %>
-		<ul class="meta">
-			<li><%= trip.mileage % 1 == 0 ? trip.mileage.to_i : trip.mileage  %> miles of hiking</li>
-			<li><%= trip.elevation %>' elevation gain</li>
-			<%= "<li>#{trip.nights} #{trip.nights == 1 ? 'night' : 'nights'}</li>".html_safe if trip.nights > 0 %>
-		</ul>
+		<%= image_tag(static_map(trip.lat, trip.lng, "254x125", 4)) %>
 		<% unless trip.photos.blank? %>
 		<div class="photo_box">
 			<%= render :partial => 'photo', :collection => trip.photos, :locals => { :size => :thumbnail } %>

@@ -33,12 +33,6 @@ $(document).ready(function(){
 </script>
 <% end %>
 
-<% if current_user.blank? %>
-	<p class="lede">Not a member yet? <%= link_to "Sign up now", new_user_path %> to start tracking your trips!</p>
-<% else %>
-
-<% end %>
-
 <div class="column">
 	<h2>Popular &amp; Recent Trips</h2>
 	<% @trips[0..25].each do |trip| %>

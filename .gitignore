@@ -5,3 +5,5 @@ tmp/
 public/system/
 config/database.yml
 .DS_Store
+*.swp
+.sass-cache/

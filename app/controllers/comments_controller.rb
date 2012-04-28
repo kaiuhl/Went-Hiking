@@ -7,25 +7,7 @@ class CommentsController < ApplicationController
 
   def create
 		@comment = Comment.new(params[:comment])
-		@trip = @comment.trip
-		@author = @comment.user
 		if @comment.save
-			WebsiteMailer.comment_posted(@comment).deliver if @trip.user.notify_on_comment && (@trip.user.id != @author.id)
-
-			@replies = @trip.comments.map{ |c| c.user }.uniq
-			@replies.each do |previous_poster|
-			begin
-				if previous_poster.id != @author.id # don't email if the current poster is also a previous one
-				if previous_poster.id != @trip.user.id # don't email if the current poster is the trip poster
-				if previous_poster.notify_on_comment # make sure notifications are on
-					WebsiteMailer.deliver_reply_posted(@comment, previous_poster)
-				end
-				end
-				end
-			rescue
-			end
-			end
-
 			redirect_to user_trip_path(@comment.trip.user, @comment.trip) + "#comments"
 		end
   end

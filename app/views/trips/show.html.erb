@@ -51,11 +51,8 @@ $(document).ready(function(){
 
 <div class="column dominant">
 	<div class="box">
-	<%= render :partial => "hearts/form", :locals => { :trip => @trip } if current_user %>
-	<p style="color:#999"><%= @trip.mileage % 1 == 0 ? @trip.mileage.to_i : @trip.mileage  %> miles of hiking &bull;
-	<%= @trip.elevation %>' elevation gain
-	<%= "&bull; #{pluralize(@trip.nights, "night") if @trip.nights > 0}".html_safe %>
-	</p>
+	<%= render :partial => "hearts/form", locals: { trip: @trip } if current_user %>
+  <%= render :partial => 'metadata', locals: { trip: @trip }  %>
 	<% if @trip.report.blank? %>
 		<% if personal_current_user %>
 			<%= semantic_form_for([@user, @trip]) do |f| %>

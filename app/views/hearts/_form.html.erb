@@ -2,7 +2,7 @@
 <% if current_user %>
 	<% heart = Heart.personal(trip, current_user) %>
 	<% if heart.persisted? %>
-		<%= link_to hike_heart_path(trip,heart), :method => :delete, :remote => true do %>
+		<%= link_to trip_heart_path(trip,heart), :method => :delete, :remote => true do %>
 			<%= image_tag("heart.png", :alt => "Unheart this trip") %>
 		<% end %>
 	<% else %>

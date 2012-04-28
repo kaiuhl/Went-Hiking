@@ -19,6 +19,7 @@ gem 'activerecord-mysql2spatial-adapter'
 gem 'dynamic_form'
 gem 'pretty_param'
 gem 'bourbon'
+gem 'delayed_job_active_record'
 
 group :assets do
 	gem 'execjs'
