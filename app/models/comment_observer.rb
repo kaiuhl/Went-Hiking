@@ -9,5 +9,8 @@ class CommentObserver < ActiveRecord::Observer
     # Send owner of hike an email and notification
     WebsiteMailer.comment_posted(comment).deliver if trip.user.notify_on_comment && (trip.user.id != author.id)
     trip.user.notifications.send!(comment, author, user_trip_path(trip.user, trip))
+
+    # Send previous commenters in the thread a notification only
+    previous_posts.each {|user| user.notifications.send!(comment, author, user_trip_path(trip.user, trip)) }
   end
 end
