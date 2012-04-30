@@ -2,17 +2,17 @@
 
 <%= content_for :header do %>
 <p class="breadcrumbs">
-	<%= link_to "&laquo; Back to all of  #{@user.name}&rsquo;s trips".html_safe, user_hikes_path(@user)  %>
+	<%= link_to "&laquo; Back to all of  #{@user.name}&rsquo;s trips".html_safe, user_trips_path(@user)  %>
 </p>
 <h1>
 	<%= @trip.name %>
-	<%= link_to(image_tag("edit.png"), edit_user_hike_path(@user,@trip)) if personal_current_user %>
+	<%= link_to(image_tag("edit.png"), edit_user_trip_path(@user,@trip)) if personal_current_user %>
 </h1>
 <h2>
 	<%=h @user.name %> Went
 	<% if @trip.nights > 0 %>
-		Backpacking from 
-		<%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}") %> to 
+		Backpacking from
+		<%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}") %> to
 		<%= (@trip.hiked_at + @trip.nights.days).strftime("%A, %B #{(@trip.hiked_at + @trip.nights.days).day.ordinalize} %Y") %>
 	<% else %>
 		Hiking on <%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}, %Y") %>
@@ -28,8 +28,8 @@ $(document).ready(function(){
 	beef.defaults.doubleclick 	= true;
 	beef.defaults.scrollwheel 	= false;
 	beef.load();
-	beef.markers.populate(<%= [@trip].map { |trip| { 
-		:id 			=> trip.id, 
+	beef.markers.populate(<%= [@trip].map { |trip| {
+		:id 			=> trip.id,
 		:lat 			=> trip.lat,
 		:lng			=> trip.lng,
 		:info			=> trip.name
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	var zoomOut = function(){ map.setZoom(map.getZoom() -1); }
 	setTimeout(zoomOut, 200);
 	setTimeout(zoomOut, 450);
-	
+
 });
 </script>
 <% end %>
@@ -51,14 +51,11 @@ $(document).ready(function(){
 
 <div class="column dominant">
 	<div class="box">
-	<%= render :partial => "hearts/form", :locals => { :trip => @trip } if current_user %>
-	<p style="color:#999"><%= @trip.mileage % 1 == 0 ? @trip.mileage.to_i : @trip.mileage  %> miles of hiking &bull;
-	<%= @trip.elevation %>' elevation gain
-	<%= "&bull; #{pluralize(@trip.nights, "night") if @trip.nights > 0}".html_safe %>
-	</p>
+	<%= render :partial => "hearts/form", locals: { trip: @trip } if current_user %>
+  <%= render :partial => 'metadata', locals: { trip: @trip }  %>
 	<% if @trip.report.blank? %>
 		<% if personal_current_user %>
-			<%= semantic_form_for([@user, @trip], url: user_hike_path(@user, @trip)) do |f| %>
+			<%= semantic_form_for([@user, @trip]) do |f| %>
 				<h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
 				<p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
 				<%= f.text_area :report, :id => "trip_report" %><br />
@@ -77,20 +74,20 @@ $(document).ready(function(){
 	<% end  %>
 </div>
 <div class="column subordinant last">
-	
+
 	<div class="box photos">
 	<%= image_tag(static_map(@trip.lat, @trip.lng, "254x125", 4)) %>
-	<%= render :partial => 'photo', :collection => @trip.photos, :locals => { :size => :thumbnail } %>
+	<%= render :partial => 'trips/photo', :collection => @trip.photos, :locals => { :size => :thumbnail } %>
 	</div>
 
-	
-	<%= form_for([@trip, @trip.photos.build], :url => hike_photos_path(@trip), :html => {:multipart => true}) do |f| %>
+
+	<%= form_for([@trip, @trip.photos.build], :html => {:multipart => true}) do |f| %>
 	<div class="box">
 	<script src="/javascripts/jquery.fileupload.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script src="/javascripts/jquery.iframe-transport.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script type="text/javascript">
 	$(function(){
-		
+
 	});
 	</script>
 	<h2>Add photo</h2>
@@ -99,7 +96,7 @@ $(document).ready(function(){
 		<p><%= f.submit "Upload photo" %></p>
 	</div>
 	<% end if personal_current_user %>
-	
+
 	<% if personal_current_user %>
 	<div class="box">
 	<h2>Sharing</h2>
@@ -140,7 +137,7 @@ $(document).ready(function(){
 	<% else %>
 		<div class="box forecast" id="forecast">
 			<h3>Upcoming Forecast</h3>
-			
+
 			<% @forecast.details[0..2].each do |day| %>
 				<div class="day">
 					<div class="forecast_title"><%= day["title"] %></div>
@@ -152,22 +149,22 @@ $(document).ready(function(){
 					<% end %>
 				</div>
 			<% end %>
-			
+
 			<div class="clearer"></div>
 		</div>
-	
-	
+
+
 		<% unless @nearby_trips.blank? %>
 		<div class="box">
 			<h3>Nearby Trip Reports</h3>
 			<% @nearby_trips.each do |trip| %>
 			<div class="small_trip">
-				<div class="profile-photo"><a href="<%= user_hikes_path(trip.user) %>" class="micro-profile-photo">
+				<div class="profile-photo"><a href="<%= user_trips_path(trip.user) %>" class="micro-profile-photo">
 					<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
 				</a></div>
-				<p class="title"><%= link_to trip.name, user_hike_path(trip.user, trip) %></p>
+				<p class="title"><%= link_to trip.name, user_trip_path(trip.user, trip) %></p>
 				<p class="meta">
-					<b><%= link_to h(trip.user.name), user_hikes_path(trip.user) %></b> 
+					<b><%= link_to h(trip.user.name), user_trips_path(trip.user) %></b>
 					hiked this <%= trip.hiked_at.strftime("%D") %>
 				</p>
 			</div>

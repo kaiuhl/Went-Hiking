@@ -1,7 +1,7 @@
 <% page_title "Edit your trip" %>
 <h2>Edit this trip</h2>
 <%= render :partial => 'form' %><br /><br />
-<p>Make a mistake? You can also <%= link_to(image_tag("cancel.png") + " delete this entry.", user_hike_path(@user, @trip), :method => :delete, :confirm => "Are you CERTAIN you wish to delete this trip?") %></p>
+<p>Make a mistake? You can also <%= link_to(image_tag("cancel.png") + " delete this entry.", user_trip_path(@user, @trip), :method => :delete, :confirm => "Are you CERTAIN you wish to delete this trip?") %></p>
 <script type="text/javascript">
 $(document).ready(function(){
 	beef.placeMarker({latLng: new google.maps.LatLng(<%= @trip.lat %>, <%= @trip.lng %>)})

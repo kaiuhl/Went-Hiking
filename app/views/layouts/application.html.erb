@@ -16,12 +16,14 @@
 		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path, :id => "logo") %>
 		<div class="nav">
 		<% if current_user.blank? %>
-			<%= link_to image_tag('star.png') + " Log in", login_path, :id => "login", :onclick => "$('#login_form').fadeToggle(75);$('#user_session_email').focus();return false" %>
+			<%= link_to "Map", map_path, :id => "map_link" %>
+      <%= link_to "Join the community", new_user_path, :id => "add_link" %>
+			<%= link_to "Log in", login_path, :id => "profile_link", :onclick => "$('#login_form').fadeToggle(75);$('#user_session_email').focus();return false" %>
 			<% @user_session = UserSession.new %>
 			<%= render "user_sessions/popup" %>
 		<% else %>
-			<%= link_to "Add trip", new_user_hike_path(current_user), :id => "add_link" %>
-			<%= link_to "Profile", user_hikes_path(current_user), :id => "profile_link" %>
+			<%= link_to "Add trip", new_user_trip_path(current_user), :id => "add_link" %>
+			<%= link_to "Profile", user_trips_path(current_user), :id => "profile_link" %>
 			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
 			<%= link_to "Forecasts", user_forecasts_path(current_user), :id => "forecasts_link" %>
 			<%= link_to "Map", map_path, :id => "map_link" %>
@@ -40,7 +42,7 @@
 			<div class="container">
 				<%= yield :header %>
 			<div class="clearer"></div>
-			</div>	
+			</div>
 			</div>
 			<% end %>
 	<%= yield :map %>
@@ -58,9 +60,9 @@
 		<div class="column">
 			<p>
 				<iframe src="http://www.facebook.com/plugins/like.php?app_id=151577808250088&amp;href=http%3A%2F%2Fwenthiking.com&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px; display:inline-block" allowTransparency="true"></iframe>
-				<g:plusone size="medium" href="http://wenthiking.com"></g:plusone>				
+				<g:plusone size="medium" href="http://wenthiking.com"></g:plusone>
 			</p>
-			
+
 			<p>Went Hiking &copy; 2010. All rights reserved. All photos &copy; their respective owners. Photos may not be used or modified without express written consent of the author.<br /> <%= link_to "About", "/about" %> | <%= link_to "Privacy Policy", "/privacy_policy" %></p>
 		</div>
 		<div class="column last">

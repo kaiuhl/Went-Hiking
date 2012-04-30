@@ -11,7 +11,7 @@ class HeartsController < ApplicationController
   end
 
   def destroy
-		@heart = Trip.find_by_user_id_and_trip_id(current_user.id, params[:trip_id])
+		@heart = Heart.find_by_user_id_and_trip_id(current_user.id, params[:trip_id])
 		@trip = @heart.trip
 		@hearts = @trip.hearts
 		@heart.destroy
