@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430051631) do
+ActiveRecord::Schema.define(:version => 20120430165444) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20120430051631) do
     t.datetime "updated_at"
     t.string   "subject_type"
     t.integer  "subject_id"
+    t.datetime "read_at"
   end
 
   create_table "photos", :force => true do |t|

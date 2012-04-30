@@ -19,11 +19,24 @@ div.notifications {margin-top:$unit}
 div.notification {
   padding:$unit $unit $unit $unit*2;
   border-bottom:1px solid #ccc;
+  cursor:pointer;
+
   &.hearts {
     background: transparent image-url('heart.png') no-repeat 5px center;
   }
   &.comments {
     background: transparent image-url('comment.png') no-repeat 5px center;
+  }
+  &:hover {
+    background-color:#fffec6;
+  }
+  &[data-read-at] {
+    color: #999;
+    a { color: #999 }
+  }
+
+  .read-notification-link {
+    display:none
   }
 }
 .container div.notification:first-child {

@@ -3,11 +3,12 @@ class Notification < ActiveRecord::Base
 	belongs_to :creator, :polymorphic => true
 	belongs_to :subject, :polymorphic => true
 
-  default_scope order("created_at DESC")
+  default_scope -> { order("created_at DESC") }
+  scope :unread, -> { where(read_at: nil) }
 
   def self.send!(content, creator, subject, url)
     create! do |notification|
-      notification.content_type = content.class.to_chema
+      notification.content_type = content.class.to_s
       notification.content_id = content.id
       notification.creator_type = creator.class.to_s
       notification.creator_id = creator.id

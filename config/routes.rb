@@ -14,7 +14,7 @@ HikingStats::Application.routes.draw do
 		resources :hikes, controller: 'trips', as: 'trips'
 		resources :forecasts
     resources :notifications
-	end
+  end
   resources :hikes, as: 'trips', controller: 'trips' do
 		resources :comments
 		resources :photos
@@ -25,7 +25,10 @@ HikingStats::Application.routes.draw do
   resources :photos
   resources :forecasts
   resources :comments
-  resources :notifications
+  resources :notifications do
+    get 'read', on: :member
+  end
+
 
 	# legacy route support
 	match '/with(/*path)' => redirect{|params| "/users/#{params[:path]}".chomp("/") }
