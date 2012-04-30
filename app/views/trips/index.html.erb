@@ -7,11 +7,12 @@
 	<h1><%= "In #{@year}," unless @year.blank? %>
 	<%= @year == DateTime.now.year ? "#{@user.name} has taken" : "#{@user.name} went on" %> 
 	<%= "#{pluralize @trips.length, "trip"}, hiked a total of #{number_with_precision(@trips.map(&:mileage).sum, :significant => true, :delimiter => ',')} miles, #{'and' if @trips.map(&:nights).sum == 0} climbed #{number_with_precision(@trips.map(&:elevation).sum, :significant => true, :delimiter => ',')} feet" %><%= @trips.map(&:nights).sum > 0 ? ", and spent #{pluralize @trips.map(&:nights).sum, "night"} under the stars.</a></h1>".html_safe : ".</h1>".html_safe %>
+	<%= render 'send_a_message' %>
 <% end %>
 
 <% content_for :before_header do %>
 <div id="map" style="height:150px;z-index:0;position:relative;top:-10px;border-bottom:1px solid black"></div>
-<%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>
+<%= image_tag("zoom.png", :title => "scale the map", :onclick => "beef.toggleMapSize(150)", :id => "resize") %>f
 <% end %>
 
 <h2>
@@ -53,6 +54,7 @@ $(document).ready(function(){
 <% else %>
 	<% if current_user.try(:id) != params[:user_id].to_i %>
 		<h2><%= @user.name %> hasn't added any trips yet!</h2>
+		<%= render 'send_a_message' %>
 	<% else %>
 		<h2>You haven't added any trips yet! <%= link_to "Add a trip!", new_user_trip_path(@user) %></h2>
 	<% end %>

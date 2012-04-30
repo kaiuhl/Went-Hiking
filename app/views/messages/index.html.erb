@@ -1,0 +1,27 @@
+<h1>Inbox</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+	<th>Sent</th>
+    <th>Subject</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+	  <tr>
+		<td><%= find_author_name message.author_id  %></td>
+		<td><%= time_ago_in_words(message.created_at) %>
+		<td><%= message.subject %></td>
+	    <td><%= link_to 'View', message %></td>
+	    <td><%= link_to 'Edit', edit_message_path(message) %></td>
+	    <td><%= link_to 'Delete', message, confirm: 'Are you sure?', method: :delete %></td>
+	  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message', new_message_path %>

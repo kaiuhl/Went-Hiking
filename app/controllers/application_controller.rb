@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :personal_current_user, :admin?
+  helper_method :current_user, :personal_current_user, :admin?, :unread_mail?
 
   private
 
@@ -33,4 +33,13 @@ class ApplicationController < ActionController::Base
 	def authorize_admin
 		redirect_to login_path unless admin? 
 	end
+  
+  def unread_mail?
+    unless @messages.nil?
+      @messages.each do |message|
+        return true unless message.read
+      end
+    end
+    return false
+  end
 end

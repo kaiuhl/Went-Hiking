@@ -1,4 +1,6 @@
 HikingStats::Application.routes.draw do
+  resources :messages
+
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'reset_password' => 'users#password', :as => :password
