@@ -11,12 +11,12 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :from %><br />
-    <%= f.number_field :from %>
+    <%= f.label :author_id %><br />
+    <%= f.number_field :author_id %>
   </div>
   <div class="field">
-    <%= f.label :to %><br />
-    <%= f.number_field :to %>
+    <%= f.label :recipient_id %><br />
+    <%= f.number_field :recipient_id %>
   </div>
   <div class="field">
     <%= f.label :subject %><br />
@@ -25,6 +25,10 @@
   <div class="field">
     <%= f.label :body %><br />
     <%= f.text_area :body %>
+  </div>
+  <div class="field">
+  	<%= f.label :read %><br />
+	<%= f.select :read, ["Yes", "No" ] %>
   </div>
   <div class="actions">
     <%= f.submit %>

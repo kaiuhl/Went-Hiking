@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	has_many :hearts
 	has_many :comments
 	has_many :forecasts
+  has_many :messages, foreign_key: "recipient_id"
 	
 	has_pretty_param :name
 	

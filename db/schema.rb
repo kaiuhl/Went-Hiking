@@ -87,12 +87,13 @@ ActiveRecord::Schema.define(:version => 20120425030143) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "to"
-    t.integer  "from"
+    t.integer  "recipient_id"
+    t.integer  "author_id"
     t.text     "body"
     t.string   "subject"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "read"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "notifications", :force => true do |t|
