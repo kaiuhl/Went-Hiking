@@ -9,6 +9,7 @@
 @import "fonts";
 @import "forms";
 @import "navigation";
+@import "notifications";
 @import "table";
 @import "typography";
 @import "styles";
@@ -18,7 +19,7 @@
 	margin-bottom:$unit;
 	border-top:1px solid black;
 	border-bottom:1px solid black;
-	
+
 	&.error {
 		border-color:$error_color;
 		color:$error_color;

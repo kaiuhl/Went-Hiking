@@ -13,25 +13,26 @@
 <body>
 	<div id="navigation">
 	<div class="container">
-		<%= link_to(image_tag("went_hiking.png", :alt => "Went Hiking"), root_path, :id => "logo") %>
+		<%= link_to(image_tag("went_hiking.png", alt: "Went Hiking"), root_path, id: "logo") %>
 		<div class="nav">
 		<% if current_user.blank? %>
-			<%= link_to "Map", map_path, :id => "map_link" %>
-      <%= link_to "Join the community", new_user_path, :id => "add_link" %>
-			<%= link_to "Log in", login_path, :id => "profile_link", :onclick => "$('#login_form').fadeToggle(75);$('#user_session_email').focus();return false" %>
+			<%= link_to "Map", map_path, id: "map_link" %>
+      <%= link_to "Join the community", new_user_path, id: "add_link" %>
+			<%= link_to "Log in", login_path, id: "profile_link", onclick: "$('#login_form').fadeToggle(75);$('#user_session_email').focus();return false" %>
 			<% @user_session = UserSession.new %>
 			<%= render "user_sessions/popup" %>
 		<% else %>
-			<%= link_to "Add trip", new_user_trip_path(current_user), :id => "add_link" %>
-			<%= link_to "Profile", user_trips_path(current_user), :id => "profile_link" %>
-			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
-			<%= link_to "Forecasts", user_forecasts_path(current_user), :id => "forecasts_link" %>
-			<%= link_to "Map", map_path, :id => "map_link" %>
-			<%= link_to "Log out", logout_path, :id => "logout_link" %>
+			<%= link_to "Add trip", new_user_trip_path(current_user), id: "add_link" %>
+			<%= link_to "Profile", user_trips_path(current_user), id: "profile_link" %>
+			<%= link_to "Settings", edit_user_path(current_user), id: "settings_link" %>
+			<%= link_to "Forecasts", user_forecasts_path(current_user), id: "forecasts_link" %>
+			<%= link_to "Map", map_path, id: "map_link" %>
+      <%= link_to current_user.notifications.size, user_notifications_path(current_user), id: "notifications_badge" %>
+			<%= link_to "Log out", logout_path, id: "logout_link" %>
 		<% end %>
-		<%= form_tag "/search", :method => :get, :id => "search" do %>
-			<%= text_field_tag :q, nil, :placeholder => "Search…" %>
-			<%= image_submit_tag "magnifier.png", :id => "search_link" %>
+		<%= form_tag "/search", method: :get, id: "search" do %>
+			<%= text_field_tag :q, nil, placeholder: "Search…" %>
+			<%= image_submit_tag "magnifier.png", id: "search_link" %>
 		<% end %>
 		</div>
 	</div>

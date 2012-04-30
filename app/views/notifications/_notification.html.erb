@@ -1,0 +1,12 @@
+<% unless notification.content.blank? -%>
+<%= div_for notification, class: notification.content.class.to_s.downcase.pluralize do %>
+  <%= link_to notification.creator.name, user_trips_path(notification.creator) %>
+  <% if notification.content.class == Heart -%>
+    hearted
+  <% elsif notification.content.class == Comment -%>
+    commented on
+  <% end -%>
+  <%= link_to "your hike", notification.uri %>
+  <%= time_ago_in_words notification.created_at %> ago
+<% end -%>
+<% end -%>

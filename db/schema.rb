@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428211232) do
+ActiveRecord::Schema.define(:version => 20120430051631) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20120428211232) do
     t.string   "uri"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subject_type"
+    t.integer  "subject_id"
   end
 
   create_table "photos", :force => true do |t|

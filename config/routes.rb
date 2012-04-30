@@ -13,6 +13,7 @@ HikingStats::Application.routes.draw do
   resources :users do
 		resources :hikes, controller: 'trips', as: 'trips'
 		resources :forecasts
+    resources :notifications
 	end
   resources :hikes, as: 'trips', controller: 'trips' do
 		resources :comments

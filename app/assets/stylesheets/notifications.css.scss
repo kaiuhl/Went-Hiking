@@ -1,0 +1,31 @@
+a#notifications_badge {
+  padding:5px 8px;
+  margin-left:10px;
+  background-color:#555;
+  display: inline-block;
+  @include border-radius(5px);
+  @include box-shadow;
+
+  &.new {
+    background-color: $error_color;
+    color:white;
+  }
+
+  &:hover, &:active {
+    background-color: $error_color
+  }
+}
+div.notifications {margin-top:$unit}
+div.notification {
+  padding:$unit $unit $unit $unit*2;
+  border-bottom:1px solid #ccc;
+  &.hearts {
+    background: transparent image-url('heart.png') no-repeat 5px center;
+  }
+  &.comments {
+    background: transparent image-url('comment.png') no-repeat 5px center;
+  }
+}
+.container div.notification:first-child {
+  border-top:1px solid #ccc;
+}
