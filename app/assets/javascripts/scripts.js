@@ -28,14 +28,15 @@ $(function(){
 	});
 	
 	geocoder = new google.maps.Geocoder();
-	$("#geolocate").keyup(function(e){
-		e.preventDefault();
+	$("#geolocate").keydown(function(e){
+		e.stopPropagation();
 		if(event.keyCode == 13){
-		$("#geolocate").select();	
-		geocoder.geocode({address: $("#geolocate").val()}, function(result){
-			map.fitBounds(result[0].geometry.viewport); 
-			map.setZoom(map.getZoom() -1);
-		});
+			$("#geolocate").select();	
+			geocoder.geocode({address: $("#geolocate").val()}, function(result){
+				map.fitBounds(result[0].geometry.viewport); 
+				map.setZoom(map.getZoom() -1);
+			});
+			e.preventDefault();
 		}
 	});
 	

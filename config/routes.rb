@@ -13,10 +13,11 @@ HikingStats::Application.routes.draw do
 
   resources :user_sessions
   resources :users do
-		resources :hikes, controller: 'trips'
+		resources :hikes, controller: 'trips', as: 'trips'
 		resources :forecasts
-	end
-  resources :hikes, controller: 'trips' do
+    resources :notifications
+  end
+  resources :hikes, as: 'trips', controller: 'trips' do
 		resources :comments
 		resources :photos
 		resources :hearts
@@ -26,7 +27,10 @@ HikingStats::Application.routes.draw do
   resources :photos
   resources :forecasts
   resources :comments
-  resources :notifications
+  resources :notifications do
+    get 'read', on: :member
+  end
+
 
 	# legacy route support
 	match '/with(/*path)' => redirect{|params| "/users/#{params[:path]}".chomp("/") }

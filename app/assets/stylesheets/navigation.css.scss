@@ -30,8 +30,7 @@
 	padding-left:$unit*2;
 	opacity:0.8;
 	color:#aaa;
-	-webkit-transition: opacity 0.2s linear;
-	-webkit-transition: color 0.2s linear;
+	-webkit-transition: all 0.2s linear;
 	line-height:1;
 	text-transform:uppercase;
 }
@@ -52,7 +51,7 @@ a#forecasts_link:hover { background: image-url('icons/rainbow.png') no-repeat 10
 a#map_link { background: image-url('map_gray.png') no-repeat 10px center}
 a#map_link:hover { background: image-url('icons/map.png') no-repeat 10px center; color:#DDDCA7}
 
-a#logout_link { padding-left:20px }
+a#logout_link { padding-left:10px }
 a#logout_link:hover { color:#BC3C4D }
 
 #search { display:inline; padding-left:40px; margin:0}

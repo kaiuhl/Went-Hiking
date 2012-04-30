@@ -14,11 +14,6 @@ $notice_color: #356729;
 	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-@mixin border-radius {
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
-}
 @mixin condensed {
 	font-family:"helvetica-std-condensed", helvetica, arial, sans-serif;
 }

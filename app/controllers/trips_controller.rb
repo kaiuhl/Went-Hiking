@@ -43,7 +43,7 @@ class TripsController < ApplicationController
 	def create
 		@trip = Trip.new(params[:trip])
 		if @trip.save
-			redirect_to user_hike_path(@trip.user, @trip), :notice => "Added the trip!"
+			redirect_to user_trip_path(@trip.user, @trip), :notice => "Added the trip!"
 		else
 			render :action => "new"
 		end
@@ -55,7 +55,7 @@ class TripsController < ApplicationController
 	def update
 		@trip = Trip.find(params[:id])
 		if @trip.update_attributes(params[:trip])
-			redirect_to user_hike_path(@trip.user, @trip), :notice => "Updated the trip."
+			redirect_to user_trip_path(@trip.user, @trip), :notice => "Updated the trip."
 		else
 			render :action => "edit"
 		end	
@@ -64,6 +64,6 @@ class TripsController < ApplicationController
 		@trip = Trip.find(params[:id])
 		@user = @trip.user
 		@trip.destroy
-		redirect_to user_hikes_path(@user), :notice => "Deleted that trip, as requested."
+		redirect_to user_trips_path(@user), :notice => "Deleted that trip, as requested."
 	end
 end

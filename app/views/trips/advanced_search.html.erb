@@ -38,10 +38,10 @@
 	<%= @trips.each do |trip| %>
 	<%= cache "#{trip.cache_key}_home" do %>
 	<div class="trip">
-		<div class="profile-photo"><a href="<%= user_hikes_path(trip.user) %>" class="micro-profile-photo">
+		<div class="profile-photo"><a href="<%= user_trips_path(trip.user) %>" class="micro-profile-photo">
 			<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
 		</a></div>
-		<p class="title"><%= link_to h(trip.name), user_hike_path(trip.user, trip) %></p>		
+		<p class="title"><%= link_to h(trip.name), user_trip_path(trip.user, trip) %></p>		
 		<p class="date">
 			<% if trip.nights > 0 %>
 				Backpacked <%= trip.hiked_at.strftime("%A, %B #{trip.hiked_at.day.ordinalize}") %> to 
@@ -53,13 +53,13 @@
 		<div class="report">
 			<%= markdown("#{trip.report[0..180]}&hellip;") unless trip.report.blank? %>
 			<p class="links">
-				<%= link_to("#{image_tag("page_white_text.png")} Read full report".html_safe, user_hike_path(trip.user, trip)) unless trip.report.blank? %>
-				<%= link_to("#{image_tag("comment.png")} #{trip.comments.length} comments".html_safe, "#{user_hike_path(trip.user, trip)}#comments") %>
+				<%= link_to("#{image_tag("page_white_text.png")} Read full report".html_safe, user_trip_path(trip.user, trip)) unless trip.report.blank? %>
+				<%= link_to("#{image_tag("comment.png")} #{trip.comments.length} comments".html_safe, "#{user_trip_path(trip.user, trip)}#comments") %>
 			</p>
 		</div>
 		<div class="photos"><%= render :partial => 'trips/photo', :collection => trip.photos, :locals => { :size => :micro } %></div>
 		<p class="meta">
-			<b><%= link_to h(trip.user.name), user_hikes_path(trip.user) %></b> 
+			<b><%= link_to h(trip.user.name), user_trips_path(trip.user) %></b> 
 			posted this <%= time_ago_in_words(trip.created_at) %> ago
 		</p>
 		

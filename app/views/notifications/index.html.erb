@@ -1,0 +1,10 @@
+<%= page_title "Your Notifications" %>
+
+<h1>Notifications</h1>
+<% if @notifications.blank? -%>
+  <p>You have no notifications yet!</p>
+<% else -%>
+<div class="notifications">
+  <%= render @notifications %>
+</div>
+<% end -%>

@@ -1,6 +1,6 @@
 <div id="hearted">
 <% unless @hearts.blank? %>
-	<%= @hearts.map{|h| link_to(h.user.try(:name), user_hikes_path(h.user)) }.to_sentence.html_safe %> 
+	<%= @hearts.map{|h| link_to(h.user.try(:name), user_trips_path(h.user)) }.to_sentence.html_safe %> 
 	<%= @hearts.size == 1 ? "hearts" : "heart" %> this trip.
 <% end %>
 </div>
