@@ -10,6 +10,7 @@ class HeartObserver < ActiveRecord::Observer
   end
 
   def before_destroy(heart)
-    Notification.find_by_content_id_and_creator_id_and_subject_id(heart, heart.user, heart.trip).destroy
+    notification = Notification.find_by_content_id_and_creator_id_and_subject_id(heart, heart.user, heart.trip)
+    notification.destroy unless notification.blank?
   end
 end
