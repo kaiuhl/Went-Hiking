@@ -1,15 +1,23 @@
 class MessagesController < ApplicationController
+  
+  helper_method :find_author_name
+  
+  def find_author_name(id)
+    u = User.find_by_id(id)
+    u.name rescue nil
+  end
+  
   # GET /messages
   # GET /messages.json
   def index
     @messages = current_user.messages
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @messages }
     end
   end
-
+  
   # GET /messages/1
   # GET /messages/1.json
   def show

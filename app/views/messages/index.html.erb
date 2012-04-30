@@ -2,10 +2,9 @@
 
 <table>
   <tr>
-    <th>To</th>
     <th>From</th>
+	<th>Sent</th>
     <th>Subject</th>
-		<th>body</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +12,9 @@
 
 <% @messages.each do |message| %>
 	  <tr>
-		  <td><%= message.recipient_id %></td>
-			<td><%= message.author_id %></td>
-		  <td><%= message.subject %></td>
-	    <td><%= message.body %></td>
+		<td><%= find_author_name message.author_id  %></td>
+		<td><%= time_ago_in_words(message.created_at) %>
+		<td><%= message.subject %></td>
 	    <td><%= link_to 'View', message %></td>
 	    <td><%= link_to 'Edit', edit_message_path(message) %></td>
 	    <td><%= link_to 'Delete', message, confirm: 'Are you sure?', method: :delete %></td>

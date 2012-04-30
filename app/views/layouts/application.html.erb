@@ -25,6 +25,11 @@
 			<%= link_to "Settings", edit_user_path(current_user), :id => "settings_link" %>
 			<%= link_to "Forecasts", user_forecasts_path(current_user), :id => "forecasts_link" %>
 			<%= link_to "Map", map_path, :id => "map_link" %>
+			<% if unread_mail? %>
+				<%= link_to "Inbox (new)", messages_path %>
+			<% else %>
+				<%= link_to "Inbox", messages_path %>
+			<% end %>
 			<%= link_to "Log out", logout_path, :id => "logout_link" %>
 		<% end %>
 		<%= form_tag "/search", :method => :get, :id => "search" do %>
