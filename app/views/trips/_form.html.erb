@@ -1,37 +1,39 @@
 <%= semantic_form_for([@user,@trip], :html => {:action => user_trip_path(@user, @trip)}) do |f| %>
-	<%= f.inputs do %>
-		<%= f.input :name, :label => "Name of your trip" %>
-		<%= f.input :hiked_at, :as => :date, :label => "When was it?", :include_blank => false, :order => [:month,:day,:year], :include_time => false %>
+  <%= f.inputs do %>
+    <%= f.input :name, :label => "Name of your trip" %>
+    <%= f.input :hiked_at, :as => :date, :label => "When was it?", :include_blank => false, :order => [:month,:day,:year], :include_time => false %>
 
-		<%= f.input :nights, :label => "Spend the night?", :as => :select, :collection => (0..100).to_a.map{|v| ["#{v} nights",v]}, :include_blank => false %>
-		<%= f.input :mileage, :label => "Rough mileage",  :as => :select, :collection => (1.0..3000).step(0.5).to_a.map{|v| ["#{v} miles",v]}, :include_blank => false %>
-		<%= f.input :elevation, :label => "Rough elevation",  :as => :select, :collection => (0..50000).step(250).to_a.map{|v| ["#{v} feet gained",v]}, :include_blank => false %>
-		<%= f.input :url, :label => "URL of reference website", :hint => "If you found the trip on a website, or know of a page that gives a good description of this trip, you can include it here." %>
-		<li class="map optional">
-			<label for="map">Locate your trip</label>
-			<div id="map" style="width:550px;height:400px;background-color:#eee;margin-left:200px"></div>
-			<p class="inline-hints"><input type="search" id="geolocate" placeholder="Search the map…" /></p>
-			<p class="inline-hints">Double click to mark the location</p>
-			<%= f.input :lat, :as => :hidden %>
-			<%= f.input :lng, :as => :hidden %>
-			<%= f.input :user_id, :as => :hidden %>
-		</li>
-		<%= f.input :report, :label => "Trip Report", :hint => "This field takes Markdown" %>
-	<% end %>
-	<%= f.actions do %>
-		<%= f.submit "Save the trip", :class => "super awesome large button" %>
-	<% end %>
+    <%= f.input :nights, :label => "Spend the night?", :as => :select, :collection => (0..100).to_a.map{|v| ["#{v} nights",v]}, :include_blank => false %>
+    <%= f.input :mileage, :label => "Rough mileage",  :as => :select, :collection => (1.0..3000).step(0.5).to_a.map{|v| ["#{v} miles",v]}, :include_blank => false,
+      hint: "<a href='#' class='precision_mileage_toggle'>Want to be more precise?</a>".html_safe, wrapper_html: { id: "rough_mileage" } %>
+    <%= f.input :mileage, label: "Exact mileage", wrapper_html: { style: "display:none", id: "exact_mileage"} %>
+    <%= f.input :elevation, :label => "Rough elevation",  :as => :select, :collection => (0..50000).step(250).to_a.map{|v| ["#{v} feet gained",v]}, :include_blank => false %>
+    <%= f.input :url, :label => "URL of reference website", :hint => "If you found the trip on a website, or know of a page that gives a good description of this trip, you can include it here." %>
+    <li class="map optional">
+      <label for="map">Locate your trip</label>
+      <div id="map" style="width:550px;height:400px;background-color:#eee;margin-left:200px"></div>
+      <p class="inline-hints"><input type="search" id="geolocate" placeholder="Search the map…" /></p>
+      <p class="inline-hints">Double click to mark the location</p>
+      <%= f.input :lat, :as => :hidden %>
+      <%= f.input :lng, :as => :hidden %>
+      <%= f.input :user_id, :as => :hidden %>
+    </li>
+    <%= f.input :report, :label => "Trip Report", :hint => "This field takes Markdown" %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.submit "Save the trip", :class => "super awesome large button" %>
+  <% end %>
 <% end %>
 <% content_for :head do %>
 <script type="text/javascript">;
-	$(document).ready(function(){
-		beef.defaults.zoom 		= 5;
-		beef.defaults.lat		= 45;
-		beef.defaults.lng		= -118;
-		beef.load();
-		beef.markerListeners();
-		topo();
-		$("#trip_name").focus();
-	})
+  $(document).ready(function(){
+    beef.defaults.zoom    = 5;
+    beef.defaults.lat   = 45;
+    beef.defaults.lng   = -118;
+    beef.load();
+    beef.markerListeners();
+    topo();
+    $("#trip_name").focus();
+  })
 </script>
 <% end %>
