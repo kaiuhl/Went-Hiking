@@ -11,23 +11,24 @@
 @import "navigation";
 @import "notifications";
 @import "table";
+@import "trips";
 @import "typography";
 @import "styles";
 
 .flash {
-	padding: 10px 10px 10px 26px;
-	margin-bottom:$unit;
-	border-top:1px solid black;
-	border-bottom:1px solid black;
+  padding: 10px 10px 10px 26px;
+  margin-bottom:$unit;
+  border-top:1px solid black;
+  border-bottom:1px solid black;
 
-	&.error {
-		border-color:$error_color;
-		color:$error_color;
-		background: transparent image-url("icons/exclamation.png") no-repeat left center;
-	}
-	&.notice {
-		border-color:$notice_color;
-		color:$notice_color;
-		background: transparent image-url("icons/accept.png") no-repeat left center;
-	}
+  &.error {
+    border-color:$error_color;
+    color:$error_color;
+    background: transparent image-url("icons/exclamation.png") no-repeat left center;
+  }
+  &.notice {
+    border-color:$notice_color;
+    color:$notice_color;
+    background: transparent image-url("icons/accept.png") no-repeat left center;
+  }
 }
