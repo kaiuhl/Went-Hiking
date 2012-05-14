@@ -1,4 +1,5 @@
 <%= semantic_form_for([@user,@trip], :html => {:action => user_trip_path(@user, @trip)}) do |f| %>
+  <%= error_messages(f.object.errors) %>
   <%= f.inputs do %>
     <%= f.input :name, :label => "Name of your trip" %>
     <%= f.input :hiked_at, :as => :date, :label => "When was it?", :include_blank => false, :order => [:month,:day,:year], :include_time => false %>
