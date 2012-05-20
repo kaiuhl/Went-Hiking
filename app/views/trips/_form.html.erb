@@ -7,7 +7,7 @@
     <%= f.input :nights, :label => "Spend the night?", :as => :select, :collection => (0..100).to_a.map{|v| ["#{v} nights",v]}, :include_blank => false %>
     <%= f.input :mileage, :label => "Rough mileage",  :as => :select, :collection => (1.0..3000).step(0.5).to_a.map{|v| ["#{v} miles",v]}, :include_blank => false,
       hint: "<a href='#' class='precision_mileage_toggle'>Want to be more precise?</a>".html_safe, wrapper_html: { id: "rough_mileage" } %>
-    <%= f.input :mileage, label: "Exact mileage", wrapper_html: { style: "display:none", id: "exact_mileage"} %>
+    <%= f.input :mileage, label: "Exact mileage", wrapper_html: { style: "display:none", id: "exact_mileage" }, input_html: { disabled: "disabled" } %>
     <%= f.input :elevation, :label => "Rough elevation",  :as => :select, :collection => (0..50000).step(250).to_a.map{|v| ["#{v} feet gained",v]}, :include_blank => false %>
     <%= f.input :url, :label => "URL of reference website", :hint => "If you found the trip on a website, or know of a page that gives a good description of this trip, you can include it here." %>
     <li class="map optional">

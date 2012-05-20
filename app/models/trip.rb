@@ -3,11 +3,9 @@ class Trip < ActiveRecord::Base
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers
 
-  validates_presence_of :name
-  validates_presence_of :lat
-  validates_presence_of :lng
-  validates_presence_of :mileage
+  validates_presence_of :name, :lat, :lng, :mileage, :hiked_at, :nights
 
+  has_pretty_param :name
   has_many    :photos
   has_many    :hearts
   has_many    :comments
@@ -17,11 +15,8 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :allow_destroy => true
 
   after_save :update_user
+
   scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)], :order => "hiked_at DESC" }}
-
-  has_pretty_param :name
-
-  # acts_as_mappable
 
   cattr_reader :per_page
   @@per_page = 15

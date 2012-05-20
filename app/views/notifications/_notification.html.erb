@@ -6,7 +6,7 @@
   <% elsif notification.content.class == Comment -%>
     commented on
   <% end -%>
-  <%= link_to "your hike", notification.uri %>
+  <%= link_to (notification.subject.user_id == current_user.id ? "your hike" : "#{notification.subject.user.name}'s hike"), notification.uri %>
   <%= time_ago_in_words notification.created_at %> ago
   <%= link_to "mark as read", read_notification_path(notification), remote: :true, class: "read-notification-link" %>
 <% end -%>
