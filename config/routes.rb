@@ -2,24 +2,25 @@ HikingStats::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'reset_password' => 'users#password', :as => :password
-	match 'search' => 'trips#search', :as => :search
-	match 'advanced_search' => 'trips#advanced_search', :as => :advanced_search
-	match 'map' => 'routes#new'
-	match 'about' => 'static#about'
-	match 'privacy_policy' => 'static#privacy_policy'
-	match 'donate' => 'static#donate'
+  match 'search' => 'trips#search', :as => :search
+  match 'advanced_search' => 'trips#advanced_search', :as => :advanced_search
+  match 'map' => 'routes#new'
+  match 'about' => 'static#about'
+  match 'privacy_policy' => 'static#privacy_policy'
+  match 'donate' => 'static#donate'
 
   resources :user_sessions
   resources :users do
-		resources :hikes, controller: 'trips', as: 'trips'
-		resources :forecasts
+    resources :hikes, controller: 'trips', as: 'trips'
+    resources :posts
+    resources :forecasts
     resources :notifications
   end
   resources :hikes, as: 'trips', controller: 'trips' do
-		resources :comments
-		resources :photos
-		resources :hearts
-	end
+    resources :comments
+    resources :photos
+    resources :hearts
+  end
   resources :map_layers
   resources :routes
   resources :photos
@@ -30,8 +31,8 @@ HikingStats::Application.routes.draw do
   end
 
 
-	# legacy route support
-	match '/with(/*path)' => redirect{|params| "/users/#{params[:path]}".chomp("/") }
+  # legacy route support
+  match '/with(/*path)' => redirect{|params| "/users/#{params[:path]}".chomp("/") }
   match '/:controller(/:action(/:id))'
-	root :to => 'static#home'
+  root :to => 'static#home'
 end

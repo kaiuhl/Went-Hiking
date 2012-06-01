@@ -6,4 +6,5 @@ public/system/
 config/database.yml
 .DS_Store
 *.swp
+config/initializers/secret_token.rb
 .sass-cache/
