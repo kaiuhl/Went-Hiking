@@ -20,6 +20,7 @@ gem 'dynamic_form'
 gem 'pretty_param'
 gem 'bourbon'
 gem 'delayed_job_active_record'
+gem 'rack-embed'
 
 group :assets do
 	gem 'execjs'
