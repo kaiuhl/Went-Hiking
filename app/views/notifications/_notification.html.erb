@@ -1,0 +1,13 @@
+<% unless notification.content.blank? -%>
+  <%= div_for notification, class: notification.content.class.to_s.downcase.pluralize, "data-href" => notification.uri, "data-read-at" => notification.read_at  do %>
+  <%= link_to notification.creator.name, user_trips_path(notification.creator) %>
+  <% if notification.content.class == Heart -%>
+    hearted
+  <% elsif notification.content.class == Comment -%>
+    commented on
+  <% end -%>
+  <%= link_to (notification.subject.user_id == current_user.id ? "your hike" : "#{notification.subject.user.name}'s hike"), notification.uri %>
+  <%= time_ago_in_words notification.created_at %> ago
+  <%= link_to "mark as read", read_notification_path(notification), remote: :true, class: "read-notification-link" %>
+<% end -%>
+<% end -%>

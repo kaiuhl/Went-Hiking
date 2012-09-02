@@ -1,0 +1,3 @@
+$("#notification_<%= @notification.id %>").replaceWith("<%= escape_javascript(render partial: "notification", locals: { notification: @notification }) %>");
+$("#notification_<%= @notification.id %>").effect("bounce", {}, 50);
+$("#notifications_badge").html("<%= @count %>").effect("pulse", {}, 150);
