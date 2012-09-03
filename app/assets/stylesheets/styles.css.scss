@@ -292,3 +292,16 @@ span.new {
 	padding:20px;
 	background-color:#eee;
 }
+
+.search_share { 
+	display: inline;
+}
+#search_share_popup {
+	display: none;
+	background-color: #fff;
+	padding: 5px 5px 3px 5px;
+	border: 1px solid #ddd;
+	border-bottom: 1px solid #fff;
+	position: relative;
+	z-index: 1000;
+}
