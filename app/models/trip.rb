@@ -16,7 +16,11 @@ class Trip < ActiveRecord::Base
 
   after_save :update_user
 
-  scope :year, lambda { |year| { :conditions => ["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)], :order => "hiked_at DESC" }}
+  scope :year, lambda { |year|
+    where(["hiked_at >= ? AND hiked_at <= ?", Date.civil(year,1,1), Date.civil(year,12,31)])
+      .order("hiked_at DESC")
+      .includes(:comments, :hearts, :user, :photos)
+  }
 
   cattr_reader :per_page
   @@per_page = 15
