@@ -337,4 +337,20 @@ var	beef = {
 		});
 		map.mapTypes.set('topography', topo_layer);
 	}
-	
+
+// selects the text within #element
+function SelectText(element) {
+  var doc = document;
+  var text = doc.getElementById(element);    
+  if (doc.body.createTextRange) { // ie
+    var range = doc.body.createTextRange();
+    range.moveToElementText(text);
+    range.select();
+  } else if (window.getSelection) { //everything else
+    var selection = window.getSelection();
+    var range = doc.createRange();
+    range.selectNodeContents(text);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+}	

@@ -1,4 +1,10 @@
 <% page_title "Search results for &ldquo;#{h(params[:q].titleize)}&rdquo;".html_safe %>
 
 <h1><%= @trips.length %> results for &ldquo;<%= h(params[:q].titleize) %>&rdquo;</h1>
+<p class="search_share">
+  <%=image_tag "/assets/add.png" %>
+  <%= link_to " Share this seach", "#", onclick: "$('#search_share_popup').fadeToggle(75);SelectText('search_share_popup');return false;" %>
+</p>
+<span id="search_share_popup"><%= search_url + "?q=" + params[:q] %></span>
+
 <%= render @trips, :include_name => true %>

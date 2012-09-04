@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430165444) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120425030143) do
+=======
+ActiveRecord::Schema.define(:version => 20120428211232) do
+>>>>>>> upstream/master
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name"
@@ -103,13 +107,12 @@ ActiveRecord::Schema.define(:version => 20120430165444) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "recipient_id"
-    t.integer  "author_id"
+    t.integer  "to"
+    t.integer  "from"
     t.text     "body"
     t.string   "subject"
-    t.boolean  "read"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "notifications", :force => true do |t|
@@ -121,9 +124,6 @@ ActiveRecord::Schema.define(:version => 20120430165444) do
     t.string   "uri"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "subject_type"
-    t.integer  "subject_id"
-    t.datetime "read_at"
   end
 
   create_table "photos", :force => true do |t|
