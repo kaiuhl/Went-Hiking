@@ -1,5 +1,11 @@
-<% page_title "Photos" %>
+<% page_title "Photos from #{@trip.name}" %>
 
-<h1>Latest Photos</h1>
+<%= content_for :header do %>
+  <p class="breadcrumbs">
+  <%= link_to "&laquo; Back to #{@trip.name}".html_safe, user_trip_path(@trip.user, @trip)  %>
+  </p>
+  <h1>Photos from &ldquo;<%= @trip.name %>&rdquo;</h1>
+<% end %>
 
-<%= render :partial => 'trips/photo', :collection => @photos, :locals => { :size => :thumbnail } %>
+
+<%= render :partial => 'trips/photo', :collection => @photos, :locals => { :size => :large } %>

@@ -2,44 +2,44 @@
 
 <%= content_for :header do %>
 <p class="breadcrumbs">
-	<%= link_to "&laquo; Back to all of  #{@user.name}&rsquo;s trips".html_safe, user_trips_path(@user)  %>
+  <%= link_to "&laquo; Back to all of  #{@user.name}&rsquo;s trips".html_safe, user_trips_path(@user)  %>
 </p>
 <h1>
-	<%= @trip.name %>
-	<%= link_to(image_tag("edit.png"), edit_user_trip_path(@user,@trip)) if personal_current_user %>
+  <%= @trip.name %>
+  <%= link_to(image_tag("edit.png"), edit_user_trip_path(@user,@trip)) if personal_current_user %>
 </h1>
 <h2>
-	<%=h @user.name %> Went
-	<% if @trip.nights > 0 %>
-		Backpacking from
-		<%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}") %> to
-		<%= (@trip.hiked_at + @trip.nights.days).strftime("%A, %B #{(@trip.hiked_at + @trip.nights.days).day.ordinalize} %Y") %>
-	<% else %>
-		Hiking on <%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}, %Y") %>
-	<% end %>
+  <%=h @user.name %> Went
+  <% if @trip.nights > 0 %>
+    Backpacking from
+    <%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}") %> to
+    <%= (@trip.hiked_at + @trip.nights.days).strftime("%A, %B #{(@trip.hiked_at + @trip.nights.days).day.ordinalize} %Y") %>
+  <% else %>
+    Hiking on <%= @trip.hiked_at.strftime("%A, %B #{@trip.hiked_at.day.ordinalize}, %Y") %>
+  <% end %>
 </h2>
 <% end %>
 <%= content_for :head do %>
 <script type="text/javascript">
 $(document).ready(function(){
-	beef.defaults.zoom 			= 5;
-	beef.defaults.lat			= 45;
-	beef.defaults.lng			= -118;
-	beef.defaults.doubleclick 	= true;
-	beef.defaults.scrollwheel 	= false;
-	beef.load();
-	beef.markers.populate(<%= [@trip].map { |trip| {
-		:id 			=> trip.id,
-		:lat 			=> trip.lat,
-		:lng			=> trip.lng,
-		:info			=> trip.name
-	} }.to_json.html_safe %>, true);
-	// beef.zoomToMarkers();
-	topo();
-	map.setMapTypeId("topography");
-	var zoomOut = function(){ map.setZoom(map.getZoom() -1); }
-	setTimeout(zoomOut, 200);
-	setTimeout(zoomOut, 450);
+  beef.defaults.zoom      = 5;
+  beef.defaults.lat     = 45;
+  beef.defaults.lng     = -118;
+  beef.defaults.doubleclick   = true;
+  beef.defaults.scrollwheel   = false;
+  beef.load();
+  beef.markers.populate(<%= [@trip].map { |trip| {
+    :id       => trip.id,
+    :lat      => trip.lat,
+    :lng      => trip.lng,
+    :info     => trip.name
+  } }.to_json.html_safe %>, true);
+  // beef.zoomToMarkers();
+  topo();
+  map.setMapTypeId("topography");
+  var zoomOut = function(){ map.setZoom(map.getZoom() -1); }
+  setTimeout(zoomOut, 200);
+  setTimeout(zoomOut, 450);
 
 });
 </script>
@@ -50,148 +50,144 @@ $(document).ready(function(){
 <% end %>
 
 <div class="column dominant">
-	<div class="box">
-	<%= render :partial => "hearts/form", locals: { trip: @trip } if current_user %>
+  <div class="box">
+  <%= render :partial => "hearts/form", locals: { trip: @trip } if current_user %>
   <%= render :partial => 'metadata', locals: { trip: @trip }  %>
-	<% if @trip.report.blank? %>
-		<% if personal_current_user %>
-			<%= semantic_form_for([@user, @trip]) do |f| %>
-				<h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
-				<p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
-				<%= f.text_area :report, :id => "trip_report" %><br />
-				<%= f.submit "Save your report", :class => "super awesome large button" %>
-			<% end %>
-		<% end %>
-	<% else %>
-		<%= markdown @trip.report %>
-	<% end %>
-	</div>
-	<% unless @trip.url.blank? %>
-	<div class="box">
-	<p class="note">
-		<%= link_to "View the resource page used for this trip<span class=\"meta\">#{h @trip.url}</span>".html_safe, @trip.url, :rel => "nofollow" %>
-	</p></div>
-	<% end  %>
+  <% if @trip.report.blank? %>
+    <% if personal_current_user %>
+      <%= semantic_form_for([@user, @trip]) do |f| %>
+        <h2><%= current_user.name.split(" ")[0] %>, add your trip report!</h2>
+        <p>This field uses <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> to format the text.</p>
+        <%= f.text_area :report, :id => "trip_report" %><br />
+        <%= f.submit "Save your report", :class => "super awesome large button" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= markdown @trip.report %>
+  <% end %>
+  </div>
+  <% unless @trip.url.blank? %>
+  <div class="box">
+  <p class="note">
+    <%= link_to "View the resource page used for this trip<span class=\"meta\">#{h @trip.url}</span>".html_safe, @trip.url, :rel => "nofollow" %>
+  </p></div>
+  <% end  %>
 </div>
 <div class="column subordinant last">
 
-	<div class="box photos">
-	<%= image_tag(static_map(@trip.lat, @trip.lng, "254x125", 4)) %>
-	<%= render :partial => 'trips/photo', :collection => @trip.photos, :locals => { :size => :thumbnail } %>
-	</div>
+  <div class="box photos">
+  <%= image_tag(static_map(@trip.lat, @trip.lng, "254x125", 4)) %>
+  <%= render :partial => 'trips/photo', :collection => @trip.photos, :locals => { :size => :thumbnail } %>
+  <p class="note">
+    <%= link_to("View all photos", trip_photos_path(@trip)) %>
+  </p>
+  </div>
 
 
-	<%= form_for([@trip, @trip.photos.build], :html => {:multipart => true}) do |f| %>
-	<div class="box">
-	<script src="/javascripts/jquery.fileupload.js" type="text/javascript" charset="utf-8" async defer></script>
-	<script src="/javascripts/jquery.iframe-transport.js" type="text/javascript" charset="utf-8" async defer></script>
-	<script type="text/javascript">
-	$(function(){
+  <%= form_for([@user, @trip], :html => {:multipart => true}) do |f| %>
+  <div class="box">
+    <h2>Add photos* <span class="new">Updated!</span></h2>
+    <p><%= f.file_field :photos_array, multiple: true %></p>
+    <p><%= f.submit "Upload photos", class: "super awesome large button" %></p>
+    <p class="note">*Multiple files require a modern browser.</p>
+  </div>
+  <% end if personal_current_user %>
 
-	});
-	</script>
-	<h2>Add photo</h2>
-		<p><%= f.file_field :image %></p>
-		<p><%= f.text_field :caption, :placeholder => "photo's caption" %></p>
-		<p><%= f.submit "Upload photo" %></p>
-	</div>
-	<% end if personal_current_user %>
+  <% if personal_current_user %>
+  <div class="box">
+  <h2>Sharing</h2>
+  <p><a href="#bbcode_share" id="bbcode">Post to forum</a></p>
+  <div style="display:none">
+  <div id="bbcode_share" style="width:525px">
+    <h2>Share on a Forum</h2>
+    <p>Want to post this report on a forum that uses BBCode (like <a href="http://portlandtriprs.org">PortlandTriprs.org</a>) or HTML (like <a href="http://backpackinglight.com">BackpackingLight.com</a>)? Simply copy and paste the text below to get a good start at posting your trip report!</p>
+    <div class="column">
+      <h3>BBCode</h3>
+      <textarea style="width:250px;height:150px"><%= @trip.to_bbcode %></textarea>
+    </div>
+    <div class="column last">
+      <h3>HTML</h3>
+      <textarea style="width:250px;height:150px"><%= @trip.to_html %></textarea>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">$(document).ready(function(){
+    $("#bbcode_share textarea").focus(function(){
+      var that = this;
+      setTimeout(function(){that.select()}, 100);
+    });
+    $("#bbcode").fancybox({
+      'transitionIn'        : 'elastic',
+      'transitionOut'       : 'elastic',
+      'easingIn'            : 'easeOutBack',
+      'easingOut'           : 'easeOutBack',
+      'width'           : 580,
+      'height'          : 620,
+      'overlayColor'        : "white",
+      'speedIn'         : 200,
+      'speedOut'          : 200
+    })
+  })</script>
+  </div>
+  <% else %>
+    <div class="box forecast" id="forecast">
+      <h3>Upcoming Forecast</h3>
 
-	<% if personal_current_user %>
-	<div class="box">
-	<h2>Sharing</h2>
-	<p><a href="#bbcode_share" id="bbcode">Post to forum</a></p>
-	<div style="display:none">
-	<div id="bbcode_share" style="width:525px">
-		<h2>Share on a Forum</h2>
-		<p>Want to post this report on a forum that uses BBCode (like <a href="http://portlandtriprs.org">PortlandTriprs.org</a>) or HTML (like <a href="http://backpackinglight.com">BackpackingLight.com</a>)? Simply copy and paste the text below to get a good start at posting your trip report!</p>
-		<div class="column">
-			<h3>BBCode</h3>
-			<textarea style="width:250px;height:150px"><%= @trip.to_bbcode %></textarea>
-		</div>
-		<div class="column last">
-			<h3>HTML</h3>
-			<textarea style="width:250px;height:150px"><%= @trip.to_html %></textarea>
-		</div>
-		<div class="clearer"></div>
-	</div>
-	</div>
-	<script type="text/javascript" charset="utf-8">$(document).ready(function(){
-		$("#bbcode_share textarea").focus(function(){
-			var that = this;
-			setTimeout(function(){that.select()}, 100);
-		});
-		$("#bbcode").fancybox({
-			'transitionIn'				: 'elastic',
-			'transitionOut'				: 'elastic',
-			'easingIn'      			: 'easeOutBack',
-			'easingOut'     			: 'easeOutBack',
-			'width' 					: 580,
-			'height' 					: 620,
-			'overlayColor' 				: "white",
-			'speedIn'					: 200,
-			'speedOut'					: 200
-		})
-	})</script>
-	</div>
-	<% else %>
-		<div class="box forecast" id="forecast">
-			<h3>Upcoming Forecast</h3>
+      <% @forecast.details[0..2].each do |day| %>
+        <div class="day">
+          <div class="forecast_title"><%= day["title"] %></div>
+          <div class="image"><%= image_tag day["image_url"] %></div>
+          <div class="weather_summary"><%= day["weather_summary"] %></div>
+          <div class="high"><%= day["high"] %></div>
+          <% unless day["low"].blank? %>
+          <div class="low"><%= day["low"] %></div>
+          <% end %>
+        </div>
+      <% end %>
 
-			<% @forecast.details[0..2].each do |day| %>
-				<div class="day">
-					<div class="forecast_title"><%= day["title"] %></div>
-					<div class="image"><%= image_tag day["image_url"] %></div>
-					<div class="weather_summary"><%= day["weather_summary"] %></div>
-					<div class="high"><%= day["high"] %></div>
-					<% unless day["low"].blank? %>
-					<div class="low"><%= day["low"] %></div>
-					<% end %>
-				</div>
-			<% end %>
-
-			<div class="clearer"></div>
-		</div>
+      <div class="clearer"></div>
+    </div>
 
 
-		<% unless @nearby_trips.blank? %>
-		<div class="box">
-			<h3>Nearby Trip Reports</h3>
-			<% @nearby_trips.each do |trip| %>
-			<div class="small_trip">
-				<div class="profile-photo"><a href="<%= user_trips_path(trip.user) %>" class="micro-profile-photo">
-					<%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
-				</a></div>
-				<p class="title"><%= link_to trip.name, user_trip_path(trip.user, trip) %></p>
-				<p class="meta">
-					<b><%= link_to h(trip.user.name), user_trips_path(trip.user) %></b>
-					hiked this <%= trip.hiked_at.strftime("%D") %>
-				</p>
-			</div>
-			<% end %>
-		</div>
-		<% end %>
-	<% end %>
+    <% unless @nearby_trips.blank? %>
+    <div class="box">
+      <h3>Nearby Trip Reports</h3>
+      <% @nearby_trips.each do |trip| %>
+      <div class="small_trip">
+        <div class="profile-photo"><a href="<%= user_trips_path(trip.user) %>" class="micro-profile-photo">
+          <%= image_tag(trip.user.avatar.url(:micro)) unless trip.user.avatar_file_name.blank? %>
+        </a></div>
+        <p class="title"><%= link_to trip.name, user_trip_path(trip.user, trip) %></p>
+        <p class="meta">
+          <b><%= link_to h(trip.user.name), user_trips_path(trip.user) %></b>
+          hiked this <%= trip.hiked_at.strftime("%D") %>
+        </p>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="column dominant" id="comments">
 <% unless @comments.blank? && current_user.blank? && @hearts.blank? %>
 <div class="box">
-	<% unless @comments.blank? && @hearts.blank? %>
-	<h2>Comments</h2>
-	<%= render "hearts/hearts" %>
-	<%= render @comments %>
-	<% end %>
-	<% unless current_user.blank? %>
-		<h2>Your Comment</h2>
-		<%= render "comments/form" %>
-	<% end %>
+  <% unless @comments.blank? && @hearts.blank? %>
+  <h2>Comments</h2>
+  <%= render "hearts/hearts" %>
+  <%= render @comments %>
+  <% end %>
+  <% unless current_user.blank? %>
+    <h2>Your Comment</h2>
+    <%= render "comments/form" %>
+  <% end %>
 </div>
 <% end %>
 
 
 <div class="box">
-	<%= render "google" %>
-	<div class="clearer"></div>
+  <%= render "google" %>
+  <div class="clearer"></div>
 </div>
 </div>

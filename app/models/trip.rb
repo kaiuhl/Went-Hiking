@@ -36,6 +36,10 @@ class Trip < ActiveRecord::Base
     @score ||= (hearts.size  + comments.size**0.25 + 1) / ((Time.now - created_at) / 3600)
   end
 
+  def photos_array=(array)
+    array.each { |photo| photos.build(image: photo) }
+  end
+
   def to_bbcode
     output = ""
     output << "#{mileage} miles, #{elevation}' gained"
